@@ -4,18 +4,10 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: {
-      filename: 'postgres://localhost/flight-switch',
-      username: 'flight-switch',
-      password: process.env.DB_USER_PASSWORD
-    }
+    connection: 'postgres://localhost/flight-switch'
   },
   production: {
     client: 'postgresql',
-    connection: {
-      filename: process.env.DATABASE_URL,
-      username: ''
-      password: ''
-    }
+    connection: process.env.DATABASE_URL,
   }
 };
