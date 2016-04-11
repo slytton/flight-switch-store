@@ -25,6 +25,8 @@ header {
   display: block; }
 
 .container {
+  padding-bottom: 100px;
+  height: 100%;
   overflow: auto;
   margin: 0 5%; }
 
