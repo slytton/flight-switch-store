@@ -15,7 +15,8 @@ router.get('/shirt/:id', function(req, res, next) {
 
 
 router.get('/', function(req, res, next) {
-    res.render('index', { shirts: shirts });
+  var placeHolder = [1,2,3,4,5,6,7,8,9,10,11]
+    res.render('index', { shirts: placeHolder });
 });
 
 

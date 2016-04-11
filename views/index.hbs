@@ -1,2 +1,11 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#shirts}}
+<article class="shirt">
+  <a href="/shirt/{{id}}"><img class='shirtimg' src="../images/{{design}}.png" /></a>
+  <div class="shirtinfo">
+    ${{price}}
+
+    <a href="/shirt/{{id}}">Details</a>
+
+  </div>
+</article>
+{{/shirts}}
