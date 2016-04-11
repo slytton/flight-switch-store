@@ -9,36 +9,57 @@
 <body>
 
   <header>
-    <div class='logoicon'><a href="/">
-      <img style="width:10%" src="../images/logoiconwhite.png" />
-      <img style="width:25%" src="../images/logotype.png" />
+    <div class='headerlogo'>
+      <a href="/">
+        <img style="width:20%" src="../images/logoiconwhite.png" />
+        <img style="width:50%" src="../images/logotype.png" />
+      </a>
     </div>
-  </a>
 
-  <div class='logotype'>
+    <div class='headerright'>
+      {{#if user.admin}}
+      <p>
+        admin
+      </p>
+      {{else}} {{#if user}}
+      <p>
+        Account | Lougout
+      </p>
+      {{else}}
+      <p>
+        login | Sign Up
+      </p>
+
+      {{/if}}{{/if}}
+
+    </div>
+
+  </header>
+
+  <div class='clear'>
+    <div class='headerlogo'>
+      <a href="/">
+        <img style="width:20%" src="../images/logoiconwhite.png" />
+      </a>
+    </div>
+    <div class='headerright'>
+    </div>
   </div>
 
-</header>
 
-<div class='clear'>
-  <img style="width:10%" src="../images/logoiconwhite.png" />
+  <div class='container'>
+    {{{body}}}
+  </div>
 
-</div>
+  <footer>
+    <a href="/"><img style='width:10%' src="../images/logoiconwhite.png" alt="" /></a>
+  </footer>
 
+  <footer>Flight Switch &copy 2016</footer>
 
-<div class='container'>
-  {{{body}}}
-</div>
-
-<footer>
-  <a href="/"><img style='width:10%' src="../images/logoiconwhite.png" alt="" /></a>
-</footer>
-
-<footer>Flight Switch &copy 2016</footer>
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script src="/javascript/main.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script src="/javascript/main.js" charset="utf-8"></script>
 
 </body>
 </html>
