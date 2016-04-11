@@ -9,6 +9,6 @@ exports.seed = function(knex, Promise) {
     knex('colors').insert({id: 2, color: 'white'}),
     knex('colors').insert({id: 3, color: 'blue'}),
     knex('colors').insert({id: 4, color: 'black'}),
-    knex('colors').insert({id: 5, color: 'grey'}),
+    knex('colors').insert({id: 5, color: 'grey'})
   );
 };
