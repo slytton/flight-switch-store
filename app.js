@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-sessions');
 var bodyParser = require('body-parser');
+var bcrypt = require('bcrypt');
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -21,7 +23,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.SECRET));
 app.use(cookieSession({
   name: 'session',
   keys: [
