@@ -8,9 +8,9 @@ npm install
 createdb flight-switch
 
 // Add cookie session keys.
-SESSIONKEY1=$(node -e "require('crypto').randomBytes(48, function(ex, buf) { console.log(buf.toString('hex')) });") >> .env
-SESSIONKEY2=$(node -e "require('crypto').randomBytes(48, function(ex, buf) { console.log(buf.toString('hex')) });") >> .env
-SESSIONKEY3=$(node -e "require('crypto').randomBytes(48, function(ex, buf) { console.log(buf.toString('hex')) });") >> .env
+echo SESSIONKEY1=$(node -e "require('crypto').randomBytes(48, function(ex, buf) { console.log(buf.toString('hex')) });") >> .env
+echo SESSIONKEY2=$(node -e "require('crypto').randomBytes(48, function(ex, buf) { console.log(buf.toString('hex')) });") >> .env
+echo SESSIONKEY3=$(node -e "require('crypto').randomBytes(48, function(ex, buf) { console.log(buf.toString('hex')) });") >> .env
 
 ENVIRONMENT=development >> .env
 DB_USER_PASSWORD=[your password] >> .env
