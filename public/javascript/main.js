@@ -13,9 +13,6 @@ function stripeResponseHandler(status, response) {
     // response contains id and card, which contains additional card details
     var token = response.id;
     // Insert the token into the form so it gets submitted to the server
-    console.log(token);
-    console.log(response);
-    alert(token);
     $form.append($('<input type="hidden" name="stripeToken" />').val(token));
     // and submit
     $form.get(0).submit();
@@ -24,18 +21,13 @@ function stripeResponseHandler(status, response) {
 
 
 $(function() {
-  console.log($);
-  alert('Working');
   $('#payment-form').on('submit', function(event) {
     event.preventDefault();
     var $form = $(this);
 
     // Disable the submit button to prevent repeated clicks
     $form.find('button').prop('disabled', true);
-    alert('Here');
     Stripe.card.createToken($form, stripeResponseHandler);
-    alert('After');
-
 
     // Prevent the form from submitting with the default action
     return false;
