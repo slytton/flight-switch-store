@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('order_status', function(table){
     table.increments();
-    table.string('name').notNull();
+    table.string('status').notNull();
   })
 };
 
