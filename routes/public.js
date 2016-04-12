@@ -73,11 +73,15 @@ router.use('*', function(req, res, next){
 })
 
 router.get('/login', function(req, res, next) {
-  res.render('./public/login');
+  var message = req.session.message;
+  req.session.message = null;
+  res.render('./public/login', {error: message});
 });
 
 router.get('/register', function(req, res, next) {
-  res.render('./public/register');
+  var message = req.session.message;
+  req.session.message = null;
+  res.render('./public/register', {error: message});
 });
 
 

@@ -85,6 +85,7 @@ var Design = bookshelf.Model.extend({
 
 
 module.exports = {
+  knex: knex,
   User: User,
   Order: Order,
   OrderItem: OrderItem,
