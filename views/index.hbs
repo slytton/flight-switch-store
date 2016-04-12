@@ -5,7 +5,9 @@
     ${{shirts.0.price}}
 
     <a href="/shirt/{{design_id}}">Details</a>
-
+    {{#sizes}}
+    <li>{{size}}</li>
+    {{/sizes}}
   </div>
 </article>
 {{/if}}

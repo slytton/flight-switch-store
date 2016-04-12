@@ -64,14 +64,26 @@ router.get('/checkout', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-
-  bookshelf.ShirtImageUrl.collection().fetch({withRelated: ['shirts']}).then(function(shirts){
-
-    var message = req.session.message;
-    req.session.message = null;
-    console.log();
-    res.render('index', {shirts: shirts.serialize(), message: message});
-    // res.json(shirts);
+  var result = {}
+  bookshelf.Shirt.collection().fetch({withRelated: ['colors', 'sizes', 'designs']}).then(function(shirt){
+    result.shirt = shirt.serialize();
+    // console.log(result);
+    return bookshelf.ShirtImageUrl.collection().fetch({withRelated: ['shirts']}).then(function(shirts){
+      result.shirts = shirts.serialize();
+      for (var i = 0; i < result.shirts.length; i++) {
+        result.shirts[i].sizes = []
+        for (var j = 0; j < result.shirt.length; j++) {
+          if(result.shirts[i].id === result.shirt[j].shirt_image_url_id) {
+            result.shirts[i].sizes.push(result.shirt[j].sizes)
+          }
+        }
+      }
+      console.log(result.shirts[0].shirts.sizes);
+      var message = req.session.message;
+      req.session.message = null;
+      res.render('index', {shirts: result.shirts, message: message});
+      // res.json(result)
+    })
   })
 });
 
