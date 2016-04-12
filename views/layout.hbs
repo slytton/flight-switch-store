@@ -17,22 +17,40 @@
     </div>
 
     <div class='headerright'>
+      <nav>
+        <ul>
+          <li><a href="/">Home</li></a>
+          {{#if user}}
+          <li>Account</li>
+          {{/if}}
+          {{#if user.admin}}
+          <li>Admin</li>
+          {{/if}}
+
+        </ul>
+      </nav>
+
+    </div>
+
+    <div class='headerright'>
       {{#if user.admin}}
       <p>
         admin
       </p>
       {{else}} {{#if user}}
       <p>
-        Account | Lougout
+        Account | Logout
       </p>
       {{else}}
       <p>
-        login | Sign Up
+        <a href="/login">login</a> | <a href="/register">Sign Up</a>
       </p>
 
       {{/if}}{{/if}}
 
     </div>
+
+
 
   </header>
 
@@ -52,7 +70,7 @@
   </div>
 
   <footer>
-    <a href="/"><img style='width:10%' src="../images/logoiconwhite.png" alt="" /></a>
+    <a href="/"><img style='width:5%' src="../images/logoiconwhite.png" alt="" /></a>
   </footer>
 
   <footer>Flight Switch &copy 2016</footer>

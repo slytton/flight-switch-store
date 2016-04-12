@@ -6,6 +6,45 @@ body {
   font-family: 'Futura';
   margin: 0; }
 
+.headerright a:link {
+  text-decoration: none;
+  color: #F0F0F0; }
+
+.headerright a:active {
+  text-decoration: none;
+  color: white; }
+
+.headerright a:visited {
+  text-decoration: none;
+  color: #D8D8D8; }
+
+.headerright a:hover {
+  text-decoration: underline;
+  color: white; }
+
+a:link {
+  text-decoration: none;
+  color: black; }
+
+a:hover {
+  text-decoration: underline;
+  color: black; }
+
+ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  float: right; }
+
+li {
+  font-size: 16px;
+  display: inline;
+  margin-right: 5%; }
+
+nav {
+  width: 100%;
+  float: right; }
+
 .clear {
   width: 100%;
   border-bottom: solid 5px #00A2E2;
@@ -25,11 +64,20 @@ header {
   margin: 10px 3%; }
 
 .headerright {
+  font-size: 14px;
   text-align: right;
   float: right;
-  width: 44%;
+  width: 50%;
   color: white;
-  margin: 10px 3%; }
+  margin: 10px 0;
+  display: inline-block; }
+
+.headerright:nth-of-type(2) {
+  position: absolute;
+  bottom: 0; }
+
+.headerright > p {
+  margin: 0 5%; }
 
 .container {
   padding-bottom: 100px;
