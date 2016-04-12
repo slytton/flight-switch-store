@@ -4,6 +4,27 @@ var knex = require('knex')(require('../knexfile')['development']);
 var stripe = require("stripe")(process.env.STRIPE_SECRET);
 /* GET home page. */
 
+var authUser = function() {
+
+};
+
+var isUser = function() {
+
+};
+
+var isAdmin = function() {
+
+}
+
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
+
+router.get('/register', function(req, res, next) {
+  res.render('register');
+});
+
+
 router.get('/shirt/:id', function(req, res, next) {
   var shirtid = req.params.id;
   res.render('shirt', { shirt: shirt });
