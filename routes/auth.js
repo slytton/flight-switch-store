@@ -2,6 +2,85 @@ var express = require('express');
 var router = express.Router();
 var bookshelf = require('../db/config.js');
 var bcrypt = require('bcrypt');
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.HOST + "/auth/google/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+  return done(null, {
+                      googleId: profile.id,
+                      fname: profile.name.givenName,
+                      lname: profile.name.familyName,
+                      email: profile.emails[0].value
+                    });
+}
+));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+
+router.use(passport.initialize());
+router.use(passport.session());
+
+router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home and add current user key to database.
+    console.log('in callback');
+    bookshelf.User.where({email: req.user.email.toLowerCase()}).fetch().then(function(user){
+      console.log("in bookshelf");
+      var toUpdate = {};
+      console.log(req.user);
+
+      if(user){
+        if(!user.gid){
+          toUpdate.gid = req.user.googleId;
+        }else{
+          return res.redirect('/');
+        }
+        console.log('in oauth update user');
+        console.log(req.user);
+        user.save(toUpdate, {patch: true}).then(function(){
+          req.session.userID = user.id;
+          return res.redirect('/');
+        })
+      } else {
+        console.log('in oauth new user');
+        var generatedPass = require('crypto').randomBytes(48).toString('hex');
+        generatedPass = bcrypt.hashSync(generatedPass, 8)
+        console.log(generatedPass);
+        new bookshelf.User({
+                    email: req.user.email.toLowerCase(),
+                    fname: req.user.fname,
+                    lname: req.user.lname,
+                    gid: req.user.google_id,
+                    password: generatedPass
+                  }).save().then(function(user){
+                    console.log('bookshelf complete');
+                    console.log(user);
+                    req.session.userID = user.id;
+                    res.redirect('/');
+                  });
+      }
+    })
+
+  });
+
+
+
 
 router.post('/signup', function(req,res,next){
   // validate that the form was filled out
@@ -53,8 +132,11 @@ router.post('/login', function(req,res,next){
 });
 
 router.get('/logout', function(req,res,next) {
-  req.session.user = null;
+  req.session.userID = null;
   res.redirect('/');
 });
+
+
+
 
 module.exports = router;

@@ -3,9 +3,10 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
+var bookshelf = require('./db/config.js')
 
 var routes = require('./routes/public');
 var users = require('./routes/users');
@@ -25,7 +26,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.SECRET));
+//app.use(cookieParser(process.env.SECRET));
 app.use(cookieSession({
   name: 'session',
   keys: [
@@ -36,6 +37,21 @@ app.use(cookieSession({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static('public'));
+
+app.use(function(req, res, next){
+  console.log(req.session.userID);
+  if(req.session.userID){
+    bookshelf.User.where({id: req.session.userID}).fetch().then(function(user){
+      user = user.serialize();
+      res.user = user;
+      res.locals.user = user;
+      next();
+    })
+  }else{
+    next();
+  }
+
+})
 
 app.use('/', routes);
 app.use('/users', users);
