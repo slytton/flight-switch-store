@@ -23,7 +23,7 @@ router.post('/signup', function(req,res,next){
      console.log(req.body.firstName);
      console.log(req.body.lastName);
      console.log(errorArray);
-     res.render('register', {errors: errorArray});
+     res.render('./public/register', {errors: errorArray});
    }
    else{
   var hash = bcrypt.hashSync(req.body.password, 8);
@@ -46,7 +46,7 @@ router.post('/login', function(req,res,next){
       req.session.id = response.id;
       res.redirect('/');
     } else {
-      res.render('login', {error: 'Invalid username or password'});
+      res.render('./public/login', {error: 'Invalid username or password'});
     }
   });
 });
