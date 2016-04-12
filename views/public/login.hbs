@@ -1,27 +1,21 @@
 
-{{#if error}}
-{{error}}
-{{/if}}
 
-<h1 class='page-title'>Login</h1>
-<div class='form-wrapper'>
+
+<div class='login'>
+  {{#if error}}
+  {{error}}
+  {{/if}}
 <form action="/auth/login" method="post">
-    <div class="form-group">
-        <label for="email">email</label>
-        <br>
-        <input type="text" class="text-input" name="email" value="">
-    </div>
-    <br>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <br>
-        <input type="password" class="text-input" name="password" value="">
-    </div>
-
-    <br><br>
+        <h3>Please Log In</h3>
+        <input type="text" class="text-input" name="email" value="" placeholder="Email" required autofocus>
 
 
-    <input type="submit" value="Log-in">
+
+        <input type="password" class="text-input" name="password" value="" placeholder="Password" required>
+
+
+
+    <input class='button blue' type="submit" value="Log-in">
 </form>
 <p class='info'>Need an account? <a href='/register'>Sign Up</a></p>
 </div>

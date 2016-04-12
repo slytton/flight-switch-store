@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('knex')(require('../knexfile')['development']);
+var bookshelf = require('../db/config.js');
 var bcrypt = require('bcrypt');
 
 router.post('/signup', function(req,res,next){
@@ -20,14 +20,11 @@ router.post('/signup', function(req,res,next){
      errorArray.push('Please enter your last name');
    }
    if(errorArray.length > 0) {
-     console.log(req.body.firstName);
-     console.log(req.body.lastName);
-     console.log(errorArray);
      res.render('./public/register', {errors: errorArray});
    }
    else{
   var hash = bcrypt.hashSync(req.body.password, 8);
-  knex('users')
+  bookshelf.knex('users')
   .insert({'email': req.body.email, 'password': hash, 'fname': req.body.firstName, 'lname': req.body.lastName})
   .then(function(response){
     console.log(response);
@@ -37,7 +34,7 @@ router.post('/signup', function(req,res,next){
 });
 
 router.post('/login', function(req,res,next){
-  knex('users')
+  bookshelf.knex('users')
   .where('email', '=', req.body.email)
   .first()
   .then(function(response){

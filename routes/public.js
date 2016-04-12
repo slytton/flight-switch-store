@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('knex')(require('../knexfile')['development']);
+var bookshelf = require('../db/config.js');
 var stripe = require("stripe")(process.env.STRIPE_SECRET);
 /* GET home page. */
 
@@ -22,19 +22,7 @@ function authenticUser(req, res, next) {
 
 };
 
-function isAdmin(req, res, next) {
-  var user_id = req.session.userID;
-  knex('users').where({
-    id: user_id
-  }).then(function(user) {
-    if(user[0].admin){
-      next();
-    }
-    else {
-      res.redirect(401, '/');
-    }
-  });
-};
+
 
 router.get('/shirt/:design/:color', function(req, res, next) {
   var shirtid = req.params.design;
@@ -43,13 +31,6 @@ router.get('/shirt/:design/:color', function(req, res, next) {
 
 
 
-router.get('/login', function(req, res, next) {
-  res.render('./public/login');
-});
-
-router.get('/register', function(req, res, next) {
-  res.render('./public/register');
-});
 
 router.get('/logout', function(req, res, next) {
   res.redirect('/auth/logout');
@@ -64,8 +45,6 @@ router.get('/shirt/:id', function(req, res, next) {
 
 router.post('/checkout', function(req, res, next) {
   var orderDetails = req.body;
-  console.log(req.session);
-  console.log(orderDetails);
   res.render('checkout');
 
   var charge = stripe.charges.create({
@@ -90,13 +69,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('*', function(req, res, next){
-  console.log('instart');
   res.user ? res.redirect('/') : next();
 })
 
-router.get('/login', function(req, res, next){
-  console.log('Login');
-  res.render('public/login');
-})
+router.get('/login', function(req, res, next) {
+  res.render('./public/login');
+});
+
+router.get('/register', function(req, res, next) {
+  res.render('./public/register');
+});
+
 
 module.exports = router;
