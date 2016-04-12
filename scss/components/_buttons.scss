@@ -1,0 +1,23 @@
+.button {
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+
+
+.yellow {
+  &:hover {
+    background-color: $accent-yellow-hover;
+  }
+  background-color: $accent-yellow;
+  color: black;
+}
+
+.blue {
+  &:hover {
+    background-color: $accent-blue-hover;
+  }
+  background-color: $accent-blue;
+}
