@@ -6,50 +6,11 @@ body {
   font-family: 'Futura';
   margin: 0; }
 
-.headerright a:link {
-  text-decoration: none;
-  color: #F0F0F0; }
-
-.headerright a:active {
-  text-decoration: none;
-  color: white; }
-
-.headerright a:visited {
-  text-decoration: none;
-  color: #D8D8D8; }
-
-.headerright a:hover {
-  text-decoration: underline;
-  color: white; }
-
-a:link {
-  text-decoration: none;
-  color: black; }
-
-a:hover {
-  text-decoration: underline;
-  color: black; }
-
-ul {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  float: right; }
-
-li {
-  font-size: 16px;
-  display: inline;
-  margin-right: 5%; }
-
-nav {
-  width: 100%;
-  float: right; }
-
-.clear {
-  width: 100%;
-  border-bottom: solid 5px #00A2E2;
+.container {
+  padding-bottom: 500px;
+  height: 100%;
   overflow: auto;
-  background-color: black; }
+  margin: 0 5%; }
 
 header {
   width: 100%;
@@ -79,11 +40,79 @@ header {
 .headerright > p {
   margin: 0 5%; }
 
-.container {
-  padding-bottom: 100px;
-  height: 100%;
+.headerright a:link {
+  text-decoration: none;
+  color: #F0F0F0; }
+
+.headerright a:active {
+  text-decoration: none;
+  color: white; }
+
+.headerright a:visited {
+  text-decoration: none;
+  color: #D8D8D8; }
+
+.headerright a:hover {
+  text-decoration: underline;
+  color: white; }
+
+a:link {
+  text-decoration: none;
+  color: black; }
+
+a:hover {
+  text-decoration: underline;
+  color: black; }
+
+nav {
+  width: 100%;
+  float: right; }
+
+ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  float: right; }
+
+li {
+  font-size: 16px;
+  display: inline;
+  margin-right: 5%; }
+
+.clear {
+  width: 100%;
+  border-bottom: solid 5px #00A2E2;
   overflow: auto;
-  margin: 0 5%; }
+  background-color: black; }
+
+.cart {
+  text-align: right;
+  float: right;
+  position: fixed;
+  right: 0;
+  padding: 0 2.5%; }
+
+#cartbutton {
+  margin: 0;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid black;
+  border-top: none;
+  cursor: pointer; }
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: right; }
+
+tr {
+  background-color: rgba(255, 255, 255, 0.5);
+  display: none; }
+
+td {
+  padding: 5px 10px;
+  display: inline-block;
+  cursor: pointer; }
 
 footer {
   padding: 10px 0;
