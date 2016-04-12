@@ -36,6 +36,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { shirts: placeHolder });
 });
 
+router.use('*', function(req, res, next){
+  console.log('instart');
+  res.user ? res.redirect('/') : next();
+})
 
+router.get('/login', function(req, res, next){
+  console.log('Login');
+  res.render('public/login');
+})
 
 module.exports = router;

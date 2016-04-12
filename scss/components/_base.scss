@@ -1,3 +1,8 @@
+$accent-blue: rgb(0, 162, 226);
+$accent-blue-hover: rgb(3, 132, 184);
+$accent-yellow: rgb(255, 232, 22);
+$accent-yellow-hover: rgb(236, 213, 0);
+
 body {
   background-image: url("../images/logobackground.jpg");
   background-attachment: fixed;
@@ -17,7 +22,7 @@ body {
 header {
   width: 100%;
   position: fixed;
-  border-bottom: solid 5px #00A2E2;
+  border-bottom: solid 5px $accent-blue;
   overflow: auto;
   background-color: black;
 }
@@ -49,7 +54,7 @@ header {
 
 .headerright a:link {
   text-decoration: none;
-  color: #F0F0F0;
+  color: $accent-blue-hover;
 }
 
 .headerright a:active {
@@ -59,7 +64,7 @@ header {
 
 .headerright a:visited {
   text-decoration: none;
-  color: #D8D8D8;
+  color: $accent-blue-hover;
 }
 
 .headerright a:hover {
@@ -96,7 +101,7 @@ li {
 
 .clear {
   width: 100%;
-  border-bottom: solid 5px #00A2E2;
+  border-bottom: solid 5px;
   overflow: auto;
   background-color: black;
 }
@@ -173,10 +178,3 @@ section {
     width: 100%;
   }
 }
-// Base styles
-@import 'components/base';
-@import 'components/form';
-@import 'components/buttons';
-
-// Pages
-@import 'pages/login';

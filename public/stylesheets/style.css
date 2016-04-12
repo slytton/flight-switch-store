@@ -145,3 +145,198 @@ section {
 @media only screen and (max-width: 500px) {
   article {
     width: 100%; } }
+
+body {
+  background-image: url("../images/logobackground.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Futura';
+  margin: 0; }
+
+.container {
+  padding-bottom: 500px;
+  height: 100%;
+  overflow: auto;
+  margin: 0 5%; }
+
+header {
+  width: 100%;
+  position: fixed;
+  border-bottom: solid 5px #00a2e2;
+  overflow: auto;
+  background-color: black; }
+
+.headerlogo {
+  float: left;
+  width: 44%;
+  margin: 10px 3%; }
+
+.headerright {
+  font-size: 14px;
+  text-align: right;
+  float: right;
+  width: 50%;
+  color: white;
+  margin: 10px 0;
+  display: inline-block; }
+
+.headerright:nth-of-type(2) {
+  position: absolute;
+  bottom: 0; }
+
+.headerright > p {
+  margin: 0 5%; }
+
+.headerright a:link {
+  text-decoration: none;
+  color: #0384b8; }
+
+.headerright a:active {
+  text-decoration: none;
+  color: white; }
+
+.headerright a:visited {
+  text-decoration: none;
+  color: #0384b8; }
+
+.headerright a:hover {
+  text-decoration: underline;
+  color: white; }
+
+a:link {
+  text-decoration: none;
+  color: black; }
+
+a:hover {
+  text-decoration: underline;
+  color: black; }
+
+nav {
+  width: 100%;
+  float: right; }
+
+ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  float: right; }
+
+li {
+  font-size: 16px;
+  display: inline;
+  margin-right: 5%; }
+
+.clear {
+  width: 100%;
+  border-bottom: solid 5px;
+  overflow: auto;
+  background-color: black; }
+
+.cart {
+  text-align: right;
+  float: right;
+  position: fixed;
+  right: 0;
+  padding: 0 2.5%; }
+
+#cartbutton {
+  margin: 0;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid black;
+  border-top: none;
+  cursor: pointer; }
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: right; }
+
+tr {
+  background-color: rgba(255, 255, 255, 0.5);
+  display: none; }
+
+td {
+  padding: 5px 10px;
+  display: inline-block;
+  cursor: pointer; }
+
+footer {
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+  background-color: black;
+  clear: both; }
+
+footer:nth-of-type(2) {
+  background-color: white; }
+
+article {
+  flex-grow: 1;
+  padding: 2%;
+  margin: 0 auto;
+  float: left;
+  width: calc(88% / 3); }
+
+.shirtimg {
+  width: 100%; }
+
+.singleshirtimg {
+  margin: 5%;
+  width: 90%; }
+
+section {
+  float: left;
+  width: 50%; }
+
+@media only screen and (max-width: 500px) {
+  article {
+    width: 100%; } }
+
+form {
+  text-align: center; }
+  form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin: 0 auto;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 10px; }
+    form input:last-child {
+      margin-bottom: 0; }
+
+.button {
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white; }
+
+.yellow {
+  background-color: #ffe816;
+  color: black; }
+  .yellow:hover {
+    background-color: #ecd500; }
+
+.blue {
+  background-color: #00a2e2; }
+  .blue:hover {
+    background-color: #0384b8; }
+
+.login {
+  margin: 80px auto 0;
+  max-width: 400px; }
+  .login h3 {
+    color: white;
+    padding: 10px 0 20px 0;
+    border-bottom: 1px solid white;
+    font-weight: normal;
+    font-size: 1.5em; }
+  .login form {
+    padding: 10px 50px 50px 50px;
+    background-color: rgba(139, 139, 139, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 0 10px black; }
