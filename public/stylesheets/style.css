@@ -74,7 +74,6 @@ section {
 form {
   text-align: center; }
   form input {
-    /*width: 30%;*/
     width: 350px;
     padding: 10px;
     border-radius: 5px;
@@ -120,26 +119,21 @@ form {
     box-shadow: 0 0 10px black; }
 
 #month {
-  /*width: 3.5%;*/
   width: 40px;
   text-align: center;
 }
 #year {
-  /*width: 4.5%;*/
   width: 70px;
   text-align: center;
 }
 #cvc {
-  /*width: 4%;*/
   width: 53px;
   text-align: center;
 }
 #zip {
-  /*width: 6.5%;*/
   width: 80px;
   text-align: center;
 }
 #state {
-  /*width: 20%;*/
   width: 150px;
 }
