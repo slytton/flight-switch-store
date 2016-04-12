@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.integer('color_id').unsigned().references('id').inTable('colors').onDelete('cascade');
     table.integer('quantity').unsigned().notNull();
     table.float('price').notNull();
-  })
+  });
 };
 
 exports.down = function(knex, Promise) {
