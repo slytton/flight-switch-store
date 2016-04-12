@@ -4,18 +4,36 @@ var knex = require('knex')(require('../knexfile')['development']);
 var stripe = require("stripe")(process.env.STRIPE_SECRET);
 /* GET home page. */
 
-var authUser = function() {
+function authorizedUser(req, res, next) {
+  var user_id = req.session.id;
+  if (user_id) {
+      next();
+  } else {
+    res.redirect(401, '/');
+  }
+};
+
+function isUser(req, res, next) {
+  if(req.signedCookies.userID === req.params.id) {
+  next();
+}else{
+  res.redirect(401, '/');
+  }
 
 };
 
-var isUser = function() {
-
-};
-
-var isAdmin = function() {
-
-}
-
+function isAdmin(req, res, next) {
+  var user_id = req.session.userID;
+  knex('users').where({
+    id: user_id
+  }).then(function(user) {
+    if(user[0].admin){
+      next();
+    }
+    else {
+      res.redirect(401, '/');
+    }
+  });
 router.get('/login', function(req, res, next) {
   res.render('login');
 });
