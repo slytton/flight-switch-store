@@ -1,10 +1,10 @@
 {{#shirts}}{{#if shirts.0.quantity}}
 <article class="shirt">
-  <a href="/shirt/{{id}}"><img class='shirtimg' src="{{url}}" /></a>
+  <a href="/shirt/{{shirts.0.design_id}}"><img class='shirtimg' src="{{url}}" /></a>
   <div class="shirtinfo">
     ${{shirts.0.price}}
 
-    <a href="/shirt/{{design_id}}">Details</a>
+    <a href="/shirt/{{shirts.0.design_id}}">Details</a>
     {{#sizes}}
       <li>{{size}}</li>
     {{/sizes}}
