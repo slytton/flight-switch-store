@@ -64,10 +64,13 @@ router.get('/checkout', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
+
   bookshelf.ShirtImageUrl.collection().fetch({withRelated: ['shirts']}).then(function(shirts){
 
+    var message = req.session.message;
+    req.session.message = null;
     console.log();
-    res.render('index', {shirts: shirts.serialize()});
+    res.render('index', {shirts: shirts.serialize(), message: message});
     // res.json(shirts);
   })
 });
@@ -77,11 +80,15 @@ router.use('*', function(req, res, next){
 })
 
 router.get('/login', function(req, res, next) {
-  res.render('./public/login');
+  var message = req.session.message;
+  req.session.message = null;
+  res.render('./public/login', {message: message});
 });
 
 router.get('/register', function(req, res, next) {
-  res.render('./public/register');
+  var message = req.session.message;
+  req.session.message = null;
+  res.render('./public/register', {message: message});
 });
 
 
