@@ -1,5 +1,5 @@
 $accent-blue: rgb(0, 162, 226);
-$accent-blue-hover: rgb(3, 132, 184);
+$accent-blue-hover: #00A2E2;
 $accent-yellow: rgb(255, 232, 22);
 $accent-yellow-hover: rgb(236, 213, 0);
 
@@ -51,7 +51,6 @@ header {
   margin: 0 5%;
 }
 
-
 .headerright a:link {
   text-decoration: none;
   color: $accent-blue-hover;
@@ -78,6 +77,11 @@ a:link {
 }
 a:hover {
   text-decoration: underline;
+  color: $accent-blue-hover;
+}
+
+td a {
+  text-decoration: none;
   color: black;
 }
 
@@ -118,25 +122,22 @@ li {
   margin: 0;
   padding: 5px;
   background-color: white;
-  border: 1px solid black;
+  border:1px solid gray;
   border-top: none;
   cursor: pointer;
 }
 
 .cart > table {
-  border: 1px solid black;
+  border:1px solid gray;
+  border-top: none;
   text-align: right;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  background-color: rgba(255, 255, 255, .7);
+  background-color: rgba(255, 255, 255, .5);
   display: none;
 }
 
-.cart > table {
-
-}
-
-td {
+.cart td {
   padding: 5px 10px;
   display: inline-block;
   cursor: pointer;

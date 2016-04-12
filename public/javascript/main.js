@@ -23,10 +23,10 @@ $("#cartbutton").click(function(){
   $(".cart > table").toggle();
 });
 
-$("td").mouseenter(function(){
+$(".cart td").mouseenter(function(){
   $(this).css('color', '#00a4e4')
   .mouseleave(function(){
-    $('td').css('color', 'black');
+    $('.cart td').css('color', 'black');
   })
 });
 
