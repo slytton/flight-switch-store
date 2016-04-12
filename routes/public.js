@@ -65,6 +65,8 @@ router.get('/checkout', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
   var placeHolder = [1,2,3,4,5,6,7,8,9,10,11]
+  var message = req.session.message;
+  req.session.message = null;
   res.render('index', { shirts: placeHolder });
 });
 
@@ -75,13 +77,13 @@ router.use('*', function(req, res, next){
 router.get('/login', function(req, res, next) {
   var message = req.session.message;
   req.session.message = null;
-  res.render('./public/login', {error: message});
+  res.render('./public/login', {message: message});
 });
 
 router.get('/register', function(req, res, next) {
   var message = req.session.message;
   req.session.message = null;
-  res.render('./public/register', {error: message});
+  res.render('./public/register', {message: message});
 });
 
 

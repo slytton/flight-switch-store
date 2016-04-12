@@ -20,7 +20,7 @@ router.post('/signup', function(req,res,next){
      errorArray.push('Please enter your last name');
    }
    if(errorArray.length > 0) {
-     req.session.message = errorArray;
+     req.session.message = {error: errorArray};
      res.redirect('/register');
    }
    else{
@@ -28,7 +28,7 @@ router.post('/signup', function(req,res,next){
   bookshelf.knex('users')
   .insert({'email': req.body.email, 'password': hash, 'fname': req.body.firstName, 'lname': req.body.lastName})
   .then(function(response){
-    console.log(response);
+    req.session.message = {sucess: 'You are now a registered user. Welcome!'};
     res.redirect('/');
   })
 }
@@ -43,9 +43,10 @@ router.post('/login', function(req,res,next){
     if(response && bcrypt.compareSync(req.body.password, response.password)){
       req.session.user = response.username;
       req.session.id = response.id;
+      req.session.message = {success: "You are now loged in."};
       res.redirect('/');
     } else {
-      req.session.message = 'Invalid username or password';
+      req.session.message = {error:'Invalid username or password'};
       res.redirect('/login');
     }
   });
