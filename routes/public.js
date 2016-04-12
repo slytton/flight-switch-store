@@ -4,9 +4,54 @@ var knex = require('knex')(require('../knexfile')['development']);
 var stripe = require("stripe")(process.env.STRIPE_SECRET);
 /* GET home page. */
 
+<<<<<<< HEAD
 router.get('/shirt/:design/:color', function(req, res, next) {
   var shirtid = req.params.design;
   res.render('shirt', { design: design });
+=======
+function authorizedUser(req, res, next) {
+  var user_id = req.session.id;
+  if (user_id) {
+      next();
+  } else {
+    res.redirect(401, '/');
+  }
+};
+
+function isUser(req, res, next) {
+  if(req.signedCookies.userID === req.params.id) {
+  next();
+}else{
+  res.redirect(401, '/');
+  }
+
+};
+
+function isAdmin(req, res, next) {
+  var user_id = req.session.userID;
+  knex('users').where({
+    id: user_id
+  }).then(function(user) {
+    if(user[0].admin){
+      next();
+    }
+    else {
+      res.redirect(401, '/');
+    }
+  });
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
+
+router.get('/register', function(req, res, next) {
+  res.render('register');
+});
+
+
+router.get('/shirt/:id', function(req, res, next) {
+  var shirtid = req.params.id;
+  res.render('shirt', { shirt: shirt });
+>>>>>>> auth
 });
 
 router.post('/checkout', function(req, res, next) {

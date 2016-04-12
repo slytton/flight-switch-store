@@ -5,8 +5,8 @@ exports.seed = function(knex, Promise) {
     knex('sizes').del(),
 
     // Inserts seed entries
-    knex('sizes').insert({id: 1, size: 'm'}),
-    knex('sizes').insert({id: 2, size: 'l'}),
-    knex('sizes').insert({id: 3, size: 'xl'})
+    knex('sizes').insert({size: 'm'}),
+    knex('sizes').insert({size: 'l'}),
+    knex('sizes').insert({size: 'xl'})
   );
 };
