@@ -64,10 +64,15 @@ router.get('/checkout', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  var placeHolder = [1,2,3,4,5,6,7,8,9,10,11]
-  var message = req.session.message;
-  req.session.message = null;
-  res.render('index', { shirts: placeHolder });
+
+  bookshelf.ShirtImageUrl.collection().fetch({withRelated: ['shirts']}).then(function(shirts){
+
+    var message = req.session.message;
+    req.session.message = null;
+    console.log();
+    res.render('index', {shirts: shirts.serialize(), message: message});
+    // res.json(shirts);
+  })
 });
 
 router.use('*', function(req, res, next){
