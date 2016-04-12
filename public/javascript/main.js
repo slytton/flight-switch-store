@@ -19,6 +19,17 @@ function stripeResponseHandler(status, response) {
   }
 };
 
+$("#cartbutton").click(function(){
+  $("tr").toggle();
+});
+
+$("td").mouseenter(function(){
+  $(this).css('color', '#00a4e4')
+  .mouseleave(function(){
+    $('td').css('color', 'black');
+  })
+});
+
 
 $(function() {
   $('#payment-form').on('submit', function(event) {
