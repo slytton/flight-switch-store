@@ -123,16 +123,19 @@ li {
   cursor: pointer;
 }
 
-table {
+.cart > table {
   border: 1px solid black;
-  border-collapse: collapse;
   text-align: right;
-}
-
-tr {
-  background-color: rgba(255, 255, 255, .5);;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background-color: rgba(255, 255, 255, .7);
   display: none;
 }
+
+.cart > table {
+
+}
+
 td {
   padding: 5px 10px;
   display: inline-block;
@@ -140,15 +143,18 @@ td {
 }
 
 footer {
-  padding: 10px 0;
+  overflow: auto;
+  padding: 5px 0;
   text-align: center;
   width: 100%;
   background-color: black;
-  clear: both;
 }
 
-footer:nth-of-type(2) {
-  background-color: white;
+footer > p {
+  margin-bottom: 20px;
+  font-size: 12px;
+  display: inline;
+  color: white;
 }
 
 article {

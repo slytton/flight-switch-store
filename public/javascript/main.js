@@ -20,7 +20,7 @@ function stripeResponseHandler(status, response) {
 };
 
 $("#cartbutton").click(function(){
-  $("tr").toggle();
+  $(".cart > table").toggle();
 });
 
 $("td").mouseenter(function(){
