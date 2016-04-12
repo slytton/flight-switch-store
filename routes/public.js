@@ -4,9 +4,9 @@ var knex = require('knex')(require('../knexfile')['development']);
 var stripe = require("stripe")(process.env.STRIPE_SECRET);
 /* GET home page. */
 
-router.get('/shirt/:id', function(req, res, next) {
-  var shirtid = req.params.id;
-  res.render('shirt', { shirt: shirt });
+router.get('/shirt/:design/:color', function(req, res, next) {
+  var shirtid = req.params.design;
+  res.render('shirt', { design: design });
 });
 
 router.post('/checkout', function(req, res, next) {
