@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 function getShirts(req, res, next) {
   var result = {}
-  var sortObj = {'xs':0, 's':1, 'm':2, 'l':3, 'xl':4}
+  var sortObj = {'XS':0, 'S':1, 'M':2, 'L':3, 'XL':4}
   bookshelf.Shirt.collection().fetch({withRelated: ['colors', 'sizes', 'designs']}).then(function(shirt){
     result.shirt = shirt.serialize();
     return bookshelf.ShirtImageUrl.collection().fetch({withRelated: ['shirts']}).then(function(shirts){
@@ -31,36 +31,31 @@ router.get('/', getShirts, function(req, res, next) {
   var message = req.session.message;
   req.session.message = null;
   res.render('index', {shirts: req.result.shirts, message: message});
+  // res.json(req.result.shirts)
 })
 
-router.get('/:designid', getShirts, function(req, res, next) {
-  var stuff = {}
-  bookshelf.Design.where({id: req.params.designid}).fetch({withRelated: ['shirts.colors', 'shirts.sizes', 'shirts.shirtImageUrl']}).then(function(shirtsByDesign){
-    function design(shirts){
-      return shirts.colors.color
+router.get('/:designId/:colorId', getShirts, function(req, res, next) {
+  var singleShirt = {}
+  for (var i = 0; i < req.result.shirts.length; i++) {
+    if(req.result.shirts[i].shirts[0].design_id === +req.params.designId && req.result.shirts[i].shirts[0].color_id === +req.params.colorId) {
+      singleShirt.shirt = req.result.shirts[i]
     }
-    shirtsByDesign = shirtsByDesign.serialize()
-    var groupByColor = _.groupBy(shirtsByDesign.shirts, design);
-
-    // stuff.shirtsByDesign = shirtsByDesign
-    // return bookshelf.Color.collection().fetch({withRelated: ['shirts']}).then(function(shirtsByColor){
-      // console.log('wtf',stuff);
-      // stuff.shirtsByColor = shirtsByColor
-      // for (var i = 0; i < stuff.shirtsByDesign.length; i++) {
-        // stuff.shirtsByDesign[i].colors = []
-        // for (var j = 0; j < stuff.shirtsByColor.length; j++) {
-        //   for (var k = 0; k < stuff.shirtsByColor[j].shirts.length; k++) {
-        //     stuff.shirtsByColor[j].shirts[k]
-        //     if(stuff.shirtsByDesign[i].color_id === stuff.shirtsByColor[j].shirts[k].color_id) {
-        //       stuff.shirtsByDesign[i].colors.push(stuff.shirtsByColor[j].shirts[k].color_id)
-        //     }
-        //   }
-        // }
-      // }
-      // res.json(stuff.shirtsByDesign.colors[1])
-      res.json(groupByColor)
+  }
+  var message = req.session.message;
+  req.session.message = null;
+  res.render('singleShirt', {shirt: singleShirt.shirt, message: message})
+  // res.json(singleShirt)
+  // var stuff = {}
+  // bookshelf.Design.where({id: req.params.designid}).fetch({withRelated: ['shirts.colors', 'shirts.sizes', 'shirts.shirtImageUrl']}).then(function(shirtsByDesign){
+  //   function design(shirts){
+  //     return shirts.colors.color
+  //   }
+  //   shirtsByDesign = shirtsByDesign.serialize()
+  //   var groupByColor = _.groupBy(shirtsByDesign.shirts, design);
+  //      res.render('./public/singleShirt', {shirt: groupByColor})
+  //     res.json(groupByColor)
     // })
-  })
+  // })
   // for (var i = 0; i < req.result.shirts.length; i++) {
   //   if(req.result.shirts[i].id === +req.params.id) {
   //     stuff.shirt = req.result.shirts[i]
@@ -68,5 +63,9 @@ router.get('/:designid', getShirts, function(req, res, next) {
   // }
   // res.render('shirt', { shirt: shirt });
 });
+
+router.post('/:designId/:colorId', function(req, res, next){
+  res.json(req.body)
+})
 
 module.exports = router;
