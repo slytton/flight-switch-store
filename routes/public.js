@@ -19,24 +19,16 @@ function authenticUser(req, res, next) {
   }else{
     res.redirect(401, '/');
   }
-
 };
-
-
 
 router.get('/shirt/:design/:color', function(req, res, next) {
   var shirtid = req.params.design;
   res.render('shirt', { design: design });
 });
 
-
-
-
 router.get('/logout', function(req, res, next) {
   res.redirect('/auth/logout');
 });
-
-
 
 router.get('/shirt/:id', function(req, res, next) {
   var shirtid = req.params.id;

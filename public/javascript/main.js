@@ -20,13 +20,32 @@ function stripeResponseHandler(status, response) {
 };
 
 $("#cartbutton").click(function(){
-  $("tr").toggle();
+  $(".cart > table").toggle();
 });
 
-$("td").mouseenter(function(){
+$("#adminproducts").click(function(){
+  $("#productsshow").show();
+  $("#usersshow").hide();
+  $("#ordersshow").hide();
+});
+
+$("#adminorders").click(function(){
+  $("#ordersshow").show();
+  $("#productsshow").hide();
+  $("#usersshow").hide();
+});
+
+$("#adminusers").click(function(){
+  $("#usersshow").show();
+  $("#ordersshow").hide();
+  $("#productsshow").hide();
+
+});
+
+$(".cart td").mouseenter(function(){
   $(this).css('color', '#00a4e4')
   .mouseleave(function(){
-    $('td').css('color', 'black');
+    $('.cart td').css('color', 'black');
   })
 });
 
