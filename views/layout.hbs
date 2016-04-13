@@ -11,7 +11,7 @@
   <header>
     <div class='headerlogo'>
       <a href="/">
-        <img style="width:15%" src="../images/logoiconwhite.png" /><img style="width:40%" src="../images/logotype.png" />
+        <img style="width:15%" src="/images/logoiconwhite.png" /><img style="width:40%" src="/images/logotype.png" />
       </a>
     </div>
 
@@ -19,7 +19,7 @@
       <nav>
         <ul>
           <li><a href="/">Home</li></a>
-          {{#if admin}}
+          {{#if user.admin}}
           <a href="/admin"><li>Admin</li></a>
           <a href="/auth/logout"><li>Logout</li></a>
           {{/if}}
@@ -55,8 +55,8 @@
   <div class='clear'>
     <div class='headerlogo'>
       <a href="/">
-        <img style="width:15%" src="../images/logoiconwhite.png" />
-        <img style="width:40%" src="../images/logotype.png" />
+        <img style="width:15%" src="/images/logoiconwhite.png" />
+        <img style="width:40%" src="/images/logotype.png" />
       </a>
     </div>
     <div class='headerright'>

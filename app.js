@@ -6,13 +6,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
-
+var hbs = require('hbs');
+hbs.registerHelper('equal', require('handlebars-helper-equal'));
 var routes = require('./routes/public');
 var users = require('./routes/users');
 var bookshelfTest = require('./routes/bookshelfTest');
 var auth = require('./routes/auth');
 var admin = require('./routes/admin');
-
 
 var app = express();
 
