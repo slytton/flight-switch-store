@@ -29,7 +29,7 @@ router.get('/', isUser, isAdmin, function(req, res, next) {
 bookshelf.Shirt.fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl']})
 .then(function(shirts) {
   var products = shirts.serialize();
-  bookshelf.Order.fetchAll({withRealated: ['users', 'status', 'ordeItems', 'shirts']})
+  bookshelf.Order.fetchAll({withRealated: ['users', 'status', 'orderItems', 'shirts']})
   .then(function(ordRes) {
     var orders = ordRes.serialize();
     bookshelf.knex.columns(['id','email', 'admin']).select().from('users')
