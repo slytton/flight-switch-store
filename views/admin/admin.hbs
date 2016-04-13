@@ -26,18 +26,13 @@
           <tbody>
             <tr><td>Image</td><td><img style='width: 10%' src="{{shirtImageUrl.url}}"></td></tr>
             <tr><td>design_id</td><td><input size='40%' type='text' name='design_id'value='{{design_id}}'></td></tr>
-            <tr><td>size_id</td><td><input size='40%' type='text' name='size_id'value='{{size_id}}'></td></tr>
             <tr><td>color_id</td><td><input size='40%' type='text' name='color_id'value='{{color_id}}'></td></tr>
             <tr><td>quantity</td><td><input size='40%' type='text' name='quantity'value='{{quantity}}'></td></tr>
             <tr><td>price</td><td><input size='40%' type='text' name='price'value='{{price}}'></td></tr>
             <tr><td>shirt_image_url_id</td><td><input size='40%' type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
-            <tr><td>designs.id</td><td><input size='40%' type='text' name='designs.id'value='{{designs.id}}'></td></tr>
             <tr><td>designs.name</td><td><input size='40%' type='text' name='designs.name'value='{{designs.name}}'></td></tr>
-            <tr><td>colors.id</td><td><input size='40%' type='text' name='colors.id'value='{{colors.id}}'></td></tr>
             <tr><td>colors.color</td><td><input size='40%' type='text' name='colors.color'value='{{colors.color}}'></td></tr>
-            <tr><td>shirtImageUrl.id</td><td><input size='40%' type='text' name='shirtImageUrl.id'value='{{shirtImageUrl.id}}'></td></tr>
             <tr><td>shirtImageUrl.url</td><td><input size='40%' type='text' name='shirtImageUrl'value='{{shirtImageUrl.url}}'></td></tr>
-            <tr><td>sizes.id</td><td><input size='40%' type='text' name='sizes.id'value='{{sizes.id}}'></td></tr>
             <tr><td>sizes.size</td><td><input size='40%' type='text' name='sizes.size'value='{{sizes.size}}'></td></tr>
             <tr><td></td><td><input type="submit" value="Submit"><a href="/product/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
           </tbody>
@@ -76,8 +71,10 @@
       <form action="/admin/users/{{id}}" method="post">
         <table>
           <tbody>
-            <tr><td>email </td><td><input type='text' value='{{email}}'></td></tr>
-            <tr><td>admin </td><td><input type='text' value='{{admin}}'></td></tr>
+            <tr><td>fname: {{fname}}</td><td><input type='text' value='{{fname}}'></td></tr>
+            <tr><td>lname: {{lname}}</td><td><input type='text' value='{{lname}}'></td></tr>
+            <tr><td>email: </td><td><input type='text' value='{{email}}'></td></tr>
+            <tr><td>admin: </td><td><input type='text' value='{{admin}}'></td></tr>
             <tr><td></td><td><input type="submit" value="Submit"><a href="/admin/users/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
           </tbody>
         </table>
