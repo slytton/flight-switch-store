@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bookshelf = require('../db/config.js');
+var _ = require('lodash');
 
 function getShirts(req, res, next) {
   var result = {}
@@ -34,12 +35,18 @@ router.get('/', getShirts, function(req, res, next) {
 
 router.get('/:designid', getShirts, function(req, res, next) {
   var stuff = {}
-  bookshelf.Design.collection().fetch({withRelated: ['shirts']}).then(function(shirtsByDesign){
-    stuff.shirtsByDesign = shirtsByDesign
-    return bookshelf.Color.collection().fetch({withRelated: ['shirts']}).then(function(shirtsByColor){
+  bookshelf.Design.where({id: req.params.designid}).fetch({withRelated: ['shirts.colors', 'shirts.sizes', 'shirts.shirtImageUrl']}).then(function(shirtsByDesign){
+    function design(shirts){
+      return shirts.colors.color
+    }
+    shirtsByDesign = shirtsByDesign.serialize()
+    var groupByColor = _.groupBy(shirtsByDesign.shirts, design);
+
+    // stuff.shirtsByDesign = shirtsByDesign
+    // return bookshelf.Color.collection().fetch({withRelated: ['shirts']}).then(function(shirtsByColor){
       // console.log('wtf',stuff);
-      stuff.shirtsByColor = shirtsByColor
-      for (var i = 0; i < stuff.shirtsByDesign.length; i++) {
+      // stuff.shirtsByColor = shirtsByColor
+      // for (var i = 0; i < stuff.shirtsByDesign.length; i++) {
         // stuff.shirtsByDesign[i].colors = []
         // for (var j = 0; j < stuff.shirtsByColor.length; j++) {
         //   for (var k = 0; k < stuff.shirtsByColor[j].shirts.length; k++) {
@@ -49,10 +56,10 @@ router.get('/:designid', getShirts, function(req, res, next) {
         //     }
         //   }
         // }
-      }
+      // }
       // res.json(stuff.shirtsByDesign.colors[1])
-      res.json(stuff)
-    })
+      res.json(groupByColor)
+    // })
   })
   // for (var i = 0; i < req.result.shirts.length; i++) {
   //   if(req.result.shirts[i].id === +req.params.id) {
