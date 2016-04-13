@@ -19,7 +19,6 @@ function authenticUser(req, res, next) {
   }else{
     res.redirect(401, '/');
   }
-
 };
 
 router.get('/shirt/:design/:color', function(req, res, next) {
@@ -33,7 +32,7 @@ router.get('/logout', function(req, res, next) {
 
 router.get('/shirt/:id', function(req, res, next) {
   var shirtid = req.params.id;
-  res.render('shirt', { shirt: shirt });
+  res.render('shirt', { shirt: shirtid });
 });
 
 router.post('/checkout', function(req, res, next) {

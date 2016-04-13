@@ -55,9 +55,12 @@ header {
 .headerright > p {
   margin: 0 5%; }
 
+.headerlogo a {
+  text-decoration: none; }
+
 .headerright a:link {
   text-decoration: none;
-  color: #0384b8; }
+  color: white; }
 
 .headerright a:active {
   text-decoration: none;
@@ -65,7 +68,7 @@ header {
 
 .headerright a:visited {
   text-decoration: none;
-  color: #0384b8; }
+  color: #00A2E2; }
 
 .headerright a:hover {
   text-decoration: underline;
@@ -77,6 +80,10 @@ a:link {
 
 a:hover {
   text-decoration: underline;
+  color: #00A2E2; }
+
+td a {
+  text-decoration: none;
   color: black; }
 
 nav {
@@ -111,33 +118,36 @@ li {
   margin: 0;
   padding: 5px;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-top: none;
   cursor: pointer; }
 
-table {
-  border: 1px solid black;
-  border-collapse: collapse;
-  text-align: right; }
-
-tr {
+.cart > table {
+  border: 1px solid gray;
+  border-top: none;
+  text-align: right;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
   background-color: rgba(255, 255, 255, 0.5);
   display: none; }
 
-td {
+.cart td {
   padding: 5px 10px;
   display: inline-block;
   cursor: pointer; }
 
 footer {
-  padding: 10px 0;
+  overflow: auto;
+  padding: 5px 0;
   text-align: center;
   width: 100%;
-  background-color: black;
-  clear: both; }
+  background-color: black; }
 
-footer:nth-of-type(2) {
-  background-color: white; }
+footer > p {
+  margin-bottom: 20px;
+  font-size: 12px;
+  display: inline;
+  color: white; }
 
 article {
   flex-grow: 1;
@@ -157,16 +167,15 @@ section {
   float: left;
   width: 50%; }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   article {
     width: 100%; } }
 
 form {
   text-align: center; }
   form input {
-    width: 100%;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid gray;
     margin: 0 auto;
     font-size: 15px;
@@ -191,7 +200,7 @@ form {
 .blue {
   background-color: #00a2e2; }
   .blue:hover {
-    background-color: #0384b8; }
+    background-color: #00A2E2; }
 
 .login {
   margin: 80px auto 0;
@@ -203,7 +212,46 @@ form {
     font-weight: normal;
     font-size: 1.5em; }
   .login form {
+    width: 100%;
     padding: 10px 50px 50px 50px;
     background-color: rgba(139, 139, 139, 0.7);
     border-radius: 5px;
     box-shadow: 0 0 10px black; }
+
+#adminpage td {
+  text-align: left; }
+
+#adminmenu {
+  float: left;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-top: none;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 15%; }
+
+#admindisplay {
+  padding: 3%;
+  float: right;
+  width: 75%; }
+
+#productsshow {
+  display: none; }
+
+#ordersshow {
+  display: none; }
+
+#usersshow {
+  display: none; }
+
+#admindisplay table {
+  padding: 0 0 50px 0; }
+
+.menuitem {
+  padding: 20px 0 20px 10px;
+  cursor: pointer; }
+
+.checkout td {
+  text-align: left; }

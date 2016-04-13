@@ -1,0 +1,87 @@
+<div id='adminpage'>
+
+  <div id='adminmenu'>
+    <div class='menuitem' id='adminproducts'>
+      Products
+    </div>
+    <div class='menuitem' id='adminorders'>
+      Orders
+    </div>
+    <div class='menuitem' id='adminusers'>
+      Users
+    </div>
+  </div>
+
+  <div id='admindisplay'>
+
+    <div id='productsshow'>
+
+      {{#shirts}}
+      <h3>ID: {{id}}</h3>
+      <h3>Name: {{designs.name}}</h3>
+      <h3>Color: {{colors.color}}</h3>
+      <h3>Size: {{sizes.size}}</h3>
+      <form action="/admin/product/{{id}}" method="post">
+        <table>
+          <tbody>
+            <tr><td>Image</td><td><img style='width: 10%' src="{{shirtImageUrl.url}}"></td></tr>
+            <tr><td>design_id</td><td><input size='40%' type='text' name='design_id'value='{{design_id}}'></td></tr>
+            <tr><td>color_id</td><td><input size='40%' type='text' name='color_id'value='{{color_id}}'></td></tr>
+            <tr><td>quantity</td><td><input size='40%' type='text' name='quantity'value='{{quantity}}'></td></tr>
+            <tr><td>price</td><td><input size='40%' type='text' name='price'value='{{price}}'></td></tr>
+            <tr><td>shirt_image_url_id</td><td><input size='40%' type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
+            <tr><td>designs.name</td><td><input size='40%' type='text' name='designs.name'value='{{designs.name}}'></td></tr>
+            <tr><td>colors.color</td><td><input size='40%' type='text' name='colors.color'value='{{colors.color}}'></td></tr>
+            <tr><td>shirtImageUrl.url</td><td><input size='40%' type='text' name='shirtImageUrl'value='{{shirtImageUrl.url}}'></td></tr>
+            <tr><td>sizes.size</td><td><input size='40%' type='text' name='sizes.size'value='{{sizes.size}}'></td></tr>
+            <tr><td></td><td><input type="submit" value="Submit"><a href="/product/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
+          </tbody>
+        </table>
+      </form>
+      {{/shirts}}
+    </div>
+
+    <div id='ordersshow'>
+      {{#orders}}
+      <h3>Order ID: {{id}}</h3>
+      <h3>User ID: {{user_id}}</h3>
+      <form action="/admin/orders/{{id}}" method="post">
+
+        <table>
+          <tbody>
+            <tr><td>user_id</td><td><input size='40%' type='text' value='{{user_id}}' name='user_id'</td></tr>
+            <tr><td>address</td><td><input size='40%' type='text' value='{{address}}' name='address'</td></tr>
+            <tr><td>city</td><td><input size='40%' type='text' value='{{city}}' name='city'</td></tr>
+            <tr><td>state</td><td><input size='40%' type='text' value='{{state}}' name='state'</td></tr>
+            <tr><td>zip</td><td><input size='40%' type='text' value='{{zip}}' name='zip'</td></tr>
+            <tr><td>order_status_id</td><td><input size='40%' type='text' value='{{order_status_id}}' name='order_status_id'</td></tr>
+            <tr><td>created_at</td><td><input size='40%' type='text' value='{{created_at}}' name='created_at'</td></tr>
+            <tr><td>updated_at</td><td><input size='40%' type='text' value='{{updated_at}}' name='updated_at'</td></tr>
+            <tr><td></td><td><input type="submit" value="Submit"><a href="/admin/orders/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
+          </tbody>
+        </table>
+      </form>
+      {{/orders}}
+    </div>
+
+    <div id='usersshow'>
+      {{#users}}
+      <h3>User ID: {{id}}</h3>
+        <h3>User Email: {{email}}</h3>
+      <form action="/admin/users/{{id}}" method="post">
+        <table>
+          <tbody>
+            <tr><td>fname: {{fname}}</td><td><input type='text' value='{{fname}}'></td></tr>
+            <tr><td>lname: {{lname}}</td><td><input type='text' value='{{lname}}'></td></tr>
+            <tr><td>email: </td><td><input type='text' value='{{email}}'></td></tr>
+            <tr><td>admin: </td><td><input type='text' value='{{admin}}'></td></tr>
+            <tr><td></td><td><input type="submit" value="Submit"><a href="/admin/users/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
+          </tbody>
+        </table>
+      </form>
+      {{/users}}
+    </div>
+
+  </div>
+
+</div>
