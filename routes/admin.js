@@ -36,7 +36,7 @@ router.get('/', isUser, isAdmin, function(req, res, next) {
       .then(function(users) {
         bookshelf.knex('shirt_image_urls')
         .then(function(images) {
-          console.log(images);
+          console.log(products);
           res.render('./admin/admin', {shirts: products, orders: orders, users: users, images: images});
         })
       })
@@ -81,12 +81,13 @@ router.get('/users/:id/delete', function(req, res, next) {
 
 
 
-router.get('/product/add', function(req, res, next) {
-  bookshelf.knex('shirts').where({id: req.params.id})
-  .then(function(singleshirt){
-    res.render('./admin/addproduct', {singleshirt: singleshirt});
-  })
-});
+// router.get('/product/add', function(req, res, next) {
+//   bookshelf.knex('shirt_image_urls')
+//   .then(function(images) {
+//     console.log(images);
+//     res.render('./admin/addproduct', {images: images});
+//   })
+// });
 
 // router.get('/product/:id/add', function(req, res, next) {
 //   bookshelf.Shirt.where({id:req.params.id}).destroy();

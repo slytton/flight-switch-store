@@ -19,14 +19,6 @@
       <nav>
         <ul>
           <li><a href="/">Home</li></a>
-          {{#if user.admin}}
-          <a href="/admin"><li>Admin</li></a>
-          <a href="/auth/logout"><li>Logout</li></a>
-          {{/if}}
-          {{#if user}}
-          <li>Account</li>
-          {{/if}}
-
         </ul>
       </nav>
 
@@ -39,7 +31,7 @@
       </p>
       {{else}} {{#if user}}
       <p>
-        Account | Logout
+        <a href="/users/{{user.id}}">Account</a> | <a href="/auth/logout">Logout</a>
       </p>
       {{else}}
       <p>
