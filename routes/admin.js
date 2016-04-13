@@ -68,7 +68,9 @@ router.post('/users/:id', function(req, res, next) {
 });
 
 router.post('/users/:id/delete', function(req, res, next) {
-
+  bookshelf.User.where({id:req.params.id}).destroy().then(function(user){
+    res.redirect('/admin')
+  });
 });
 
 
