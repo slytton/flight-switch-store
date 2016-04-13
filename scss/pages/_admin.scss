@@ -1,0 +1,42 @@
+#adminpage td {
+  text-align: left;
+}
+
+#adminmenu {
+  float: left;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-top: none;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 15%;
+}
+
+#admindisplay {
+  padding: 3%;
+  float: right;
+  width: 75%;
+}
+
+#productsshow {
+  display: none;
+}
+
+#ordersshow {
+  display: none;
+}
+
+#usersshow {
+  display: none;
+}
+
+#admindisplay table{
+  padding: 0 0 50px 0;
+}
+
+.menuitem {
+  padding: 20px 0 20px 10px;
+  cursor: pointer;
+}

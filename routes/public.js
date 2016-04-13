@@ -19,57 +19,9 @@ function authenticUser(req, res, next) {
   }else{
     res.redirect(401, '/');
   }
-
 };
 
-// function getShirts(req, res, next) {
-//   var result = {}
-//   var sortObj = {'xs':0, 's':1, 'm':2, 'l':3, 'xl':4}
-//   bookshelf.Shirt.collection().fetch({withRelated: ['colors', 'sizes', 'designs']}).then(function(shirt){
-//     result.shirt = shirt.serialize();
-//     return bookshelf.ShirtImageUrl.collection().fetch({withRelated: ['shirts']}).then(function(shirts){
-//       result.shirts = shirts.serialize();
-//       for (var i = 0; i < result.shirts.length; i++) {
-//         result.shirts[i].sizes = []
-//         for (var j = 0; j < result.shirt.length; j++) {
-//           if(result.shirts[i].id === result.shirt[j].shirt_image_url_id) {
-//             result.shirts[i].sizes.push(result.shirt[j].sizes)
-//             result.shirts[i].sizes.sort(function(a, b){
-//               return sortObj[a.size]-sortObj[b.size];
-//             })
-//           }
-//         }
-//       }
-//       req.result = result
-//       next()
-//     })
-//   })
-// }
 
-router.get('/shirt/:design/:color', function(req, res, next) {
-  var shirtid = req.params.design;
-  res.render('shirt', { design: design });
-});
-
-
-
-
-router.get('/logout', function(req, res, next) {
-  res.redirect('/auth/logout');
-});
-
-
-
-// router.get('/shirts/:designid', getShirts, function(req, res, next) {
-//   var stuff = {}
-//   for (var i = 0; i < req.result.shirts.length; i++) {
-//     if(req.result.shirts[i].id === +req.params.id) {
-//       stuff.shirt = req.result.shirts[i]
-//     }
-//   }
-//   res.json(stuff)
-//    res.render('shirt', { shirt: shirt });
-// });
 
 router.post('/checkout', function(req, res, next) {
   var orderDetails = req.body;

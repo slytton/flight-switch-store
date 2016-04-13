@@ -11,8 +11,7 @@
   <header>
     <div class='headerlogo'>
       <a href="/">
-        <img style="width:20%" src="../images/logoiconwhite.png" />
-        <img style="width:50%" src="../images/logotype.png" />
+        <img style="width:15%" src="../images/logoiconwhite.png" /><img style="width:40%" src="../images/logotype.png" />
       </a>
     </div>
 
@@ -20,11 +19,12 @@
       <nav>
         <ul>
           <li><a href="/">Home</li></a>
+          {{#if admin}}
+          <a href="/admin"><li>Admin</li></a>
+          <a href="/auth/logout"><li>Logout</li></a>
+          {{/if}}
           {{#if user}}
           <li>Account</li>
-          {{/if}}
-          {{#if user.admin}}
-          <li>Admin</li>
           {{/if}}
 
         </ul>
@@ -35,7 +35,7 @@
     <div class='headerright'>
       {{#if user.admin}}
       <p>
-        admin
+        <a href="/admin">Admin</a> | <a href="/auth/logout">Logout</a>
       </p>
       {{else}} {{#if user}}
       <p>
@@ -43,7 +43,7 @@
       </p>
       {{else}}
       <p>
-        <a href="/login">login</a> | <a href="/register">Sign Up</a>
+        <a href="/login">Login</a> | <a href="/register">Sign Up</a>
       </p>
 
       {{/if}}{{/if}}
@@ -55,8 +55,8 @@
   <div class='clear'>
     <div class='headerlogo'>
       <a href="/">
-        <img style="width:20%" src="../images/logoiconwhite.png" />
-        <img style="width:50%" src="../images/logotype.png" />
+        <img style="width:15%" src="../images/logoiconwhite.png" />
+        <img style="width:40%" src="../images/logotype.png" />
       </a>
     </div>
     <div class='headerright'>
@@ -84,7 +84,7 @@
             <td>Item</td>
           </tr>
           <tr>
-            <td>Checkout</td>
+            <td><a href="/checkout">Checkout</a></td>
           </tr>
         </tbody>
       </table>
@@ -96,10 +96,8 @@
   </div>
 
   <footer>
-    <a href="/"><img style='width:5%' src="../images/logoiconwhite.png" alt="" /></a>
+      <p>Flight Switch &copy 2016</p><a href="/"><img style='width:5%' src="../images/logoiconwhite.png" alt="" /></a>
   </footer>
-
-  <footer>Flight Switch &copy 2016</footer>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>

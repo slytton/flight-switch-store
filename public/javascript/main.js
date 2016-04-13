@@ -20,13 +20,54 @@ function stripeResponseHandler(status, response) {
 };
 
 $("#cartbutton").click(function(){
-  $("tr").toggle();
+  $(".cart > table").toggle();
 });
 
-$("td").mouseenter(function(){
+$(".cart td").mouseenter(function(){
   $(this).css('color', '#00a4e4')
   .mouseleave(function(){
-    $('td').css('color', 'black');
+    $('.cart td').css('color', 'black');
+  })
+});
+
+
+$("#adminproducts").click(function(){
+  $("#productsshow").show();
+  $("#usersshow").hide();
+  $("#ordersshow").hide();
+});
+
+$("#adminorders").click(function(){
+  $("#ordersshow").show();
+  $("#productsshow").hide();
+  $("#usersshow").hide();
+});
+
+$("#adminusers").click(function(){
+  $("#usersshow").show();
+  $("#ordersshow").hide();
+  $("#productsshow").hide();
+
+});
+
+$("#adminproducts").mouseenter(function(){
+  $(this).css('color', '#00a4e4')
+  .mouseleave(function(){
+    $('#adminproducts').css('color', 'black');
+  })
+});
+
+$("#adminorders").mouseenter(function(){
+  $(this).css('color', '#00a4e4')
+  .mouseleave(function(){
+    $('#adminorders').css('color', 'black');
+  })
+});
+
+$("#adminusers").mouseenter(function(){
+  $(this).css('color', '#00a4e4')
+  .mouseleave(function(){
+    $('#adminusers').css('color', 'black');
   })
 });
 
