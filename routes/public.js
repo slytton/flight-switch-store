@@ -1,18 +1,42 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('knex')(require('../knexfile')['development']);
+var bookshelf = require('../db/config.js');
 var stripe = require("stripe")(process.env.STRIPE_SECRET);
 /* GET home page. */
+
+function isUser(req, res, next) {
+  var user_id = req.session.id;
+  if (user_id) {
+    next();
+  } else {
+    res.redirect(401, '/');
+  }
+};
+
+function authenticUser(req, res, next) {
+  if(req.signedCookies.userID === req.params.id) {
+    next();
+  }else{
+    res.redirect(401, '/');
+  }
+};
 
 router.get('/shirt/:design/:color', function(req, res, next) {
   var shirtid = req.params.design;
   res.render('shirt', { design: design });
 });
 
+router.get('/logout', function(req, res, next) {
+  res.redirect('/auth/logout');
+});
+
+router.get('/shirt/:id', function(req, res, next) {
+  var shirtid = req.params.id;
+  res.render('shirt', { shirt: shirt });
+});
+
 router.post('/checkout', function(req, res, next) {
   var orderDetails = req.body;
-  console.log(req.session);
-  console.log(orderDetails);
   res.render('checkout');
 
   var charge = stripe.charges.create({
@@ -32,18 +56,25 @@ router.get('/checkout', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  var placeHolder = [1,2,3,4,5,6,7,8,9,10,11]
-  res.render('index', { shirts: placeHolder });
+  bookshelf.ShirtImageUrl.collection().fetch({withRelated: ['shirts']}).then(function(shirts){
+
+    console.log();
+    res.render('index', {shirts: shirts.serialize()});
+    // res.json(shirts);
+  })
 });
 
 router.use('*', function(req, res, next){
-  console.log('instart');
   res.user ? res.redirect('/') : next();
 })
 
-router.get('/login', function(req, res, next){
-  console.log('Login');
-  res.render('public/login');
-})
+router.get('/login', function(req, res, next) {
+  res.render('./public/login');
+});
+
+router.get('/register', function(req, res, next) {
+  res.render('./public/register');
+});
+
 
 module.exports = router;

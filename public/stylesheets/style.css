@@ -40,9 +40,12 @@ header {
 .headerright > p {
   margin: 0 5%; }
 
+.headerlogo a {
+  text-decoration: none; }
+
 .headerright a:link {
   text-decoration: none;
-  color: #00A2E2; }
+  color: white; }
 
 .headerright a:active {
   text-decoration: none;
@@ -199,3 +202,32 @@ form {
     background-color: rgba(139, 139, 139, 0.7);
     border-radius: 5px;
     box-shadow: 0 0 10px black; }
+
+#adminmenu {
+  float: left;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-top: none;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 15%; }
+
+#admindisplay {
+  padding: 3%;
+  float: right;
+  width: 75%; }
+
+#productsshow {
+  display: none; }
+
+#ordersshow {
+  display: none; }
+
+#usersshow {
+  display: none; }
+
+#admindisplay table {
+  padding: 0 0 50px 0; }
+
+.menuitem {
+  padding: 20px 0 20px 10px; }

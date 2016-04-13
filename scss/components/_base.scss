@@ -51,9 +51,13 @@ header {
   margin: 0 5%;
 }
 
+.headerlogo a {
+  text-decoration: none;
+}
+
 .headerright a:link {
   text-decoration: none;
-  color: $accent-blue-hover;
+  color: white;
 }
 
 .headerright a:active {

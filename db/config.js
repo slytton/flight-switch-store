@@ -59,6 +59,9 @@ var Shirt = bookshelf.Model.extend({
   },
   designs: function(){
     return this.belongsTo(Design);
+  },
+  shirtImageUrl: function(){
+    return this.belongsTo(ShirtImageUrl)
   }
 });
 
@@ -83,8 +86,15 @@ var Design = bookshelf.Model.extend({
   }
 });
 
+var ShirtImageUrl = bookshelf.Model.extend({
+  tableName: 'shirt_image_urls',
+  shirts: function(){
+    return this.hasMany(Shirt);
+  }
+})
 
 module.exports = {
+  knex: knex,
   User: User,
   Order: Order,
   OrderItem: OrderItem,
@@ -93,4 +103,5 @@ module.exports = {
   Design: Design,
   Color: Color,
   Size: Size,
+  ShirtImageUrl: ShirtImageUrl
 }
