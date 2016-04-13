@@ -44,6 +44,7 @@ bookshelf.Shirt.fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImag
 router.post('/product/:id', function(req, res, next) {
   bookshelf.Shirt.where({id: req.params.id}).fetch({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl']}).then(function(product){
     product.set({email: req.body.email, admin: req.body.admin}).save();
+    res.redirect('/admin');
   });
 });
 
@@ -54,14 +55,15 @@ router.post('/product/:id/delete', function(req, res, next) {
 router.post('/order/:id', function(req, res, next) {
   bookshelf.Order.where({id: req.params.id}).fetch().then(function(order){
     order.set({address: req.body.address, city: req.body.city, state: req.body.state, zip: req.body.zip, order_status_id: req.body.OrderStatus}).save();
+    res.redirect('/admin');
   });
-  res.redirect('/admin');
 });
 
 
 router.post('/users/:id', function(req, res, next) {
   bookshelf.User.where({id: req.params.id}).fetch().then(function(user){
     user.set({email: req.body.email, admin: req.body.admin}).save();
+    res.redirect('/admin');
   });
 });
 
