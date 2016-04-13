@@ -235,4 +235,8 @@ form {
   padding: 0 0 50px 0; }
 
 .menuitem {
-  padding: 20px 0 20px 10px; }
+  padding: 20px 0 20px 10px;
+  cursor: pointer; }
+
+.checkout td {
+  text-align: left; }

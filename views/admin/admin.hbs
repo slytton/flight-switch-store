@@ -48,12 +48,12 @@
 
     <div id='ordersshow'>
       {{#orders}}
-      <h3>Order ID: {{id}} - User ID: {{user_id}}</h3>
+      <h3>Order ID: {{id}}</h3>
+      <h3>User ID: {{user_id}}</h3>
       <form action="/admin/orders/{{id}}" method="post">
 
         <table>
           <tbody>
-            <tr><td>id</td><td>{{id}}</td></tr>
             <tr><td>user_id</td><td><input size='40%' type='text' value='{{user_id}}' name='user_id'</td></tr>
             <tr><td>address</td><td><input size='40%' type='text' value='{{address}}' name='address'</td></tr>
             <tr><td>city</td><td><input size='40%' type='text' value='{{city}}' name='city'</td></tr>
@@ -71,11 +71,11 @@
 
     <div id='usersshow'>
       {{#users}}
-      <h3>User ID: {{id}} - User Email: {{email}}</h3>
+      <h3>User ID: {{id}}</h3>
+        <h3>User Email: {{email}}</h3>
       <form action="/admin/users/{{id}}" method="post">
         <table>
           <tbody>
-            <tr><td>id </td><td>{{id}}</td></tr>
             <tr><td>email </td><td><input type='text' value='{{email}}'></td></tr>
             <tr><td>admin </td><td><input type='text' value='{{admin}}'></td></tr>
             <tr><td></td><td><input type="submit" value="Submit"><a href="/admin/users/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
