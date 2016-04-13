@@ -23,6 +23,14 @@ $("#cartbutton").click(function(){
   $(".cart > table").toggle();
 });
 
+$(".cart td").mouseenter(function(){
+  $(this).css('color', '#00a4e4')
+  .mouseleave(function(){
+    $('.cart td').css('color', 'black');
+  })
+});
+
+
 $("#adminproducts").click(function(){
   $("#productsshow").show();
   $("#usersshow").hide();
@@ -42,10 +50,24 @@ $("#adminusers").click(function(){
 
 });
 
-$(".cart td").mouseenter(function(){
+$("#adminproducts").mouseenter(function(){
   $(this).css('color', '#00a4e4')
   .mouseleave(function(){
-    $('.cart td').css('color', 'black');
+    $('#adminproducts').css('color', 'black');
+  })
+});
+
+$("#adminorders").mouseenter(function(){
+  $(this).css('color', '#00a4e4')
+  .mouseleave(function(){
+    $('#adminorders').css('color', 'black');
+  })
+});
+
+$("#adminusers").mouseenter(function(){
+  $(this).css('color', '#00a4e4')
+  .mouseleave(function(){
+    $('#adminusers').css('color', 'black');
   })
 });
 

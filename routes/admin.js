@@ -35,9 +35,9 @@ bookshelf.Shirt.fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImag
     bookshelf.knex.columns(['id','email', 'admin']).select().from('users')
     .then(function(users) {
       res.render('./admin/admin', {shirts: products, orders: orders, users: users});
+      })
     })
   })
-})
 });
 
 router.post('/product/:id', function(req, res, next) {
