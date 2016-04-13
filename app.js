@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static('public'));
 
 app.use(function(req, res, next){
-  console.log(req.session.userID);
+  console.log('in session check');
   if(req.session.userID){
     bookshelf.User.where({id: req.session.userID}).fetch().then(function(user){
       user = user.serialize();
@@ -53,10 +53,12 @@ app.use(function(req, res, next){
 
 })
 
-app.use('/', routes);
 app.use('/users', users);
 app.use('/bookshelf', bookshelfTest);
 app.use('/auth', auth);
+app.use('/', routes);
+
+// Add middleware to keep any non-admins from accessing admin routes.
 app.use('/admin', admin);
 
 // catch 404 and forward to error handler
