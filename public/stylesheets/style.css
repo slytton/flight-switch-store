@@ -212,11 +212,19 @@ form {
     font-weight: normal;
     font-size: 1.5em; }
   .login form {
-    width: 100%;
     padding: 10px 50px 50px 50px;
     background-color: rgba(139, 139, 139, 0.7);
     border-radius: 5px;
     box-shadow: 0 0 10px black; }
+    .login form input {
+      width: 100%; }
+  .login p {
+    width: 100%;
+    text-align: center; }
+  .login .google-button {
+    height: 50px; }
+    .login .google-button img {
+      height: 100%; }
 
 #adminpage td {
   text-align: left; }
