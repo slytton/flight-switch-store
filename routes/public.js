@@ -21,8 +21,6 @@ function authenticUser(req, res, next) {
   }
 };
 
-
-
 router.post('/checkout', function(req, res, next) {
   var orderDetails = req.body;
   res.render('checkout');

@@ -3,6 +3,27 @@ $accent-blue-hover: #00A2E2;
 $accent-yellow: rgb(255, 232, 22);
 $accent-yellow-hover: rgb(236, 213, 0);
 
+
+.message {
+  margin-top: 20px;
+  padding: 10px 10px 10px 20px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  list-style: none;
+  li {
+    color: white;
+  };
+}
+.success{
+  @extend .message;
+  background-color:rgba(102, 190, 98, .8);
+}
+
+.error{
+  @extend .message;
+    background-color:rgba(190, 98, 98, .8);
+}
+
 body {
   background-image: url("../images/logobackground.jpg");
   background-attachment: fixed;
