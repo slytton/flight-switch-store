@@ -1,3 +1,18 @@
+.message, .success, .error {
+  margin-top: 20px;
+  padding: 10px 10px 10px 20px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  list-style: none; }
+  .message li, .success li, .error li {
+    color: white; }
+
+.success {
+  background-color: rgba(102, 190, 98, 0.8); }
+
+.error {
+  background-color: rgba(190, 98, 98, 0.8); }
+
 body {
   background-image: url("../images/logobackground.jpg");
   background-attachment: fixed;
@@ -197,11 +212,19 @@ form {
     font-weight: normal;
     font-size: 1.5em; }
   .login form {
-    width: 100%;
     padding: 10px 50px 50px 50px;
     background-color: rgba(139, 139, 139, 0.7);
     border-radius: 5px;
     box-shadow: 0 0 10px black; }
+    .login form input {
+      width: 100%; }
+  .login p {
+    width: 100%;
+    text-align: center; }
+  .login .google-button {
+    height: 50px; }
+    .login .google-button img {
+      height: 100%; }
 
 #adminpage td {
   text-align: left; }

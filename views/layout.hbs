@@ -39,7 +39,7 @@
       </p>
       {{else}} {{#if user}}
       <p>
-        Account | Logout
+        <a href="#">Account</a> | <a href="/auth/logout">Logout</a>
       </p>
       {{else}}
       <p>
@@ -66,6 +66,20 @@
 
   <div class='container'>
 
+    {{#if message.error}}
+    <ul class='error'>
+      {{#message.error}}
+      <li>{{this}}</li>
+      {{/message.error}}
+    </ul>
+    {{/if}}
+    {{#if message.success}}
+    <ul class='success'>
+      {{#message.success}}
+      <li>{{this}}</li>
+      {{/message.success}}
+    </ul>
+    {{/if}}
 
     <div class='cart'>
       <table>
