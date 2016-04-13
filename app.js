@@ -12,7 +12,7 @@ var users = require('./routes/users');
 var bookshelfTest = require('./routes/bookshelfTest');
 var auth = require('./routes/auth');
 var admin = require('./routes/admin');
-
+var shirts = require('./routes/shirts');
 
 var app = express();
 
@@ -42,6 +42,7 @@ app.use('/users', users);
 app.use('/bookshelf', bookshelfTest);
 app.use('/auth', auth);
 app.use('/admin', admin);
+app.use('/shirts', shirts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
