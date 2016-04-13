@@ -66,5 +66,8 @@ router.get('/register', function(req, res, next) {
   res.render('./public/register', {message: message});
 });
 
+router.post('/cart', function(req, res, next){
+  res.json(req.body)
+})
 
 module.exports = router;

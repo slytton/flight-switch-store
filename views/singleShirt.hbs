@@ -1,17 +1,17 @@
 <article class="shirt">
-    <img class='shirtimg' src="{{shirt.url}}" />
+    <img class='shirtimg' src="{{shirt.0.shirtImageUrl.url}}" />
   <div class="shirtinfo">
-    <form class="" action="/shirts/{{shirt.shirts.0.design_id}}/{{shirt.shirts.0.color_id}}" method="post">
+    <form  action="/cart" method="post">
       <label>Size: </label>
-    <select name="size">
-      {{#shirt.sizes}}
-      <option value="{{size}}">{{size}}</option>
-      {{/shirt.sizes}}
+    <select name="shirt_id">
+      {{#shirt}}
+      <option value="{{id}}">{{sizes.size}}</option>
+      {{/shirt}}
     </select>
-    <input type="hidden" name="design_id" value="{{shirt.shirts.0.design_id}}">
-    <input type="hidden" name="color_id" value="{{shirt.shirts.0.color_id}}">
+    <!-- <input type="hidden" name="design_id" value="{{shirt.shirts.0.design_id}}">
+    <input type="hidden" name="color_id" value="{{shirt.shirts.0.color_id}}"> -->
     <label>Qty: </label><input id="qty" type="text" name="quantity" value="1">
-    ${{shirt.shirts.0.price}} ea
+    ${{shirt.0.price}} ea
     <br>
     <input type="submit" value="Add to Cart">
   </form>
