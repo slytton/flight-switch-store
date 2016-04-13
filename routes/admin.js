@@ -32,7 +32,7 @@ router.get('/', isUser, isAdmin, function(req, res, next) {
     bookshelf.Order.fetchAll({withRealated: ['users', 'status', 'orderItems', 'shirts']})
     .then(function(ordRes) {
       var orders = ordRes.serialize();
-      bookshelf.knex.columns(['id','email', 'admin']).select().from('users')
+      bookshelf.knex.columns(['id','email', 'admin', 'fname', 'lname']).select().from('users')
       .then(function(users) {
         console.log(users);
         res.render('./admin/admin', {shirts: products, orders: orders, users: users});
