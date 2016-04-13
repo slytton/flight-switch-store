@@ -3,11 +3,13 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
 hbs.registerHelper('equal', require('handlebars-helper-equal'));
+var bookshelf = require('./db/config.js')
+
 var routes = require('./routes/public');
 var users = require('./routes/users');
 var bookshelfTest = require('./routes/bookshelfTest');
@@ -25,7 +27,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.SECRET));
+//app.use(cookieParser(process.env.SECRET));
 app.use(cookieSession({
   name: 'session',
   keys: [
@@ -37,11 +39,26 @@ app.use(cookieSession({
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static('public'));
 
-app.use('/', routes);
+app.use(function(req, res, next){
+  if(req.session.userID){
+    bookshelf.User.where({id: req.session.userID}).fetch().then(function(user){
+      user = user.serialize();
+      res.user = user;
+      res.locals.user = user;
+      next();
+    })
+  }else{
+    next();
+  }
+})
+
 app.use('/users', users);
 app.use('/bookshelf', bookshelfTest);
 app.use('/auth', auth);
+
+// Add middleware to keep any non-admins from accessing admin routes.
 app.use('/admin', admin);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

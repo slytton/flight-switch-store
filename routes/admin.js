@@ -3,22 +3,18 @@ var router = express.Router();
 var bookshelf = require('../db/config.js');
 
 function isAdmin(req, res, next) {
-  var user_id = req.session.id;
-  bookshelf.knex('users').where({
-    id: user_id
-  }).then(function(user) {
-    if(user[0].admin){
-      next();
-    }
-    else {
-      res.redirect(401, '/');
-    }
-  });
+  if(res.user.admin){
+    next();
+  }
+  else {
+    res.redirect(401, '/');
+  }
 };
 
 function isUser(req, res, next) {
-  var user_id = req.session.id;
-  if (user_id) {
+  console.log(res.user);
+
+  if (res.user) {
     next();
   } else {
     res.redirect(401, '/');

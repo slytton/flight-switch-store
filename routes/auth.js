@@ -2,6 +2,79 @@ var express = require('express');
 var router = express.Router();
 var bookshelf = require('../db/config.js');
 var bcrypt = require('bcrypt');
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "/auth/google/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+  return done(null, {
+                      googleId: profile.id,
+                      fname: profile.name.givenName,
+                      lname: profile.name.familyName,
+                      email: profile.emails[0].value
+                    });
+}
+));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+
+router.use(passport.initialize());
+router.use(passport.session());
+
+router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home and add current user key to database.
+    bookshelf.User.where({email: req.user.email.toLowerCase()}).fetch().then(function(user){
+      var toUpdate = {};
+
+      if(user){
+        req.session.userID = user.id;
+        if(!user.gid){
+          toUpdate.gid = req.user.googleId;
+        }else{
+          req.session.message = {success: "Thanks for logging in!"}
+          return res.redirect('/');
+        }
+        user.save(toUpdate, {patch: true}).then(function(){
+          req.session.message = {success: "Thanks for logging in!"}
+          return res.redirect('/');
+        })
+      } else {
+        var generatedPass = require('crypto').randomBytes(48).toString('hex');
+        generatedPass = bcrypt.hashSync(generatedPass, 8)
+        new bookshelf.User({
+                    email: req.user.email.toLowerCase(),
+                    fname: req.user.fname,
+                    lname: req.user.lname,
+                    gid: req.user.google_id,
+                    password: generatedPass
+                  }).save().then(function(user){
+                    req.session.message = {success: "Thanks for logging in!"}
+                    req.session.userID = user.id;
+                    res.redirect('/');
+                  });
+      }
+    })
+
+  });
+
+
+
 
 router.post('/signup', function(req,res,next){
   // validate that the form was filled out
@@ -24,26 +97,43 @@ router.post('/signup', function(req,res,next){
      res.redirect('/register');
    }
    else{
-  var hash = bcrypt.hashSync(req.body.password, 8);
-  bookshelf.knex('users')
-  .insert({'email': req.body.email, 'password': hash, 'fname': req.body.firstName, 'lname': req.body.lastName})
-  .then(function(response){
-    req.session.message = {sucess: 'You are now a registered user. Welcome!'};
-    res.redirect('/');
-  })
-}
+    bookshelf.knex('users').where({email:req.body.email}).first().then(function(user){
+      if(user){
+        errorArray.push("You already have an account. Please login.");
+        throw "A user with an account tried to re-signup";
+      }
+      bookshelf.knex('users')
+      .insert({'email': req.body.email,
+              'password': hash,
+              'fname': req.body.firstName,
+              'lname': req.body.lastName})
+      .returning('id')
+      .then(function(id){
+        var hash = bcrypt.hashSync(req.body.password, 8);
+        req.session.userID = Number(id);
+        req.session.message = {success: ['You are now a registered user. Welcome!']};
+        res.redirect('/');
+      }).catch(function(e){
+        errorArray.push("Unable to create account. Please contact the site owner.")
+        throw "A user's account creation failed for the following reasons" + error;
+      });
+    }).catch(function(e){
+      console.log(e);
+      req.session.message = {error: errorArray};
+      res.redirect('/login')
+    });
+  }
 });
 
 router.post('/login', function(req,res,next){
   console.log(bookshelf);
   bookshelf.knex('users')
-  .where('email', '=', req.body.email)
+  .where('email', req.body.email)
   .first()
   .then(function(response){
     if(response && bcrypt.compareSync(req.body.password, response.password)){
-      req.session.user = response.username;
-      req.session.id = response.id;
-      req.session.message = {success: "You are now loged in."};
+      req.session.userID = response.id;
+      req.session.message = {success: "You are now logged in."};
       res.redirect('/');
     } else {
       req.session.message = {error:'Invalid username or password'};
@@ -53,12 +143,8 @@ router.post('/login', function(req,res,next){
 });
 
 router.get('/logout', function(req,res,next) {
-  req.session.user = null;
-  res.redirect('/');
-});
-
-router.post('/logout', function(req,res,next) {
-  req.session.user = null;
+  req.session.message = {success: "You have successfully logged out"}
+  req.session.userID = null;
   res.redirect('/');
 });
 

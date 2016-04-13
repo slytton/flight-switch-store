@@ -21,10 +21,10 @@
           <li><a href="/">Home</li></a>
         </ul>
       </nav>
-
     </div>
 
     <div class='headerright'>
+
       {{#if user.admin}}
       <p>
         <a href="/admin">Admin</a> | <a href="/auth/logout">Logout</a>
@@ -37,8 +37,8 @@
       <p>
         <a href="/login">Login</a> | <a href="/register">Sign Up</a>
       </p>
-
-      {{/if}}{{/if}}
+      {{/if}}
+      {{/if}}
 
     </div>
 
@@ -55,9 +55,22 @@
     </div>
   </div>
 
-
   <div class='container'>
 
+    {{#if message.error}}
+    <ul class='error'>
+      {{#message.error}}
+      <li>{{this}}</li>
+      {{/message.error}}
+    </ul>
+    {{/if}}
+    {{#if message.success}}
+    <ul class='success'>
+      {{#message.success}}
+      <li>{{this}}</li>
+      {{/message.success}}
+    </ul>
+    {{/if}}
 
     <div class='cart'>
       <table>
@@ -88,7 +101,7 @@
   </div>
 
   <footer>
-      <p>Flight Switch &copy 2016</p><a href="/"><img style='width:5%' src="../images/logoiconwhite.png" alt="" /></a>
+    <p>Flight Switch &copy 2016</p><a href="/"><img style='width:5%' src="../images/logoiconwhite.png" alt="" /></a>
   </footer>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
