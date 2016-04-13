@@ -135,39 +135,6 @@ li {
   background-color: black;
 }
 
-.cart {
-  text-align: right;
-  float: right;
-  position: fixed;
-  right:  0;
-  padding: 0 2.5%;
-}
-
-#cartbutton {
-  margin: 0;
-  padding: 5px;
-  background-color: white;
-  border:1px solid gray;
-  border-top: none;
-  cursor: pointer;
-}
-
-.cart > table {
-  border:1px solid gray;
-  border-top: none;
-  text-align: right;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  background-color: rgba(255, 255, 255, .5);
-  display: none;
-}
-
-.cart td {
-  padding: 5px 10px;
-  display: inline-block;
-  cursor: pointer;
-}
-
 footer {
   overflow: auto;
   padding: 5px 0;
