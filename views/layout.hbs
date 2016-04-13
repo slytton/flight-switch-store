@@ -66,6 +66,20 @@
 
   <div class='container'>
 
+    {{#if message.error}}
+    <ul class='error'>
+      {{#message.error}}
+      <li>{{this}}</li>
+      {{/message.error}}
+    </ul>
+    {{/if}}
+    {{#if message.success}}
+    <ul class='success'>
+      {{#message.success}}
+      <li>{{this}}</li>
+      {{/message.success}}
+    </ul>
+    {{/if}}
 
     <div class='cart'>
       <table>

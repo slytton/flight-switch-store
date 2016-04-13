@@ -1,6 +1,37 @@
 // This identifies your website in the createToken call below
 Stripe.setPublishableKey('pk_test_WxKLpM1zo3D4vjzfAZcWiaBV');
-// ...
+
+$(function() {
+
+  window.setTimeout(function(){$('.success, .error').slideUp(500)}, 3000)
+
+  $("#cartbutton").click(function(){
+    $("tr").toggle();
+  });
+
+  $("td").mouseenter(function(){
+    $(this).css('color', '#00a4e4')
+    .mouseleave(function(){
+      $('td').css('color', 'black');
+    })
+  });
+
+  $('#payment-form').on('submit', function(event) {
+    event.preventDefault();
+    var $form = $(this);
+
+    // Disable the submit button to prevent repeated clicks
+    $form.find('button').prop('disabled', true);
+    Stripe.card.createToken($form, stripeResponseHandler);
+
+    // Prevent the form from submitting with the default action
+    return false;
+  });
+
+});
+
+// ***Outside of jquery
+
 
 function stripeResponseHandler(status, response) {
   var $form = $('#payment-form');
@@ -18,30 +49,3 @@ function stripeResponseHandler(status, response) {
     $form.get(0).submit();
   }
 };
-
-$("#cartbutton").click(function(){
-  $("tr").toggle();
-});
-
-$("td").mouseenter(function(){
-  $(this).css('color', '#00a4e4')
-  .mouseleave(function(){
-    $('td').css('color', 'black');
-  })
-});
-
-
-$(function() {
-  $('#payment-form').on('submit', function(event) {
-    event.preventDefault();
-    var $form = $(this);
-
-    // Disable the submit button to prevent repeated clicks
-    $form.find('button').prop('disabled', true);
-    Stripe.card.createToken($form, stripeResponseHandler);
-
-    // Prevent the form from submitting with the default action
-    return false;
-  });
-
-});

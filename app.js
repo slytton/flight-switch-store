@@ -39,7 +39,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static('public'));
 
 app.use(function(req, res, next){
-  console.log('in session check');
   if(req.session.userID){
     bookshelf.User.where({id: req.session.userID}).fetch().then(function(user){
       user = user.serialize();
@@ -50,7 +49,6 @@ app.use(function(req, res, next){
   }else{
     next();
   }
-
 })
 
 app.use('/users', users);
