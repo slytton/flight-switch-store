@@ -152,7 +152,7 @@ section {
   float: left;
   width: 50%; }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   article {
     width: 100%; } }
 
@@ -203,11 +203,16 @@ form {
     border-radius: 5px;
     box-shadow: 0 0 10px black; }
 
+#adminpage td {
+  text-align: left; }
+
 #adminmenu {
   float: left;
   box-sizing: border-box;
   border: 1px solid grey;
   border-top: none;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.5);
   width: 15%; }

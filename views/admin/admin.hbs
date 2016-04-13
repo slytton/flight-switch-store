@@ -1,4 +1,5 @@
 <div id='adminpage'>
+
   <div id='adminmenu'>
     <div class='menuitem' id='adminproducts'>
       Products
@@ -16,18 +17,20 @@
     <div id='productsshow'>
 
       {{#shirts}}
-      Name:{{designs.name}} - Color:{{colors.color}} - Size:{{sizes.size}}
-      <form class="" action="/admin/product/{{id}}" method="post">
+      <h3>ID: {{id}}</h3>
+      <h3>Name: {{designs.name}}</h3>
+      <h3>Color: {{colors.color}}</h3>
+      <h3>Size: {{sizes.size}}</h3>
+      <form action="/admin/product/{{id}}" method="post">
         <table>
           <tbody>
             <tr><td>Image</td><td><img style='width: 10%' src="{{shirtImageUrl.url}}"></td></tr>
-            <tr><td>id</td><td><input size='40%' type='text' name='id'value='{{id}}'></td></tr>
             <tr><td>design_id</td><td><input size='40%' type='text' name='design_id'value='{{design_id}}'></td></tr>
             <tr><td>size_id</td><td><input size='40%' type='text' name='size_id'value='{{size_id}}'></td></tr>
             <tr><td>color_id</td><td><input size='40%' type='text' name='color_id'value='{{color_id}}'></td></tr>
             <tr><td>quantity</td><td><input size='40%' type='text' name='quantity'value='{{quantity}}'></td></tr>
             <tr><td>price</td><td><input size='40%' type='text' name='price'value='{{price}}'></td></tr>
-            <tr><td>shirt_image_url_id</td><td><input size='40%' type='text' name='shirt_image_url'value='{{shirt_image_url_id}}'></td></tr>
+            <tr><td>shirt_image_url_id</td><td><input size='40%' type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
             <tr><td>designs.id</td><td><input size='40%' type='text' name='designs.id'value='{{designs.id}}'></td></tr>
             <tr><td>designs.name</td><td><input size='40%' type='text' name='designs.name'value='{{designs.name}}'></td></tr>
             <tr><td>colors.id</td><td><input size='40%' type='text' name='colors.id'value='{{colors.id}}'></td></tr>
@@ -45,12 +48,12 @@
 
     <div id='ordersshow'>
       {{#orders}}
-      Order ID{{id}} - User ID{{user_id}}
-      <form class="" action="/admin/orders/{{id}}" method="post">
+      <h3>Order ID: {{id}} - User ID: {{user_id}}</h3>
+      <form action="/admin/orders/{{id}}" method="post">
 
         <table>
           <tbody>
-            <tr><td>id</td><td><input size='40%' type='text' value='{{id}}' name='id'</td></tr>
+            <tr><td>id</td><td>{{id}}</td></tr>
             <tr><td>user_id</td><td><input size='40%' type='text' value='{{user_id}}' name='user_id'</td></tr>
             <tr><td>address</td><td><input size='40%' type='text' value='{{address}}' name='address'</td></tr>
             <tr><td>city</td><td><input size='40%' type='text' value='{{city}}' name='city'</td></tr>
@@ -68,11 +71,11 @@
 
     <div id='usersshow'>
       {{#users}}
-      User ID {{id}} - User Email {{email}}
-      <form class="" action="/admin/users/{{id}}" method="post">
+      <h3>User ID: {{id}} - User Email: {{email}}</h3>
+      <form action="/admin/users/{{id}}" method="post">
         <table>
           <tbody>
-            <tr><td>id </td><td><input type='text' value='{{id}}'></td></tr>
+            <tr><td>id </td><td>{{id}}</td></tr>
             <tr><td>email </td><td><input type='text' value='{{email}}'></td></tr>
             <tr><td>admin </td><td><input type='text' value='{{admin}}'></td></tr>
             <tr><td></td><td><input type="submit" value="Submit"><a href="/admin/users/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
@@ -81,5 +84,7 @@
       </form>
       {{/users}}
     </div>
+
   </div>
+
 </div>
