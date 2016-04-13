@@ -34,8 +34,7 @@ bookshelf.Shirt.fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImag
     var orders = ordRes.serialize();
     bookshelf.knex.columns(['id','email', 'admin']).select().from('users')
     .then(function(users) {
-      console.log([products, orders, users]);
-      res.render('index', {shirts: products, orders: orders, users: users});
+      res.render('./admin/admin', {shirts: products, orders: orders, users: users});
     })
   })
 })
@@ -43,13 +42,14 @@ bookshelf.Shirt.fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImag
 
 router.post('/product/:id', function(req, res, next) {
   bookshelf.Shirt.where({id: req.params.id}).fetch({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl']}).then(function(product){
-    product.set({email: req.body.email, admin: req.body.admin}).save();
+    product.set({design_id: req.body.design_id, size_id: req.body.size_id, color_id: req.body.color_id, quantity: req.body.quantity, price: req.body.price, shirt_image_url_id: req.body.shirt_image_url_id}).save();
     res.redirect('/admin');
   });
 });
 
-router.post('/product/:id/delete', function(req, res, next) {
-
+router.get('/product/:id/delete', function(req, res, next) {
+  bookshelf.Shirt.where({id:req.params.id}).destroy();
+    res.redirect('/admin');
 });
 
 router.post('/order/:id', function(req, res, next) {
@@ -67,10 +67,9 @@ router.post('/users/:id', function(req, res, next) {
   });
 });
 
-router.post('/users/:id/delete', function(req, res, next) {
-  bookshelf.User.where({id:req.params.id}).destroy().then(function(user){
-    res.redirect('/admin')
-  });
+router.get('/users/:id/delete', function(req, res, next) {
+  bookshelf.User.where({id:req.params.id}).destroy();
+    res.redirect('/admin');
 });
 
 
