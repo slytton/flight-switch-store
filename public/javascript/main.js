@@ -1,10 +1,10 @@
 // This identifies your website in the createToken call below
 Stripe.setPublishableKey('pk_test_WxKLpM1zo3D4vjzfAZcWiaBV');
-
+var displayBlock;
 $(function() {
   window.setTimeout(function(){$('.success, .error').slideUp(500)}, 3000)
   $(".cart").on('click', '#cartbutton',function(){
-    $(".cart tbody").toggle();
+    $(".cart .table-container").toggle();
   });
 
   $(".cart td").mouseenter(function(){
@@ -65,35 +65,35 @@ $(function() {
     return false;
   });
 
-  $.ajax({
-    method: 'get',
-    url: '/cart',
-  }).then(function(response){
-    console.log(response);
-    if(response.messages.errors){
-      // Render errors to user
-    }else{
-      $('.cart').empty().html(response.html)
-    }
-  })
+  (function(){
+    displayBlock;
+    $.ajax({
+      method: 'get',
+      url: '/cart',
+    }).then(renderCart);
+  })()
 
-
+  // Add to cart
   $('form[action="/cart"]').on('submit', function(event){
     event.preventDefault();
-    console.log($(this).serialize());
-    data = $(this).serialize()
+    displayBlock = $('.table-container').css('display');
+
+    data = $(this).serialize();
     $.ajax({
       method: 'post',
       url: '/cart',
       data: data
-    }).then(function(response){
-      console.log(response);
-      if(response.messages.errors){
-        // Render errors to user
-      }else{
-        $('.cart').empty().html(response.html)
-      }
-    })
+    }).then(renderCart)
+  })
+
+// delete line item row in cart
+  $('.cart').on('click', '.fa-close', function(){
+    var shirtId = $(this).closest('tr').data('shirt-id');
+    displayBlock = $('.table-container').css('display');
+    $.ajax({
+      method: 'delete',
+      url: '/cart/' + shirtId
+    }).then(renderCart)
   })
 
   // $('form[action="/cart/update"]').on('submit', function(event){
@@ -101,6 +101,30 @@ $(function() {
   //   console.log($(this));
   // }
 });
+
+
+function renderCart(response){
+    console.log(response);
+    if(response.messages.errors){
+      // Render errors to user
+    }else{
+      $('.cart .table-container table').remove()
+      $('.cart').prepend(response.html.cartButton)
+      $('.cart .table-container').prepend(response.html.table)
+      if(displayBlock)$('.table-container').css('display', displayBlock)
+    }
+}
+
+function renderCheckoutCart(response){
+    console.log(response);
+    if(response.messages.errors){
+      // Render errors to user
+    }else{
+      $('.checkout.table-container table').remove()
+      $('.checkout.table-container').prepend(response.html.table)
+      if(displayBlock)$('.table-container').css('display', displayBlock)
+    }
+}
 
 // ***Outside of jquery
 

@@ -4,6 +4,8 @@ var bookshelf = require('../db/config.js');
 var stripe = require("stripe")(process.env.STRIPE_SECRET);
 /* GET home page. */
 
+var populateCart = require('../lib/populate-cart-locals');
+
 function isNotLoggedIn(req, res, next){
   res.user ? res.redirect('/') : next();
 }
@@ -29,38 +31,39 @@ router.post('/checkout', function(req, res, next) {
   });
 });
 
-router.get('/checkout', isLoggedIn, hasCart, function(req, res, next) {
-    // if(!req.session.cart) req.session.cart = {};
-    // if(req.body){
-    //   if(!req.session.cart[req.body.shirt_id]) req.session.cart[req.body.shirt_id] = 0;
-    //   req.session.cart[req.body.shirt_id] += +req.body.quantity;
+router.get('/checkout', isLoggedIn, populateCart, hasCart, function(req, res, next) {
+
+    // // if(!req.session.cart) req.session.cart = {};
+    // // if(req.body){
+    // //   if(!req.session.cart[req.body.shirt_id]) req.session.cart[req.body.shirt_id] = 0;
+    // //   req.session.cart[req.body.shirt_id] += +req.body.quantity;
+    // // }
+    //
+    // var cart = req.session.cart;
+    // var orderTotal = 0;
+    // var totalItems = 0;
+    // var response = { messages:{}, html: "" }
+    // var promises = [];
+    //
+    // delete cart[undefined];
+    // itemIds = Object.keys(cart);
+    // for (var item_id in cart) {
+    //   if (cart.hasOwnProperty(item_id)) {
+    //     promises.push(bookshelf.Shirt.where('id', item_id).fetch({withRelated: ['colors', 'sizes', 'designs', 'shirtImageUrl']}));
+    //   }
     // }
-
-    var cart = req.session.cart;
-    var orderTotal = 0;
-    var totalItems = 0;
-    var response = { messages:{}, html: "" }
-    var promises = [];
-
-    delete cart[undefined];
-    itemIds = Object.keys(cart);
-    for (var item_id in cart) {
-      if (cart.hasOwnProperty(item_id)) {
-        promises.push(bookshelf.Shirt.where('id', item_id).fetch({withRelated: ['colors', 'sizes', 'designs', 'shirtImageUrl']}));
-      }
-    }
-    Promise.all(promises).then(function(shirts){
-      shirts = shirts.map(function(shirt, index){
-        shirt = shirt.serialize();
-        shirt.quantityOrdered = cart[itemIds[index]];
-        shirt.subTotal = +shirt.quantityOrdered * +shirt.price;
-        orderTotal += shirt.subTotal;
-        totalItems += shirt.quantityOrdered;
-        return shirt;
-      })
-      console.log(shirts);
-      res.render('checkout', {shirts: shirts, orderTotal: orderTotal, totalItems: totalItems})
-    });
+    // Promise.all(promises).then(function(shirts){
+    //   shirts = shirts.map(function(shirt, index){
+    //     shirt = shirt.serialize();
+    //     shirt.quantityOrdered = cart[itemIds[index]];
+    //     shirt.subTotal = +shirt.quantityOrdered * +shirt.price;
+    //     orderTotal += shirt.subTotal;
+    //     totalItems += shirt.quantityOrdered;
+    //     return shirt;
+    //   })
+    //   console.log(shirts);
+      res.render('checkout')
+    // });
 });
 
 router.get('/', function(req, res, next) {

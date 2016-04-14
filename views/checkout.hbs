@@ -1,7 +1,7 @@
 <div class='checkout'>
   <h1>Checkout</h1>
   <h2>Verify Cart</h2>
-  <table>
+  <!-- <table>
     <tbody>
       <tr>
         <th>img</th>
@@ -25,10 +25,14 @@
     </tbody>
   </table>
       <input type="submit" value="Update">
-    </form>
-  <p>Total: ${{orderTotal}}</p>
+    </form> -->
+  <!-- <p>Total: ${{orderTotal}}</p> -->
   <h2>Shipping and Credit Card Information</h2>
   <form action="/checkout" method="post" id="payment-form">
+  <h3>Total Itmes: {{totalItems}}</h3>
+
+  <div class='checkout table-container'>{{> cart-table }}</div>
+  <form action="/checkout" method="POST" id="payment-form">
     <span class="payment-errors"></span>
     <table>
       <tbody>
