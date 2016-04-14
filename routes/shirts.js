@@ -19,14 +19,20 @@ function getShirts(req, res, next) {
     req.shirts = shirtsByImage.serialize();
     req.sizes = req.shirts.map(function(imageGroup){
       return imageGroup.shirts.reduce(function(prev, next) {
+        if(next.quantity > 0)
         prev.push(next.sizes.size)
         return prev;
       }, []).sort(function(a, b) {
         return sortObj[a]-sortObj[b];
       })
     })
+
     for (var i = 0; i < req.shirts.length; i++) {
       req.shirts[i].sizes = req.sizes[i];
+      req.shirts[i].totalQuantity = req.shirts[i].shirts.reduce(function(prev, shirt){
+        return prev += shirt.quantity
+      }, 0)
+      console.log(req.shirts[i]);
     }
     next()
   })
