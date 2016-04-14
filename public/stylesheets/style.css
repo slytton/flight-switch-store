@@ -269,6 +269,9 @@ form {
 .addpage tbody {
   text-align: left; }
 
+#admindisplay form {
+  text-align: left; }
+
 .menuitem {
   padding: 20px 0 20px 10px;
   cursor: pointer; }
