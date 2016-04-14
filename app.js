@@ -1,17 +1,21 @@
 require('dotenv').load();
+var fs = require('fs');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-//var cookieParser = require('cookie-parser');
+
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
 hbs.registerHelper('equal', require('handlebars-helper-equal'));
 var bookshelf = require('./db/config.js')
 
-var hbs = require('handlebars');
-hbs.registerPartial('cart', '{{}}')
+var populateCart = require('./lib/populate-cart-locals');
+
+hbs.registerPartial('cart', fs.readFileSync(__dirname + '/views/partials/_cart.hbs', 'utf8'));
+hbs.registerPartial('cart-table', fs.readFileSync(__dirname + '/views/partials/_cart-table.hbs', 'utf8'));
+
 var routes = require('./routes/public');
 var users = require('./routes/users');
 var bookshelfTest = require('./routes/bookshelfTest');
@@ -31,7 +35,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(cookieParser(process.env.SECRET));
+
 app.use(cookieSession({
   name: 'session',
   keys: [
@@ -59,7 +63,6 @@ app.use(function(req, res, next){
 })
 
 
-app.use('/cart', cart)
 app.use('/users', users);
 app.use('/bookshelf', bookshelfTest);
 app.use('/auth', auth);
@@ -67,7 +70,10 @@ app.use('/auth', auth);
 // Add middleware to keep any non-admins from accessing admin routes.
 app.use('/admin', admin);
 app.use('/shirts', shirts);
-app.use('/', routes);
+
+
+app.use('/cart', cart)
+app.use('/', populateCart, routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

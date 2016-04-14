@@ -2,6 +2,8 @@
   <h1>Checkout</h1>
   <h2>Shipping and Credit Card Information</h2>
 
+  <h3>Total Itmes: {{totalItems}}</h3>
+  {{> cart-table }}
 
   <form action="/checkout" method="POST" id="payment-form">
     <span class="payment-errors"></span>
