@@ -13,11 +13,11 @@ passport.use(new GoogleStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
   return done(null, {
-                      googleId: profile.id,
-                      fname: profile.name.givenName,
-                      lname: profile.name.familyName,
-                      email: profile.emails[0].value
-                    });
+    googleId: profile.id,
+    fname: profile.name.givenName,
+    lname: profile.name.familyName,
+    email: profile.emails[0].value
+  });
 }
 ));
 
@@ -36,70 +36,67 @@ router.use(passport.session());
 router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
 router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home and add current user key to database.
-    bookshelf.User.where({email: req.user.email.toLowerCase()}).fetch().then(function(user){
-      var toUpdate = {};
+passport.authenticate('google', { failureRedirect: '/login' }),
+function(req, res) {
+  // Successful authentication, redirect home and add current user key to database.
+  bookshelf.User.where({email: req.user.email.toLowerCase()}).fetch().then(function(user){
+    var toUpdate = {};
 
-      if(user){
-        req.session.userID = user.id;
-        if(!user.gid){
-          toUpdate.gid = req.user.googleId;
-        }else{
-          req.session.message = {success: "Thanks for logging in!"}
-          return res.redirect('/');
-        }
-        user.save(toUpdate, {patch: true}).then(function(){
-          req.session.message = {success: "Thanks for logging in!"}
-          return res.redirect('/');
-        })
-      } else {
-        var generatedPass = require('crypto').randomBytes(48).toString('hex');
-        generatedPass = bcrypt.hashSync(generatedPass, 8)
-        new bookshelf.User({
-                    email: req.user.email.toLowerCase(),
-                    fname: req.user.fname,
-                    lname: req.user.lname,
-                    gid: req.user.google_id,
-                    password: generatedPass
-                  }).save().then(function(user){
-                    req.session.message = {success: "Thanks for logging in!"}
-                    req.session.userID = user.id;
-                    res.redirect('/');
-                  });
+    if(user){
+      req.session.userID = user.id;
+      if(!user.gid){
+        toUpdate.gid = req.user.googleId;
+      }else{
+        req.session.message = {success: "Thanks for logging in!"}
+        return res.redirect('/');
       }
-    })
+      user.save(toUpdate, {patch: true}).then(function(){
+        req.session.message = {success: "Thanks for logging in!"}
+        return res.redirect('/');
+      })
+    } else {
+      var generatedPass = require('crypto').randomBytes(48).toString('hex');
+      generatedPass = bcrypt.hashSync(generatedPass, 8)
+      new bookshelf.User({
+        email: req.user.email.toLowerCase(),
+        fname: req.user.fname,
+        lname: req.user.lname,
+        gid: req.user.google_id,
+        password: generatedPass
+      }).save().then(function(user){
+        req.session.message = {success: "Thanks for logging in!"}
+        req.session.userID = user.id;
+        res.redirect('/');
+      });
+    }
+  })
 
-  });
+});
 
+router.post('/signup', function(req,res,next){
+  // validate that the form was filled out
+  var errorArray = [];
 
-
-
-  router.post('/signup', function(req,res,next){
-    // validate that the form was filled out
-     var errorArray = [];
-
-     if(!req.body.email) {
-       errorArray.push('Please enter a valid email address');
-     }
-     if(!req.body.password) {
-       errorArray.push('Please enter a password');
-     }
-     if(!req.body.firstName) {
-       errorArray.push('Please enter your first name');
-     }
-     if(!req.body.lastName) {
-       errorArray.push('Please enter your last name');
-     }
-     if(!req.body.newpassword === req.body.verifypassword) {
-       errorArray.push('Both password fields must match');
-     }
-     if(errorArray.length > 0) {
-       req.session.message = {error: errorArray};
-       res.redirect('/register');
-     }
-     else{
+  if(!req.body.email) {
+    errorArray.push('Please enter a valid email address');
+  }
+  if(!req.body.password) {
+    errorArray.push('Please enter a password');
+  }
+  if(!req.body.firstName) {
+    errorArray.push('Please enter your first name');
+  }
+  if(!req.body.lastName) {
+    errorArray.push('Please enter your last name');
+  }
+  if(!req.body.newpassword === req.body.verifypassword) {
+    errorArray.push('Both password fields must match');
+  }
+  if(errorArray.length > 0) {
+    req.session.message = {error: errorArray};
+    res.redirect('/register');
+  }
+  else{
     var hash = bcrypt.hashSync(req.body.password, 8);
     bookshelf.knex('users')
     .insert({'email': req.body.email, 'password': hash, 'fname': req.body.firstName, 'lname': req.body.lastName})
@@ -108,7 +105,7 @@ router.get('/google/callback',
       res.redirect('/');
     })
   }
-  });
+});
 router.post('/login', function(req,res,next){
   console.log(bookshelf);
   bookshelf.knex('users')

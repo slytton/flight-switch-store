@@ -77,19 +77,24 @@ router.get('/users/:id/delete', function(req, res, next) {
 
 
 
-// router.get('/product/add', function(req, res, next) {
-//   bookshelf.knex('shirt_image_urls')
-//   .then(function(images) {
-//     console.log(images);
-//     res.render('./admin/addproduct', {images: images});
-//   })
-// });
+router.get('/product/add', function(req, res, next) {
+  bookshelf.knex('shirt_image_urls')
+  .then(function(images) {
+    bookshelf.knex('colors')
+    .then(function(colors) {
+      bookshelf.knex('sizes')
+      .then(function(sizes) {
+        res.render('./admin/addproduct', {images: images, colors: colors, sizes: sizes});
+      })
+    })
+  })
+});
 
-// router.get('/product/:id/add', function(req, res, next) {
-//   bookshelf.Shirt.where({id:req.params.id}).destroy();
-//   res.redirect('/admin');
-// });
-//
+router.post('/product/add', function(req, res, next) {
+  bookshelf.Shirt.where({id:req.params.id}).destroy();
+  res.redirect('/admin');
+});
+
 
 
 

@@ -10,12 +10,15 @@ var hbs = require('hbs');
 hbs.registerHelper('equal', require('handlebars-helper-equal'));
 var bookshelf = require('./db/config.js')
 
+var hbs = require('handlebars');
+hbs.registerPartial('cart', '{{}}')
 var routes = require('./routes/public');
 var users = require('./routes/users');
 var bookshelfTest = require('./routes/bookshelfTest');
 var auth = require('./routes/auth');
 var admin = require('./routes/admin');
 var shirts = require('./routes/shirts');
+var cart = require('./routes/cart');
 
 var app = express();
 
@@ -43,9 +46,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next){
   if(req.session.userID){
     bookshelf.User.where({id: req.session.userID}).fetch().then(function(user){
-      user = user.serialize();
-      res.user = user;
-      res.locals.user = user;
+      if(user){
+        user = user.serialize();
+        res.user = user;
+        res.locals.user = user;
+      }
       next();
     })
   }else{
@@ -53,6 +58,8 @@ app.use(function(req, res, next){
   }
 })
 
+
+app.use('/cart', cart)
 app.use('/users', users);
 app.use('/bookshelf', bookshelfTest);
 app.use('/auth', auth);
