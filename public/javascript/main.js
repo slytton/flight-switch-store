@@ -3,10 +3,14 @@ Stripe.setPublishableKey('pk_test_WxKLpM1zo3D4vjzfAZcWiaBV');
 
 $(function() {
 
-window.setTimeout(function(){$('.success, .error').slideUp(500)}, 3000)
 
-  $("#cartbutton").click(function(){
-    $(".cart > table").toggle();
+  window.setTimeout(function(){$('.success, .error').slideUp(500)}, 3000)
+
+
+
+  $(".cart").on('click', '#cartbutton',function(){
+
+    $(".cart tbody").toggle();
   });
 
   $(".cart td").mouseenter(function(){
@@ -67,6 +71,37 @@ window.setTimeout(function(){$('.success, .error').slideUp(500)}, 3000)
     // Prevent the form from submitting with the default action
     return false;
   });
+
+  $.ajax({
+    method: 'get',
+    url: '/cart',
+  }).then(function(response){
+    console.log(response);
+    if(response.messages.errors){
+      // Render errors to user
+    }else{
+      $('.cart').empty().html(response.html)
+    }
+  })
+
+  $('form[action="/cart"]').on('submit', function(event){
+    event.preventDefault();
+
+    console.log($(this).serialize());
+    data = $(this).serialize()
+    $.ajax({
+      method: 'post',
+      url: '/cart',
+      data: data
+    }).then(function(response){
+      console.log(response);
+      if(response.messages.errors){
+        // Render errors to user
+      }else{
+        $('.cart').empty().html(response.html)
+      }
+    })
+  })
 
 });
 
