@@ -1,0 +1,33 @@
+<table>
+  <tbody>
+    <tr>
+      <th>Qty</th>
+      <th>Img</th>
+      <th>Design</th>
+      <th>Color</th>
+      <th>Size</th>
+      <th>Sub</th>
+      <th></th>
+    </tr>
+    {{#shirts}}
+    <tr data-shirt-id="{{id}}">
+      <td><i class='fa fa-minus'></i> {{quantityOrdered}} <i class='fa fa-plus'></i></td>
+      <td><img width='50' src="{{shirtImageUrl.url}}" alt="{{designs.name}}" /></td>
+      <td>{{designs.name}}</td>
+      <td>{{colors.color}}</td>
+      <td>{{sizes.size}}</td>
+      <td>${{subTotal}}</td>
+      <td><i class='fa fa-close'></i></td>
+    </tr>
+    {{/shirts}}
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Total:</th>
+      <th>${{orderTotal}}</th>
+      <th></th>
+    </tr>
+  </tbody>
+</table>

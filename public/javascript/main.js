@@ -1,16 +1,10 @@
 // This identifies your website in the createToken call below
 Stripe.setPublishableKey('pk_test_WxKLpM1zo3D4vjzfAZcWiaBV');
-
+var displayBlock;
 $(function() {
-
-
   window.setTimeout(function(){$('.success, .error').slideUp(500)}, 3000)
-
-
-
   $(".cart").on('click', '#cartbutton',function(){
-
-    $(".cart tbody").toggle();
+    $(".cart .table-container").toggle();
   });
 
   $(".cart td").mouseenter(function(){
@@ -36,7 +30,6 @@ $(function() {
     $("#usersshow").show();
     $("#ordersshow").hide();
     $("#productsshow").hide();
-
   });
 
   $("#adminproducts").mouseenter(function(){
@@ -72,38 +65,74 @@ $(function() {
     return false;
   });
 
+  (function(){
+    displayBlock;
+    $.ajax({
+      method: 'get',
+      url: '/cart',
+    }).then(renderCart);
+  })()
+
+  // Add to cart
+  $('form[action="/cart"]').on('submit', function(event){
+    event.preventDefault();
+    updateCart($(this).serialize());
+  })
+
+// delete line item row in cart
+  $('.table-container').on('click', '.fa-close', function(){
+    var shirtId = $(this).closest('tr').data('shirt-id');
+    displayBlock = $('.table-container').css('display');
+    $.ajax({
+      method: 'delete',
+      url: '/cart/' + shirtId
+    }).then(renderCart).then(renderCheckoutCart);
+  })
+
+  $('.table-container').on('click', '.fa-minus', function(){
+    var shirtId = $(this).closest('tr').data('shirt-id')
+    updateCart("shirt_id="+shirtId+"&quantity=-1")
+  })
+  $('.table-container').on('click', '.fa-plus', function(){
+    var shirtId = $(this).closest('tr').data('shirt-id')
+    updateCart("shirt_id="+shirtId+"&quantity=1")
+  })
+});
+
+function updateCart(data) {
+  displayBlock = $('.table-container').css('display');
   $.ajax({
-    method: 'get',
+    method: 'post',
     url: '/cart',
-  }).then(function(response){
+    data: data
+  }).then(renderCart).then(renderCheckoutCart);
+}
+
+function renderCart(response){
     console.log(response);
     if(response.messages.errors){
       // Render errors to user
     }else{
-      $('.cart').empty().html(response.html)
+      $('.cart .table-container table').remove()
+      $('#cartbutton').remove()
+      $('.cart').prepend(response.html.cartButton)
+      $('.cart .table-container').prepend(response.html.table)
+      if(displayBlock)$('.cart .table-container').css('display', displayBlock)
     }
-  })
+    return response;
+}
 
-  $('form[action="/cart"]').on('submit', function(event){
-    event.preventDefault();
-
-    console.log($(this).serialize());
-    data = $(this).serialize()
-    $.ajax({
-      method: 'post',
-      url: '/cart',
-      data: data
-    }).then(function(response){
-      console.log(response);
-      if(response.messages.errors){
-        // Render errors to user
-      }else{
-        $('.cart').empty().html(response.html)
-      }
-    })
-  })
-
-});
+function renderCheckoutCart(response){
+    console.log(response);
+    if(response.messages.errors){
+      // Render errors to user
+    }else{
+      $('.checkout.table-container table').remove()
+      $('.checkout.table-container').prepend(response.html.table)
+      // if(displayBlock)$('.table-container').css('display', displayBlock)
+    }
+    return response;
+}
 
 // ***Outside of jquery
 

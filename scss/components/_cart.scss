@@ -7,15 +7,15 @@
 
   #cartbutton {
     border-radius: 0 0 3px 3px;
-    // display:flex;
+    display:flex;
     margin: 0;
     padding: 8px;
     background-color: $accent-blue;
     color: white;
     border-top: none;
     cursor: pointer;
-    // align-items: center;
-    // justify-content: flex-end;
+    align-items: center;
+    justify-content: flex-end;
     i {
       font-size:1.5em;
     }
@@ -27,6 +27,12 @@
   table{
     background-color: $background-gray;
     border-collapse: collapse;
+    display:table;
+    margin-bottom: 10px;
+  }
+
+  .table-container{
+    display: none;
   }
 
   tbody {
@@ -36,19 +42,17 @@
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     background-color: rgba(255, 255, 255, .5);
-    display: none;
+    display:table;
   }
 
   td {
     padding: 5px 10px;
-    display: inline-block;
     cursor: pointer;
     box-sizing: border-box;
   }
 
   th {
     padding: 5px 10px;
-    display: inline-block;
     cursor: pointer;
     box-sizing: border-box;
   }

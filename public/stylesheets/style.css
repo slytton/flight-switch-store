@@ -152,7 +152,7 @@ form {
     outline: none;
     box-sizing: border-box;
     margin-bottom: 10px;
-    cursor: pointer; }
+    cursor: text; }
     form input:last-child {
       margin-bottom: 0; }
 
@@ -181,12 +181,15 @@ form {
   padding: 0 2.5%; }
   .cart #cartbutton {
     border-radius: 0 0 3px 3px;
+    display: flex;
     margin: 0;
     padding: 8px;
     background-color: #00a2e2;
     color: white;
     border-top: none;
-    cursor: pointer; }
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-end; }
     .cart #cartbutton i {
       font-size: 1.5em; }
     .cart #cartbutton span {
@@ -194,7 +197,11 @@ form {
       font-size: .8em; }
   .cart table {
     background-color: #C7C7C7;
-    border-collapse: collapse; }
+    border-collapse: collapse;
+    display: table;
+    margin-bottom: 10px; }
+  .cart .table-container {
+    display: none; }
   .cart tbody {
     border: 1px solid gray;
     border-top: none;
@@ -202,15 +209,13 @@ form {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     background-color: rgba(255, 255, 255, 0.5);
-    display: none; }
+    display: table; }
   .cart td {
     padding: 5px 10px;
-    display: inline-block;
     cursor: pointer;
     box-sizing: border-box; }
   .cart th {
     padding: 5px 10px;
-    display: inline-block;
     cursor: pointer;
     box-sizing: border-box; }
   .cart tr {

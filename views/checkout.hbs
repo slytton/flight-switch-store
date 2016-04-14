@@ -1,8 +1,35 @@
 <div class='checkout'>
   <h1>Checkout</h1>
+  <h2>Verify Cart</h2>
+  <!-- <table>
+    <tbody>
+      <tr>
+        <th>img</th>
+        <th>Design</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Qty</th>
+      </tr>
+      <form action="/cart/update" method="post">
+      {{#shirts}}
+        <tr id="{{id}}">
+          <input type="hidden" name="id" value="{{id}}">
+          <td><img width='50' src="{{shirtImageUrl.url}}" alt="{{designs.name}}" /></td>
+          <td>{{designs.name}}</td>
+          <td>{{colors.color}}</td>
+          <td>{{sizes.size}}</td>
+          <td><input type="text" name="quantityOrdered" value="{{quantityOrdered}}"></td>
+          <td><input type="button" value="Remove"></td>
+        </tr>
+      {{/shirts}}
+    </tbody>
+  </table>
+      <input type="submit" value="Update">
+    </form> -->
+  <!-- <p>Total: ${{orderTotal}}</p> -->
   <h2>Shipping and Credit Card Information</h2>
-
-
+  <form action="/checkout" method="post" id="payment-form">
+  <div class='checkout table-container'>{{> cart-table }}</div>
   <form action="/checkout" method="POST" id="payment-form">
     <span class="payment-errors"></span>
     <table>
@@ -72,9 +99,7 @@
             </td>
           </td>
         </tr>
-
       </tbody>
     </table>
-
   </form>
 </div>
