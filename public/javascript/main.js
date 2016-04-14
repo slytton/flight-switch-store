@@ -76,32 +76,37 @@ $(function() {
   // Add to cart
   $('form[action="/cart"]').on('submit', function(event){
     event.preventDefault();
-    displayBlock = $('.table-container').css('display');
-
-    data = $(this).serialize();
-    $.ajax({
-      method: 'post',
-      url: '/cart',
-      data: data
-    }).then(renderCart)
+    updateCart($(this).serialize());
   })
 
 // delete line item row in cart
-  $('.cart').on('click', '.fa-close', function(){
+  $('.table-container').on('click', '.fa-close', function(){
     var shirtId = $(this).closest('tr').data('shirt-id');
     displayBlock = $('.table-container').css('display');
     $.ajax({
       method: 'delete',
       url: '/cart/' + shirtId
-    }).then(renderCart)
+    }).then(renderCart).then(renderCheckoutCart);
   })
 
-  // $('form[action="/cart/update"]').on('submit', function(event){
-  //   event.preventDefault();
-  //   console.log($(this));
-  // }
+  $('.table-container').on('click', '.fa-minus', function(){
+    var shirtId = $(this).closest('tr').data('shirt-id')
+    updateCart("shirt_id="+shirtId+"&quantity=-1")
+  })
+  $('.table-container').on('click', '.fa-plus', function(){
+    var shirtId = $(this).closest('tr').data('shirt-id')
+    updateCart("shirt_id="+shirtId+"&quantity=1")
+  })
 });
 
+function updateCart(data) {
+  displayBlock = $('.table-container').css('display');
+  $.ajax({
+    method: 'post',
+    url: '/cart',
+    data: data
+  }).then(renderCart).then(renderCheckoutCart);
+}
 
 function renderCart(response){
     console.log(response);
@@ -109,10 +114,12 @@ function renderCart(response){
       // Render errors to user
     }else{
       $('.cart .table-container table').remove()
+      $('#cartbutton').remove()
       $('.cart').prepend(response.html.cartButton)
       $('.cart .table-container').prepend(response.html.table)
-      if(displayBlock)$('.table-container').css('display', displayBlock)
+      if(displayBlock)$('.cart .table-container').css('display', displayBlock)
     }
+    return response;
 }
 
 function renderCheckoutCart(response){
@@ -122,8 +129,9 @@ function renderCheckoutCart(response){
     }else{
       $('.checkout.table-container table').remove()
       $('.checkout.table-container').prepend(response.html.table)
-      if(displayBlock)$('.table-container').css('display', displayBlock)
+      // if(displayBlock)$('.table-container').css('display', displayBlock)
     }
+    return response;
 }
 
 // ***Outside of jquery
