@@ -1,8 +1,11 @@
 // This identifies your website in the createToken call below
 Stripe.setPublishableKey('pk_test_WxKLpM1zo3D4vjzfAZcWiaBV');
 var displayBlock;
-$(function() {
+function messageTimer(){
   window.setTimeout(function(){$('.success, .error').slideUp(500)}, 3000)
+}
+$(function() {
+  messageTimer()
   $(".cart").on('click', '#cartbutton',function(){
     $(".cart .table-container").toggle();
   });
@@ -110,27 +113,32 @@ function updateCart(data) {
 
 function renderCart(response){
     console.log(response);
-    if(response.messages.errors){
-      // Render errors to user
-    }else{
+      if(response.messages.errors.length > 0){
+        var errorMessages = response.messages.errors.map(function(error){
+          return "<li>"+error+"</li>";
+        }).join('');
+        $('.container').prepend("<ul class='error'>"+errorMessages+"</ul>");
+        messageTimer()
+      }
       $('.cart .table-container table').remove()
       $('#cartbutton').remove()
       $('.cart').prepend(response.html.cartButton)
       $('.cart .table-container').prepend(response.html.table)
       if(displayBlock)$('.cart .table-container').css('display', displayBlock)
-    }
     return response;
 }
 
 function renderCheckoutCart(response){
     console.log(response);
-    if(response.messages.errors){
-      // Render errors to user
-    }else{
+    // if(response.messages.errors){
+    //   var errorMessages = response.messages.errors.map(function(error){
+    //     return "<li>"+error+"</li>";
+    //   }).join('');
+    //   $('.container').prepend("<ul class='error'>"+errorMessages+"</ul>");
+    // }
       $('.checkout.table-container table').remove()
       $('.checkout.table-container').prepend(response.html.table)
       // if(displayBlock)$('.table-container').css('display', displayBlock)
-    }
     return response;
 }
 

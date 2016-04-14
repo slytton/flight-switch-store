@@ -11,7 +11,7 @@
     </tr>
     {{#shirts}}
     <tr data-shirt-id="{{id}}">
-      <td><i class='fa fa-minus'></i> {{quantityOrdered}} <i class='fa fa-plus'></i></td>
+      <td>{{#if quantityOrdered}}<i class='fa fa-minus'></i>{{/if}} {{quantityOrdered}} {{#compare quantityOrdered quantity operator="<"}}<i class='fa fa-plus'></i>{{/compare}}</td>
       <td><img width='50' src="{{shirtImageUrl.url}}" alt="{{designs.name}}" /></td>
       <td>{{designs.name}}</td>
       <td>{{colors.color}}</td>

@@ -222,6 +222,12 @@ form {
     border-top: 1px solid gray;
     text-align: left; }
 
+.fa-plus {
+  font-size: 0.75em; }
+
+.fa-minus {
+  font-size: 0.75em; }
+
 .login {
   margin: 80px auto 0;
   max-width: 400px; }
