@@ -1,5 +1,5 @@
 $accent-blue: rgb(0, 162, 226);
-$accent-blue-hover: #00A2E2;
+$accent-blue-hover: #0684b5;
 $accent-yellow: rgb(255, 232, 22);
 $accent-yellow-hover: rgb(236, 213, 0);
 $background-gray: #C7C7C7;
@@ -102,7 +102,7 @@ a:link {
 }
 a:hover {
   text-decoration: underline;
-  color: $accent-blue-hover;
+  color: white;
 }
 
 td a {
