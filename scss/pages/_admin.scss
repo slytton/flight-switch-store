@@ -31,8 +31,12 @@
   display: none;
 }
 
-#admindisplay table{
-  padding: 0 0 50px 0;
+.addpage tbody {
+text-align: left
+}
+
+#admindisplay form {
+  text-align: left;
 }
 
 .menuitem {

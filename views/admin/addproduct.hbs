@@ -6,11 +6,31 @@
       <tbody>
         <tr><td>ID</td><td><input size='40%' type='text' name='id' value='{{id}}'</td></tr>
         <tr><td>Name</td><td><input size='40%' type='text' name='designs.name' value='{{designs.name}}'</td></tr>
-        <tr><td>Color</td><td><input size='40%' type='text' name='colors.color' value='{{colors.color}}'</td></tr>
+        <tr><td>Color_id</td><td><input size='40%' type='text' name='color_id' value='{{color_id}}'</td></tr>
         <tr><td>Size</td><td><input size='40%' type='text' name='sizes.size' value='{{sizes.size}}'</td></tr>
         <tr><td>quantity</td><td><input size='40%' type='text' name='quantity'value='{{quantity}}'></td></tr>
         <tr><td>price</td><td><input size='40%' type='text' name='price'value='{{price}}'></td></tr>
         <tr><td>shirt_image_url_id</td><td><input size='40%' type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
+
+        <tr><td>colors.color</td>
+          <td>
+            <select name='colors'>
+              {{#colors}}
+              <option value='{{id}}'>{{color}}</option>
+              {{/colors}}
+            </select>
+          </td>
+        </tr>
+
+        <tr><td>sizes.size</td>
+          <td>
+            <select name='sizes'>
+              {{#sizes}}
+              <option value='{{id}}'>{{size}}</option>
+              {{/sizes}}
+            </select>
+          </td>
+        </tr>
 
         <tr><td>shirtImageUrl.url</td>
           <td>

@@ -271,8 +271,11 @@ form {
 #usersshow {
   display: none; }
 
-#admindisplay table {
-  padding: 0 0 50px 0; }
+.addpage tbody {
+  text-align: left; }
+
+#admindisplay form {
+  text-align: left; }
 
 .menuitem {
   padding: 20px 0 20px 10px;
