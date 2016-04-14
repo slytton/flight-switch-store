@@ -2,14 +2,8 @@
 Stripe.setPublishableKey('pk_test_WxKLpM1zo3D4vjzfAZcWiaBV');
 
 $(function() {
-
-
   window.setTimeout(function(){$('.success, .error').slideUp(500)}, 3000)
-
-
-
   $(".cart").on('click', '#cartbutton',function(){
-
     $(".cart tbody").toggle();
   });
 
@@ -36,7 +30,6 @@ $(function() {
     $("#usersshow").show();
     $("#ordersshow").hide();
     $("#productsshow").hide();
-
   });
 
   $("#adminproducts").mouseenter(function(){
@@ -84,9 +77,13 @@ $(function() {
     }
   })
 
+  $('form[action="/cart/update"]').on('submit', function(event){
+      event.preventDefault();
+      console.log($(this));
+  }
+
   $('form[action="/cart"]').on('submit', function(event){
     event.preventDefault();
-
     console.log($(this).serialize());
     data = $(this).serialize()
     $.ajax({
@@ -102,7 +99,6 @@ $(function() {
       }
     })
   })
-
 });
 
 // ***Outside of jquery
