@@ -8,20 +8,6 @@ function isNotLoggedIn(req, res, next){
   res.user ? res.redirect('/') : next();
 }
 
-router.get('/shirt/:design/:color', function(req, res, next) {
-  var shirtid = req.params.design;
-  res.render('shirt', { design: design });
-});
-
-router.get('/logout', function(req, res, next) {
-  res.redirect('/auth/logout');
-});
-
-router.get('/shirt/:id', function(req, res, next) {
-  var shirtid = req.params.id;
-  res.render('shirt', { shirt: shirtid });
-});
-
 router.post('/checkout', function(req, res, next) {
   var orderDetails = req.body;
   res.render('checkout');
@@ -43,15 +29,10 @@ router.get('/checkout', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-
-  bookshelf.ShirtImageUrl.collection().fetch({withRelated: ['shirts']}).then(function(shirts){
-
-    var message = req.session.message;
-    req.session.message = null;
-    console.log();
-    res.render('index', {shirts: shirts.serialize(), message: message});
-    // res.json(shirts);
-  })
+      // var message = req.session.message;
+      // req.session.message = null;
+      // res.render('index', {shirts: req.result.shirts, message: message});
+      res.redirect('/shirts')
 });
 
 
@@ -67,5 +48,8 @@ router.get('/register', isNotLoggedIn, function(req, res, next) {
   res.render('./public/register', {message: message});
 });
 
+router.post('/cart', function(req, res, next){
+  res.json(req.body)
+})
 
 module.exports = router;

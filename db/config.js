@@ -61,7 +61,7 @@ var Shirt = bookshelf.Model.extend({
     return this.belongsTo(Design);
   },
   shirtImageUrl: function(){
-    return this.belongsTo(ShirtImageUrl)
+    return this.belongsTo(ShirtImageUrl);
   }
 });
 
@@ -70,6 +70,9 @@ var Color = bookshelf.Model.extend({
   shirts: function(){
     return this.hasMany(Shirt);
   }
+  // designs: function() {
+  //   return this.belongsToMany(Design).through(Shirt);
+  // }
 });
 
 var Size = bookshelf.Model.extend({
@@ -77,10 +80,19 @@ var Size = bookshelf.Model.extend({
   shirts: function(){
     return this.hasMany(Shirt);
   }
+  // designs: function() {
+  //   return this.belongsToMany(Design).through(Shirt);
+  // }
 });
 
 var Design = bookshelf.Model.extend({
   tableName: 'designs',
+  // colors: function(){
+  //   return this.hasMany(Color).through(Shirt);
+  // }
+  // sizes: function() {
+  //   return this.hasMany(Size).through(Shirt);
+  // },
   shirts: function(){
     return this.hasMany(Shirt);
   }
