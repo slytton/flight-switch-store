@@ -6,6 +6,8 @@ var logger = require('morgan');
 //var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
+var hbs = require('hbs');
+hbs.registerHelper('equal', require('handlebars-helper-equal'));
 var bookshelf = require('./db/config.js')
 
 var routes = require('./routes/public');
@@ -54,11 +56,11 @@ app.use(function(req, res, next){
 app.use('/users', users);
 app.use('/bookshelf', bookshelfTest);
 app.use('/auth', auth);
-app.use('/', routes);
 
 // Add middleware to keep any non-admins from accessing admin routes.
 app.use('/admin', admin);
 app.use('/shirts', shirts);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

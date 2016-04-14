@@ -181,7 +181,8 @@ form {
     font-size: 15px;
     outline: none;
     box-sizing: border-box;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    cursor: pointer; }
     form input:last-child {
       margin-bottom: 0; }
 
@@ -244,9 +245,6 @@ form {
   padding: 3%;
   float: right;
   width: 75%; }
-
-#productsshow {
-  display: none; }
 
 #ordersshow {
   display: none; }

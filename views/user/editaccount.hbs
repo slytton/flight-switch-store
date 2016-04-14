@@ -1,0 +1,47 @@
+<div id='editaccountpage'>
+
+{{#user}}
+  <form action="/users/{{id}}/edit" method="post">
+
+    <table>
+      <tbody>
+        <tr>
+          <td>First Name</td><td><input type="text" name="fname" value="{{fname}}"></td>
+        </tr>
+        <tr>
+          <td>Last Name</td><td><input type="text" name="lname" value="{{lname}}"></td>
+        </tr>
+        <tr>
+          <td>Email</td><td><input type="text" name="email" value="{{email}}"></td>
+        </tr>
+        <tr>
+          <td></td><td><input type="submit" value="Submit"></td>
+        </tr>
+
+  </form>
+
+  <form action="/users/{{id}}/edit" method="post">
+
+        <tr>
+          <td>Current Password</td><td><input type="password" name="password"></td>
+        </tr>
+
+        <tr>
+          <td>New Password</td><td><input type="password" name="newpassword"></td>
+        </tr>
+
+        <tr>
+          <td>Verify Password</td><td><input type="password" name="verifypassword"></td>
+        </tr>
+
+        <tr>
+          <td></td><td><input type="submit" value="Submit"></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </form>
+  {{/user}}
+
+</div>

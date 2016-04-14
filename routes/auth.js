@@ -9,7 +9,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.HOST + "/auth/google/callback"
+  callbackURL: "/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
   return done(null, {
@@ -76,55 +76,39 @@ router.get('/google/callback',
 
 
 
-router.post('/signup', function(req,res,next){
-  // validate that the form was filled out
-   var errorArray = [];
+  router.post('/signup', function(req,res,next){
+    // validate that the form was filled out
+     var errorArray = [];
 
-   if(!req.body.email) {
-     errorArray.push('Please enter a valid email address');
-   }
-   if(!req.body.password) {
-     errorArray.push('Please enter a password');
-   }
-   if(!req.body.firstName) {
-     errorArray.push('Please enter your first name');
-   }
-   if(!req.body.lastName) {
-     errorArray.push('Please enter your last name');
-   }
-   if(errorArray.length > 0) {
-     req.session.message = {error: errorArray};
-     res.redirect('/register');
-   }
-   else{
-    bookshelf.knex('users').where({email:req.body.email}).first().then(function(user){
-      if(user){
-        errorArray.push("You already have an account. Please login.");
-        throw "A user with an account tried to re-signup";
-      }
-      bookshelf.knex('users')
-      .insert({'email': req.body.email,
-              'password': hash,
-              'fname': req.body.firstName,
-              'lname': req.body.lastName})
-      .returning('id')
-      .then(function(id){
-        var hash = bcrypt.hashSync(req.body.password, 8);
-        req.session.userID = Number(id);
-        req.session.message = {success: ['You are now a registered user. Welcome!']};
-        res.redirect('/');
-      }).catch(function(e){
-        errorArray.push("Unable to create account. Please contact the site owner.")
-        throw "A user's account creation failed for the following reasons" + error;
-      });
-    }).catch(function(e){
-      console.log(e);
-      req.session.message = {error: errorArray};
-      res.redirect('/login')
-    });
+     if(!req.body.email) {
+       errorArray.push('Please enter a valid email address');
+     }
+     if(!req.body.password) {
+       errorArray.push('Please enter a password');
+     }
+     if(!req.body.firstName) {
+       errorArray.push('Please enter your first name');
+     }
+     if(!req.body.lastName) {
+       errorArray.push('Please enter your last name');
+     }
+     if(!req.body.newpassword === req.body.verifypassword) {
+       errorArray.push('Both password fields must match');
+     }
+     if(errorArray.length > 0) {
+       req.session.message = {error: errorArray};
+       res.redirect('/register');
+     }
+     else{
+    var hash = bcrypt.hashSync(req.body.password, 8);
+    bookshelf.knex('users')
+    .insert({'email': req.body.email, 'password': hash, 'fname': req.body.firstName, 'lname': req.body.lastName})
+    .then(function(response){
+      req.session.message = {sucess: 'You are now a registered user. Welcome!'};
+      res.redirect('/');
+    })
   }
-});
-
+  });
 router.post('/login', function(req,res,next){
   console.log(bookshelf);
   bookshelf.knex('users')
