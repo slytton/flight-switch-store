@@ -77,10 +77,6 @@ $(function() {
     }
   })
 
-  $('form[action="/cart/update"]').on('submit', function(event){
-      event.preventDefault();
-      console.log($(this));
-  }
 
   $('form[action="/cart"]').on('submit', function(event){
     event.preventDefault();
@@ -99,6 +95,11 @@ $(function() {
       }
     })
   })
+
+  // $('form[action="/cart/update"]').on('submit', function(event){
+  //   event.preventDefault();
+  //   console.log($(this));
+  // }
 });
 
 // ***Outside of jquery
