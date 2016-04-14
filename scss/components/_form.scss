@@ -12,8 +12,14 @@ form {
     margin-bottom: 10px;
     cursor: pointer;
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+
   }
+}
+
+#addpage input {
+  margin-bottom: 15px;
+}
+
+#addpage tbody {
+text-align: left;
 }
