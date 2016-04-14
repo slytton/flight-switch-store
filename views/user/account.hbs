@@ -26,13 +26,13 @@
   <table>
     <tbody>
 
+      {{#unless orders}}
+      You have no previous orders.
+      {{/unless}}
+
       {{#orders}}
       <tr>
-        <td><h3>ID</h3></td>
-        <td>{{id}}</td>
-      </tr>
-      <tr>
-        <td><h3>Address</h3></td>
+        <td><h3>Shipping Address</h3></td>
         <td>{{address}}</td>
       </tr>
       <tr>

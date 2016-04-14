@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bookshelf = require('../db/config.js');
+var bcrypt = require('bcrypt');
 
 function isUser(req, res, next) {
   var user_id = req.session.id;
@@ -35,24 +36,39 @@ router.get('/:id', function(req, res, next){
   })
 });
 
-router.get('/:id/info', isUser, function(req, res, next){
+router.get('/:id/edit', function(req, res, next){
   bookshelf.knex('users').where({id: req.params.id})
   .then(function(user) {
-    res.render('./user/account', {user: user})
+    res.render('./user/editaccount', {user: user})
   })
 });
 
-// router.post('/:id/edit', function(req, res, next){
-//   bookshelf.User.where({id: req.params.id}).fetch().then(function(user){
-//     if( user && bcrypt.compareSync(req.body.password, user.password)){
-//       var hash = bcrypt.hashSync(req.body.password, 8);
-//       user.set({fname: req.body.fname, lname: req.params.lname, email: req.body.email, password: hash}).save();
-//     }
-//     else {
-//       res.redirect('')
-//     }
-//   })
-// });
+router.post('/:id/edit', function(req, res, next){
+  if(req.body.password){
+
+    bookshelf.User.where({id: req.params.id}).fetch().then(function(user){
+      var userserial = user.serialize();
+      if( userserial && bcrypt.compareSync(req.body.password, userserial.password)){
+        if( req.body.newpassword === req.body.verifypassword) {
+          var hash = bcrypt.hashSync(req.body.newpassword, 8);
+          user.save({password: hash}, {patch: true});
+          res.redirect("/users/" +req.params.id)
+        } else {
+          res.redirect("/users/" + req.params.id +"edit");
+        }
+      } else {
+        res.redirect("/users/" + req.params.id +"edit");
+      }
+    })
+  } else {
+    bookshelf.User.where({id: req.params.id}).fetch().then(function(user){
+      console.log('hello');
+      user.save({fname: req.body.fname, lname: req.body.lname, email: req.body.email}, {patch: true});
+      res.redirect("/users/" + req.params.id);
+    });
+  }
+});
+
 //
 // router.post('/:id/delete', isUser, authenticUser, function(req, res, next){
 //   bookshelf.User.where({id:req.params.id}).destroy();
