@@ -15,7 +15,14 @@
   <div id='admindisplay'>
 
     <div id='productsshow'>
-      <form><a href="admin/product/add"><input type="button" value="Add Product"></a></form>
+      <div style="display:block">
+        <div style='display: inline-block'>
+          <h1>Products</h1>
+        </div>
+        <div style='display: inline-block; margin-left: 20px'>
+          <form><a href="admin/product/add"><input type="button" value="Add Product"></a></form>
+        </div>
+      </div>
       {{#shirts}}
       <h3>ID: {{id}}</h3>
       <h3>Name: {{designs.name}}</h3>
@@ -25,9 +32,9 @@
         <table>
           <tbody>
             <tr><td>Image</td><td><img style='width: 10%' src="{{shirtImageUrl.url}}"></td></tr>
-            <tr><td>quantity</td><td><input size='40%' type='text' name='quantity'value='{{quantity}}'></td></tr>
-            <tr><td>price</td><td><input size='40%' type='text' name='price'value='{{price}}'></td></tr>
-            <tr><td>shirt_image_url_id</td><td><input size='40%' type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
+            <tr><td>quantity</td><td><input type='text' name='quantity'value='{{quantity}}'></td></tr>
+            <tr><td>price</td><td><input type='text' name='price'value='{{price}}'></td></tr>
+            <tr><td>shirt_image_url_id</td><td><input type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
             <tr><td>shirtImageUrl.url</td>
               <td><select name='imageurls'>
                 {{#../images}}
@@ -41,7 +48,7 @@
         </div>
 
         <div id='ordersshow'>
-          <a href="/admin/orders/add"><input type="button" value="Add Order"></a>
+          <h1>Orders</h1>
           {{#orders}}
           <h3>Order ID: {{id}}</h3>
           <h3>User ID: {{user_id}}</h3>
@@ -50,12 +57,12 @@
           <form action="/admin/orders/{{id}}" method="post">
             <table>
               <tbody>
-                <tr><td>user_id</td><td><input size='40%' type='text' value='{{user_id}}' name='user_id'></td></tr>
-                <tr><td>address</td><td><input size='40%' type='text' value='{{address}}' name='address'></td></tr>
-                <tr><td>city</td><td><input size='40%' type='text' value='{{city}}' name='city'></td></tr>
-                <tr><td>state</td><td><input size='40%' type='text' value='{{state}}' name='state'></td></tr>
-                <tr><td>zip</td><td><input size='40%' type='text' value='{{zip}}' name='zip'></td></tr>
-                <tr><td>order_status_id</td><td><input size='40%' type='text' value='{{order_status_id}}' name='order_status_id'></td></tr>
+                <tr><td>user_id</td><td><input type='text' value='{{user_id}}' name='user_id'></td></tr>
+                <tr><td>address</td><td><input type='text' value='{{address}}' name='address'></td></tr>
+                <tr><td>city</td><td><input type='text' value='{{city}}' name='city'></td></tr>
+                <tr><td>state</td><td><input type='text' value='{{state}}' name='state'></td></tr>
+                <tr><td>zip</td><td><input type='text' value='{{zip}}' name='zip'></td></tr>
+                <tr><td>order_status_id</td><td><input type='text' value='{{order_status_id}}' name='order_status_id'></td></tr>
                 <tr><td></td><td><input type="submit" value="Submit"><a href="/admin/orders/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
               </tbody>
             </table>
@@ -64,16 +71,16 @@
         </div>
 
         <div id='usersshow'>
-          <a href="/admin/users/add"><input type="button" value="Add User"></a>
+          <h1>Users</h1>
           {{#users}}
           <h3>User ID: {{id}}</h3>
           <h3>User Email: {{email}}</h3>
           <form action="/admin/users/{{id}}" method="post">
             <table>
               <tbody>
-                <tr><td>fname: {{fname}}</td><td><input type='text' value='{{fname}}'></td></tr>
-                <tr><td>lname: {{lname}}</td><td><input type='text' value='{{lname}}'></td></tr>
-                <tr><td>email: </td><td><input type='text' value='{{email}}'></td></tr>
+                <tr><td>fname: {{fname}}</td><td><input type='text' value='{{fname}}' name='fname'></td></tr>
+                <tr><td>lname: {{lname}}</td><td><input type='text' value='{{lname}}' name='lname'></td></tr>
+                <tr><td>email: </td><td><input type='text' value='{{email}}' name='email'></td></tr>
                 <tr><td>admin: </td><td><label>True<input type='radio' name='isadmin' value=true {{#if admin}}checked='checked'{{/if}}></label> <label>False<input type='radio' name='isadmin' value=false {{#unless admin}}checked='checked'{{/unless}}></td></tr>
                   <tr><td></td><td><input type="submit" value="Submit"><a href="/admin/users/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
                 </tbody>
