@@ -13,19 +13,20 @@
       <form action="/cart/update" method="post">
       {{#shirts}}
         <tr id="{{id}}">
+          <input type="hidden" name="id" value="{{id}}">
           <td><img width='50' src="{{shirtImageUrl.url}}" alt="{{designs.name}}" /></td>
           <td>{{designs.name}}</td>
           <td>{{colors.color}}</td>
           <td>{{sizes.size}}</td>
-          <td><input type="text" name="quantityOrdered"value="{{quantityOrdered}}"></td>
+          <td><input type="text" name="quantityOrdered" value="{{quantityOrdered}}"></td>
           <td><input type="button" value="Remove"></td>
         </tr>
       {{/shirts}}
-    </form>
     </tbody>
   </table>
+      <input type="submit" value="Update">
+    </form>
   <p>Total: ${{orderTotal}}</p>
-  <input type="submit" value="Update">
   <h2>Shipping and Credit Card Information</h2>
   <form action="/checkout" method="post" id="payment-form">
     <span class="payment-errors"></span>

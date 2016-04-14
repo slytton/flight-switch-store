@@ -10,7 +10,9 @@ function isNotLoggedIn(req, res, next){
 function isLoggedIn(req, res, next) {
   !res.user ? res.redirect('/login') : next();
 }
-
+function hasCart(req, res, next) {
+  req.session.cart ? next() : res.redirect('/')
+}
 router.post('/checkout', function(req, res, next) {
   var orderDetails = req.body;
   res.render('checkout');
@@ -27,7 +29,7 @@ router.post('/checkout', function(req, res, next) {
   });
 });
 
-router.get('/checkout', isLoggedIn, function(req, res, next) {
+router.get('/checkout', isLoggedIn, hasCart, function(req, res, next) {
     // if(!req.session.cart) req.session.cart = {};
     // if(req.body){
     //   if(!req.session.cart[req.body.shirt_id]) req.session.cart[req.body.shirt_id] = 0;
@@ -48,7 +50,6 @@ router.get('/checkout', isLoggedIn, function(req, res, next) {
       }
     }
     Promise.all(promises).then(function(shirts){
-      console.log(cart);
       shirts = shirts.map(function(shirt, index){
         shirt = shirt.serialize();
         shirt.quantityOrdered = cart[itemIds[index]];
@@ -57,6 +58,7 @@ router.get('/checkout', isLoggedIn, function(req, res, next) {
         totalItems += shirt.quantityOrdered;
         return shirt;
       })
+      console.log(shirts);
       res.render('checkout', {shirts: shirts, orderTotal: orderTotal, totalItems: totalItems})
     });
 });

@@ -43,11 +43,17 @@ function cartView(req, res){
   });
 }
 
+
+
 router.get('/', function(req, res, next) {
   cartView(req, res);
 })
 
 router.post('/', function(req, res, next){
+  cartView(req, res);
+})
+
+router.post('/update', function(req, res, next) {
   cartView(req, res);
 })
 
