@@ -2,7 +2,7 @@ $accent-blue: rgb(0, 162, 226);
 $accent-blue-hover: #00A2E2;
 $accent-yellow: rgb(255, 232, 22);
 $accent-yellow-hover: rgb(236, 213, 0);
-
+$background-gray: #C7C7C7;
 
 .message {
   margin-top: 20px;
@@ -21,7 +21,7 @@ $accent-yellow-hover: rgb(236, 213, 0);
 
 .error{
   @extend .message;
-    background-color:rgba(190, 98, 98, .8);
+  background-color:rgba(190, 98, 98, .8);
 }
 
 body {
@@ -109,6 +109,8 @@ td a {
   text-decoration: none;
   color: black;
 }
+th {
+}
 
 nav {
   width: 100%;
@@ -151,7 +153,7 @@ footer > p {
 }
 
 article {
-  flex-grow: 1;
+  //flex-grow: 1;
   padding: 2%;
   margin: 0 auto;
   float: left;
