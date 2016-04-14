@@ -4,22 +4,9 @@ var bookshelf = require('../db/config.js');
 var stripe = require("stripe")(process.env.STRIPE_SECRET);
 /* GET home page. */
 
-function isUser(req, res, next) {
-  var user_id = req.session.id;
-  if (user_id) {
-    next();
-  } else {
-    res.redirect(401, '/');
-  }
-};
-
-function authenticUser(req, res, next) {
-  if(req.signedCookies.userID === req.params.id) {
-    next();
-  }else{
-    res.redirect(401, '/');
-  }
-};
+function isNotLoggedIn(req, res, next){
+  res.user ? res.redirect('/') : next();
+}
 
 router.post('/checkout', function(req, res, next) {
   var orderDetails = req.body;
@@ -48,17 +35,14 @@ router.get('/', function(req, res, next) {
       res.redirect('/shirts')
 });
 
-router.use('*', function(req, res, next){
-  res.user ? res.redirect('/') : next();
-})
 
-router.get('/login', function(req, res, next) {
+router.get('/login', isNotLoggedIn, function(req, res, next) {
   var message = req.session.message;
   req.session.message = null;
   res.render('./public/login', {message: message});
 });
 
-router.get('/register', function(req, res, next) {
+router.get('/register', isNotLoggedIn, function(req, res, next) {
   var message = req.session.message;
   req.session.message = null;
   res.render('./public/register', {message: message});

@@ -6,6 +6,8 @@ var logger = require('morgan');
 //var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
+var hbs = require('hbs');
+hbs.registerHelper('equal', require('handlebars-helper-equal'));
 var bookshelf = require('./db/config.js')
 
 var hbs = require('handlebars');
