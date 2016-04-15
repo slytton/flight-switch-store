@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
     table.string('state').notNull();
     table.string('zip', 5).notNull();
     table.integer('order_status_id').unsigned().references('id').inTable('order_status').onDelete('cascade').onUpdate('cascade');
+    table.string('stripe_id').notNull();
     table.timestamps();
   })
 };

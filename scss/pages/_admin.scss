@@ -41,11 +41,30 @@ text-align: left
 
 #admindisplay input {
   margin-bottom: 10px;
-width: 100%;
+  width: 100%;
 
 }
 
 .menuitem {
   padding: 20px 0 20px 10px;
   cursor: pointer;
+}
+
+.collapse-button {
+
+  &:hover {
+    cursor: pointer;
+  }
+  display: flex;
+  align-items: center;
+  background-color: rgb(208, 208, 208);
+  span{
+    padding: 0 10px;
+  };
+  border-bottom: 2px solid rgb(111, 111, 111);
+}
+
+.collapsable {
+  margin-bottom: 20px;
+  display:none;
 }

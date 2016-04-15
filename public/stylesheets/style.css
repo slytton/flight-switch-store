@@ -1,3 +1,14 @@
+.error li {
+  display: block;
+  margin: 10px 30px; }
+
+.shirt-sizes {
+  font-size: .9em;
+  width: 105px;
+  float: right; }
+  .shirt-sizes li {
+    font-size: .9em; }
+
 .message, .success, .error {
   margin-top: 20px;
   padding: 10px 10px 10px 20px;
@@ -22,6 +33,7 @@ body {
   margin: 0; }
 
 .container {
+  padding-bottom: 50px;
   height: 100%;
   overflow: auto;
   margin: 0 5%; }
@@ -67,7 +79,7 @@ header {
 
 .headerright a:visited {
   text-decoration: none;
-  color: #00A2E2; }
+  color: #0684b5; }
 
 .headerright a:hover {
   text-decoration: underline;
@@ -79,7 +91,7 @@ a:link {
 
 a:hover {
   text-decoration: underline;
-  color: #00A2E2; }
+  color: white; }
 
 td a {
   text-decoration: none;
@@ -171,8 +183,7 @@ form {
     font-size: 15px;
     outline: none;
     box-sizing: border-box;
-    margin-bottom: 10px;
-    cursor: text; }
+    margin-bottom: 10px; }
 
 #addpage input {
   margin-bottom: 15px; }
@@ -189,7 +200,10 @@ select {
   padding: 10px 20px;
   font-size: 20px;
   font-weight: bold;
-  color: white; }
+  color: white;
+  border-radius: 3px; }
+  .button:hover {
+    text-decoration: none; }
 
 .yellow {
   background-color: #ffe816;
@@ -200,7 +214,7 @@ select {
 .blue {
   background-color: #00a2e2; }
   .blue:hover {
-    background-color: #00A2E2; }
+    background-color: #0684b5; }
 
 .cart {
   text-align: right;
@@ -210,7 +224,6 @@ select {
   padding: 0 2.5%;
   z-index: 10000; }
   .cart #cartbutton {
-    border-radius: 0 0 3px 3px;
     display: flex;
     margin: 0;
     padding: 8px;
@@ -320,6 +333,20 @@ select {
 .menuitem {
   padding: 20px 0 20px 10px;
   cursor: pointer; }
+
+.collapse-button {
+  display: flex;
+  align-items: center;
+  background-color: #d0d0d0;
+  border-bottom: 2px solid #6f6f6f; }
+  .collapse-button:hover {
+    cursor: pointer; }
+  .collapse-button span {
+    padding: 0 10px; }
+
+.collapsable {
+  margin-bottom: 20px;
+  display: none; }
 
 .checkout td {
   text-align: left; }

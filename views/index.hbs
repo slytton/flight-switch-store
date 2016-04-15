@@ -1,13 +1,14 @@
-{{#shirts}}{{#if shirts.0.quantity}}
+{{#shirts}}{{#if totalQuantity}}
 <article class="shirt">
   <a href="/shirts/{{shirts.0.design_id}}/{{shirts.0.color_id}}"><img class='shirtimg' src="{{url}}" /></a>
   <div class="shirtinfo">
     ${{shirts.0.price}}
-
-    <a href="/shirts/{{shirts.0.design_id}}/{{shirts.0.color_id}}">Details</a>
+    <div class="shirt-sizes">
+    Sizes:
     {{#sizes}}
       <li>{{this}}</li>
     {{/sizes}}
+    </div>
   </div>
 </article>
 {{/if}}

@@ -10,7 +10,9 @@
         <label>Size: </label>
         <select name="shirt_id">
           {{#shirt}}
+          {{#if quantity}}
           <option value="{{id}}">{{sizes.size}}</option>
+          {{/if}}
           {{/shirt}}
         </select>
         <label>Qty: </label><input id="qty" type="text" name="quantity" value="1">
@@ -18,7 +20,7 @@
         <br>
         <input type="submit" value="Add to Cart">
       </form>
-      
+
   </div>
 
 </div>

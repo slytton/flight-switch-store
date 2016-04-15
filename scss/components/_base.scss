@@ -1,8 +1,25 @@
 $accent-blue: rgb(0, 162, 226);
-$accent-blue-hover: #00A2E2;
+$accent-blue-hover: #0684b5;
 $accent-yellow: rgb(255, 232, 22);
 $accent-yellow-hover: rgb(236, 213, 0);
 $background-gray: #C7C7C7;
+
+
+.error {
+  li {
+    display:block;
+    margin: 10px 30px;
+  }
+}
+
+.shirt-sizes {
+  font-size: .9em;
+  width: 105px;
+  float: right;
+  li {
+    font-size: .9em;
+  }
+}
 
 .message {
   margin-top: 20px;
@@ -34,6 +51,7 @@ body {
 }
 
 .container {
+  padding-bottom: 50px;
   height: 100%;
   overflow: auto;
   margin: 0 5%;
@@ -101,7 +119,7 @@ a:link {
 }
 a:hover {
   text-decoration: underline;
-  color: $accent-blue-hover;
+  color: white;
 }
 
 td a {

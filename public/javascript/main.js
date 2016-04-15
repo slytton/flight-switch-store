@@ -84,7 +84,39 @@ $(function() {
     updateCart($(this).serialize());
   })
 
-  // delete line item row in cart
+  $('form[action="/admin/product/add"]').on('submit', function(event) {
+    event.preventDefault();
+    var design = $('input[name="designs_name"]')
+    var size = $('input[name="sizes_size"]')
+    var color = $('input[name="colors_color"]')
+    var quantity = $('input[name="quantity"]')
+    var price = $('input[name="price"]')
+    var imageUrl = $('input[name="shirtImageUrl_url"]')
+    if(design.val().length === 0) {
+      $('#addpage').prepend('<p class="error">Please enter a desing name</p>')
+      messageTimer()
+    }
+    if (size.val().length !== 1 || size.val().length !== 2) {
+      $('#addpage').prepend('<p class="error">Please enter a size ex. S, XL</p>')
+      messageTimer()
+    }
+    if (color.val().length === 0) {
+      $('#addpage').prepend('<p class="error">Please enter a color</p>')
+      messageTimer()
+    }
+    if (quantity.val().length === 0) {
+      $('#addpage').prepend('<p class="error">Please enter a quantity</p>')
+      messageTimer()
+    }
+    if (imageUrl.val().length === 0) {
+      $('#addpage').prepend('<p class="error">Please enter a shirt image URL</p>')
+      messageTimer()
+    } else {
+      $(this).submit()
+    }
+  })
+  
+// delete line item row in cart
   $('.table-container').on('click', '.fa-close', function(){
     var shirtId = $(this).closest('tr').data('shirt-id');
     displayBlock = $('.table-container').css('display');
@@ -101,6 +133,10 @@ $(function() {
   $('.table-container').on('click', '.fa-plus', function(){
     var shirtId = $(this).closest('tr').data('shirt-id')
     updateCart("shirt_id="+shirtId+"&quantity=1")
+  })
+
+  $('.collapse-button').on('click', function(){
+    $(this).next('.collapsable').slideToggle();
   })
 });
 

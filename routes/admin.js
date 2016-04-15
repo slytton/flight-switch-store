@@ -34,7 +34,7 @@ router.get('/product/add', function(req, res, next) {
 });
 
 router.post('/product/add', function(req, res, next) {
-
+  console.log('suck my balls', req);
   bookshelf.knex('designs').where({name: req.body.designs_name})
   .then(function(designs) {
     if(!designs[0]) {
@@ -67,6 +67,7 @@ router.post('/product/add', function(req, res, next) {
   .then(function(){
     bookshelf.knex('designs').where({name: req.body.designs_name})
     .then(function(design) {
+      console.log('WTF MATE?', design[0]);
       var designId = design[0].id;
       bookshelf.knex('colors').where({color: req.body.colors_color})
       .then(function(color) {
