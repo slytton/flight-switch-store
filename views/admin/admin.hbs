@@ -28,13 +28,12 @@
       <h3>Name: {{designs.name}}</h3>
       <h3>Color: {{colors.color}}</h3>
       <h3>Size: {{sizes.size}}</h3>
-      <form action="/admin/product/{{id}}" method="post">
+      <form action="/admin/product/{{id}}/p" method="post">
         <table>
           <tbody>
             <tr><td>Image</td><td><img style='width: 10%' src="{{shirtImageUrl.url}}"></td></tr>
             <tr><td>quantity</td><td><input type='text' name='quantity'value='{{quantity}}'></td></tr>
             <tr><td>price</td><td><input type='text' name='price'value='{{price}}'></td></tr>
-            <tr><td>shirt_image_url_id</td><td><input type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
             <tr><td>shirtImageUrl.url</td>
               <td><select name='imageurls'>
                 {{#../images}}
@@ -54,10 +53,9 @@
           <h3>User ID: {{user_id}}</h3>
           <h3>Created At: {{created_at}}</h3>
           <h3>Updated At: {{updated_at}}</h3>
-          <form action="/admin/orders/{{id}}" method="post">
+          <form action="/admin/orders/{{id}}/o" method="post">
             <table>
               <tbody>
-                <tr><td>user_id</td><td><input type='text' value='{{user_id}}' name='user_id'></td></tr>
                 <tr><td>address</td><td><input type='text' value='{{address}}' name='address'></td></tr>
                 <tr><td>city</td><td><input type='text' value='{{city}}' name='city'></td></tr>
                 <tr><td>state</td><td><input type='text' value='{{state}}' name='state'></td></tr>
@@ -75,7 +73,7 @@
           {{#users}}
           <h3>User ID: {{id}}</h3>
           <h3>User Email: {{email}}</h3>
-          <form action="/admin/users/{{id}}" method="post">
+          <form action="/admin/users/{{id}}/u" method="post">
             <table>
               <tbody>
                 <tr><td>fname: {{fname}}</td><td><input type='text' value='{{fname}}' name='fname'></td></tr>

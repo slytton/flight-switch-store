@@ -20,9 +20,6 @@ function isUser(req, res, next) {
   }
 };
 
-
-
-
 router.get('/product/add', function(req, res, next) {
   bookshelf.knex('shirt_image_urls')
   .then(function(images) {
@@ -89,11 +86,6 @@ router.post('/product/add', function(req, res, next) {
   })
 });
 
-
-
-
-
-
 router.get('/', isUser, isAdmin, function(req, res, next) {
   bookshelf.Shirt.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl', ]})
   .then(function(shirts) {
@@ -126,7 +118,8 @@ router.get('/product/:id/delete', function(req, res, next) {
 
 router.post('/orders/:id', function(req, res, next) {
   bookshelf.Order.where({id: req.params.id}).fetch().then(function(order){
-    order.set({address: req.body.address, city: req.body.city, state: req.body.state, zip: req.body.zip, order_status_id: req.body.order_status_id}).save();
+    console.log(req.body.city);
+    order.save({address: req.body.address, city: req.body.city, state: req.body.state, zip: req.body.zip, order_status_id: req.body.order_status_id})
     res.redirect('/admin');
   });
 });
@@ -142,12 +135,6 @@ router.get('/users/:id/delete', function(req, res, next) {
   bookshelf.User.where({id:req.params.id}).destroy();
   res.redirect('/admin');
 });
-
-
-
-
-
-
 
 
 module.exports = router;

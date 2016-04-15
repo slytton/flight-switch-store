@@ -22,7 +22,6 @@ body {
   margin: 0; }
 
 .container {
-  padding-bottom: 500px;
   height: 100%;
   overflow: auto;
   margin: 0 5%; }
@@ -124,7 +123,14 @@ article {
   padding: 2%;
   margin: 0 auto;
   float: left;
-  width: calc(88% / 3); }
+  width: calc(88% / 3);
+  transition: scale 1s; }
+
+article:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1); }
 
 .shirtimg {
   width: 100%; }
@@ -137,9 +143,14 @@ section {
   float: left;
   width: 50%; }
 
+.logotypeimage {
+  width: 40%; }
+
 @media only screen and (max-width: 550px) {
   article {
-    width: 100%; } }
+    width: 100%; }
+  .headerlogo {
+    margin: 1px 3%; } }
 
 form {
   text-align: center; }
@@ -159,6 +170,11 @@ form {
 
 #addpage tbody {
   text-align: left; }
+
+select {
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px; }
 
 .button {
   padding: 10px 20px;
@@ -182,7 +198,8 @@ form {
   float: right;
   position: fixed;
   right: 0;
-  padding: 0 2.5%; }
+  padding: 0 2.5%;
+  z-index: 10000; }
   .cart #cartbutton {
     border-radius: 0 0 3px 3px;
     display: flex;
@@ -290,9 +307,6 @@ form {
 #admindisplay input {
   margin-bottom: 10px;
   width: 100%; }
-
-select {
-  height: 40px; }
 
 .menuitem {
   padding: 20px 0 20px 10px;

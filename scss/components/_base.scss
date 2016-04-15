@@ -34,7 +34,6 @@ body {
 }
 
 .container {
-  padding-bottom: 500px;
   height: 100%;
   overflow: auto;
   margin: 0 5%;
@@ -157,6 +156,14 @@ article {
   margin: 0 auto;
   float: left;
   width:calc(88% / 3);
+  transition: scale 1s;
+}
+
+article:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform:    scale(1.1);
+  -o-transform:      scale(1.1);
+  -ms-transform:     scale(1.1);
 }
 
 .shirtimg {
@@ -173,9 +180,19 @@ section {
   width: 50%;
 }
 
+.logotypeimage {
+  width: 40%;
+}
 
 @media only screen and (max-width: 550px){
   article {
     width: 100%;
   }
+
+  .headerlogo {
+    margin: 1px 3%;
+  }
+
+
+
 }
