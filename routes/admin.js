@@ -115,7 +115,7 @@ router.get('/', isUser, isAdmin, function(req, res, next) {
             })
             return order;
           });
-          //console.log(orders);
+          console.log(orders);
           res.render('./admin/admin', {shirts: products, orders: orders, users: users, images: images});
         })
       })

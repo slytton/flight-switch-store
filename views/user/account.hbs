@@ -15,7 +15,7 @@
 
   <h1>Order History</h1>
 
-  {{#unless orders}}
+  {{#unless ordertotal}}
   You have no previous orders.
   {{/unless}}
 
@@ -32,7 +32,7 @@
 
       <tr><td><h3>Address</h3></td>
       <td>{{address}}<br>{{city}} {{state}}<br>{{zip}}</td></tr>
-      
+
       <tr><td><h3>Order Status</h3></td>
         <td>
           {{#equal order_status_id 1}} Processing {{/equal}}

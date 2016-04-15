@@ -137,13 +137,14 @@ article {
   margin: 0 auto;
   float: left;
   width: calc(88% / 3);
-  transition: scale 1s; }
+  transition-duration: .5s; }
 
 article:hover {
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   -o-transform: scale(1.1);
-  -ms-transform: scale(1.1); }
+  -ms-transform: scale(1.1);
+  transition-duration: .5s; }
 
 .shirtimg {
   width: 100%; }
@@ -247,6 +248,9 @@ select {
     .cart #cartbutton span {
       padding-left: 6px;
       font-size: .8em; }
+  .cart .button {
+    color: white;
+    border-radius: 0 0 3px 3px; }
   .cart table {
     background-color: #C7C7C7;
     border-collapse: collapse;
@@ -264,11 +268,9 @@ select {
     display: table; }
   .cart td {
     padding: 5px 10px;
-    cursor: pointer;
     box-sizing: border-box; }
   .cart th {
     padding: 5px 10px;
-    cursor: pointer;
     box-sizing: border-box; }
   .cart tr {
     border-top: 1px solid gray;
@@ -344,18 +346,29 @@ select {
   cursor: pointer; }
 
 .collapse-button {
+  transition-duration: .5s;
+  padding: 5px 0px 5px 20px;
   display: flex;
   align-items: center;
-  background-color: #d0d0d0;
+  background-color: #89C4DB;
   border-bottom: 2px solid #6f6f6f; }
   .collapse-button:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    background-color: #62b7d9;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition-duration: .5s; }
+  .collapse-button:first-child {
+    border-radius: 3px 3px 0 0; }
+  .collapse-button:last-child {
+    border-radius: 0 0 3px 3px; }
   .collapse-button span {
     padding: 0 10px; }
 
 .collapsable {
-  margin-bottom: 20px;
-  display: none; }
+  padding: 20px 20px 20px 50px;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.8); }
 
 .checkout td {
   text-align: left; }
