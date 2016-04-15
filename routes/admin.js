@@ -20,9 +20,6 @@ function isUser(req, res, next) {
   }
 };
 
-
-
-
 router.get('/product/add', function(req, res, next) {
   bookshelf.knex('shirt_image_urls')
   .then(function(images) {
@@ -90,22 +87,35 @@ router.post('/product/add', function(req, res, next) {
   })
 });
 
-
-
-
-
-
 router.get('/', isUser, isAdmin, function(req, res, next) {
   bookshelf.Shirt.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl', ]})
   .then(function(shirts) {
     var products = shirts.serialize();
-    bookshelf.Order.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRealated: ['users', 'status', 'orderItems', 'shirts']})
+    bookshelf.Order.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['users', 'status', 'orderItems']})
     .then(function(ordRes) {
       var orders = ordRes.serialize();
-      bookshelf.knex.columns(['id','email', 'admin', 'fname', 'lname']).select().from('users').orderBy('id')
+      return bookshelf.knex.columns(['id','email', 'admin', 'fname', 'lname']).select().from('users').orderBy('id')
       .then(function(users) {
         bookshelf.knex('shirt_image_urls')
         .then(function(images) {
+
+          orders = orders.map(function(order){
+            order.total =  order.orderItems.reduce(function(prev, item){
+              return prev += item.price * item.quantity;
+            },0);
+            order.orderItems = order.orderItems.map(function(orderItem){
+              products.forEach(function(shirt){
+                //console.log(shirt);
+                if(shirt.id === orderItem.shirt_id){
+                  orderItem.shirt = shirt;
+                }
+              })
+              console.log(orderItem);
+              return orderItem;
+            })
+            return order;
+          });
+          //console.log(orders);
           res.render('./admin/admin', {shirts: products, orders: orders, users: users, images: images});
         })
       })
@@ -127,7 +137,8 @@ router.get('/product/:id/delete', function(req, res, next) {
 
 router.post('/orders/:id', function(req, res, next) {
   bookshelf.Order.where({id: req.params.id}).fetch().then(function(order){
-    order.set({address: req.body.address, city: req.body.city, state: req.body.state, zip: req.body.zip, order_status_id: req.body.order_status_id}).save();
+    console.log(req.body.city);
+    order.save({address: req.body.address, city: req.body.city, state: req.body.state, zip: req.body.zip, order_status_id: req.body.order_status_id})
     res.redirect('/admin');
   });
 });
@@ -143,12 +154,6 @@ router.get('/users/:id/delete', function(req, res, next) {
   bookshelf.User.where({id:req.params.id}).destroy();
   res.redirect('/admin');
 });
-
-
-
-
-
-
 
 
 module.exports = router;

@@ -1,19 +1,26 @@
-<article class="shirt">
+<div id='singleshirtpage'>
+
+  <div class='halfpage'>
     <img class='shirtimg' src="{{shirt.0.shirtImageUrl.url}}" />
-  <div class="shirtinfo">
-    <form  action="/cart" method="post">
-      <label>Size: </label>
-    <select name="shirt_id">
-      {{#shirt}}
-      {{#if quantity}}
-      <option value="{{id}}">{{sizes.size}}</option>
-      {{/if}}
-      {{/shirt}}
-    </select>
-    <label>Qty: </label><input id="qty" type="text" name="quantity" value="1">
-    ${{shirt.0.price}} ea
-    <br>
-    <input type="submit" value="Add to Cart">
-  </form>
   </div>
-</article>
+
+  <div class='halfpage'>
+
+      <form  action="/cart" method="post">
+        <label>Size: </label>
+        <select name="shirt_id">
+          {{#shirt}}
+          {{#if quantity}}
+          <option value="{{id}}">{{sizes.size}}</option>
+          {{/if}}
+          {{/shirt}}
+        </select>
+        <label>Qty: </label><input id="qty" type="text" name="quantity" value="1">
+        ${{shirt.0.price}} ea
+        <br>
+        <input type="submit" value="Add to Cart">
+      </form>
+
+  </div>
+
+</div>
