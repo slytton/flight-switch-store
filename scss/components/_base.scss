@@ -127,6 +127,7 @@ td a {
   text-decoration: none;
   color: black;
 }
+
 th {
 }
 
@@ -208,6 +209,10 @@ section {
   width: 50%;
 }
 
+.halfpage > form {
+text-align: left;
+}
+
 .halfpage:nth-last-of-type(1) {
   width: 40%;
   padding: 5%;
@@ -217,6 +222,7 @@ section {
   padding: 20px;
   border: 1px solid black;
   margin-bottom: 20px;
+  border-radius: 3px;
 }
 
 #useraccountpage td {

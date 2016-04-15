@@ -163,6 +163,9 @@ section {
   float: left;
   width: 50%; }
 
+.halfpage > form {
+  text-align: left; }
+
 .halfpage:nth-last-of-type(1) {
   width: 40%;
   padding: 5%; }
@@ -170,7 +173,8 @@ section {
 #useraccountpage table {
   padding: 20px;
   border: 1px solid black;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  border-radius: 3px; }
 
 #useraccountpage td {
   padding-left: 20px; }
