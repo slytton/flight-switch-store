@@ -1,8 +1,12 @@
 .button {
+  &:hover{
+    text-decoration: none;
+  }
   padding: 10px 20px;
   font-size: 20px;
   font-weight: bold;
   color: white;
+  border-radius: 3px;
 }
 
 

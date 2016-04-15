@@ -100,6 +100,10 @@ $(function() {
     var shirtId = $(this).closest('tr').data('shirt-id')
     updateCart("shirt_id="+shirtId+"&quantity=1")
   })
+
+  $('.collapse-button').on('click', function(){
+    $(this).next('.collapsable').slideToggle();
+  })
 });
 
 function updateCart(data) {

@@ -68,7 +68,7 @@ header {
 
 .headerright a:visited {
   text-decoration: none;
-  color: #00A2E2; }
+  color: #0684b5; }
 
 .headerright a:hover {
   text-decoration: underline;
@@ -80,7 +80,7 @@ a:link {
 
 a:hover {
   text-decoration: underline;
-  color: #00A2E2; }
+  color: white; }
 
 td a {
   text-decoration: none;
@@ -151,8 +151,7 @@ form {
     font-size: 15px;
     outline: none;
     box-sizing: border-box;
-    margin-bottom: 10px;
-    cursor: text; }
+    margin-bottom: 10px; }
 
 #addpage input {
   margin-bottom: 15px; }
@@ -164,7 +163,10 @@ form {
   padding: 10px 20px;
   font-size: 20px;
   font-weight: bold;
-  color: white; }
+  color: white;
+  border-radius: 3px; }
+  .button:hover {
+    text-decoration: none; }
 
 .yellow {
   background-color: #ffe816;
@@ -175,7 +177,7 @@ form {
 .blue {
   background-color: #00a2e2; }
   .blue:hover {
-    background-color: #00A2E2; }
+    background-color: #0684b5; }
 
 .cart {
   text-align: right;
@@ -184,7 +186,6 @@ form {
   right: 0;
   padding: 0 2.5%; }
   .cart #cartbutton {
-    border-radius: 0 0 3px 3px;
     display: flex;
     margin: 0;
     padding: 8px;
@@ -297,6 +298,20 @@ select {
 .menuitem {
   padding: 20px 0 20px 10px;
   cursor: pointer; }
+
+.collapse-button {
+  display: flex;
+  align-items: center;
+  background-color: #d0d0d0;
+  border-bottom: 2px solid #6f6f6f; }
+  .collapse-button:hover {
+    cursor: pointer; }
+  .collapse-button span {
+    padding: 0 10px; }
+
+.collapsable {
+  margin-bottom: 20px;
+  display: none; }
 
 .checkout td {
   text-align: left; }

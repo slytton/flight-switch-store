@@ -20,30 +20,37 @@
           <h1>Products</h1>
         </div>
         <div style='display: inline-block; margin-left: 20px'>
-          <form><a href="admin/product/add"><input type="button" value="Add Product"></a></form>
+          <a class="button blue" href="admin/product/add">Add Product</a>
         </div>
       </div>
       {{#shirts}}
-      <h3>ID: {{id}}</h3>
-      <h3>Name: {{designs.name}}</h3>
-      <h3>Color: {{colors.color}}</h3>
-      <h3>Size: {{sizes.size}}</h3>
-      <form action="/admin/product/{{id}}" method="post">
-        <table>
-          <tbody>
-            <tr><td>Image</td><td><img style='width: 10%' src="{{shirtImageUrl.url}}"></td></tr>
-            <tr><td>quantity</td><td><input type='text' name='quantity'value='{{quantity}}'></td></tr>
-            <tr><td>price</td><td><input type='text' name='price'value='{{price}}'></td></tr>
-            <tr><td>shirt_image_url_id</td><td><input type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
-            <tr><td>shirtImageUrl.url</td>
-              <td><select name='imageurls'>
-                {{#../images}}
-                <option {{#equal id ../shirt_image_url_id}}selected='true'{{/equal}} value='{{id}}'>{{url}}</option>
-                {{/../images}}</select></td></tr>
-                <tr><td></td><td><input type="submit" value="Submit"><a href="/product/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
-              </tbody>
-            </table>
-          </form>
+      <div class='shirt'>
+      <div class="collapse-button">
+        <img height="50px" src="{{shirtImageUrl.url}}">
+        <span>ID: {{id}}</span>
+        <span>Name: {{designs.name}}</span>
+        <span>Color: {{colors.color}}</span>
+        <span>Size: {{sizes.size}}</span>
+      </div>
+      <div class='collapsable'>
+        <form action="/admin/product/{{id}}" method="post">
+          <table>
+            <tbody>
+              <tr><td>Image</td><td></td></tr>
+              <tr><td>quantity</td><td><input type='text' name='quantity'value='{{quantity}}'></td></tr>
+              <tr><td>price</td><td><input type='text' name='price'value='{{price}}'></td></tr>
+              <tr><td>shirt_image_url_id</td><td><input type='text' name='shirt_image_url_id'value='{{shirt_image_url_id}}'></td></tr>
+              <tr><td>shirtImageUrl.url</td>
+                <td><select name='imageurls'>
+                  {{#../images}}
+                  <option {{#equal id ../shirt_image_url_id}}selected='true'{{/equal}} value='{{id}}'>{{url}}</option>
+                  {{/../images}}</select></td></tr>
+                  <tr><td></td><td><input type="submit" value="Submit"><a href="/product/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
           {{/shirts}}
         </div>
 
