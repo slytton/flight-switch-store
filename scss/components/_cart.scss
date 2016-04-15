@@ -4,6 +4,7 @@
   position: fixed;
   right:  0;
   padding: 0 2.5%;
+  z-index: 10000;
 
   #cartbutton {
     //border-radius: 0 0 3px 3px;
@@ -22,6 +23,11 @@
     span {
       padding-left: 6px; font-size: .8em;
     }
+  }
+
+  .button {
+    color: white;
+    border-radius: 0 0 3px 3px;
   }
 
   table{
@@ -47,13 +53,11 @@
 
   td {
     padding: 5px 10px;
-    cursor: pointer;
     box-sizing: border-box;
   }
 
   th {
     padding: 5px 10px;
-    cursor: pointer;
     box-sizing: border-box;
   }
 
