@@ -54,17 +54,35 @@ text-align: left
 
   &:hover {
     cursor: pointer;
+    background-color: $light-blue-gray-hover;
+    padding-top:10px;
+    padding-bottom:10px;
+    transition-duration: .5s;
   }
+
+  &:first-child{
+    border-radius: 3px 3px 0 0;
+  }
+
+  &:last-child{
+    border-radius: 0 0 3px 3px;
+  }
+
+  transition-duration: .5s;
+  padding: 5px 0px 5px 20px;
   display: flex;
   align-items: center;
-  background-color: rgb(208, 208, 208);
+  background-color: $light-blue-gray;
+
   span{
     padding: 0 10px;
   };
+
   border-bottom: 2px solid rgb(111, 111, 111);
 }
 
 .collapsable {
-  margin-bottom: 20px;
+  padding: 20px 20px 20px 50px;
   display:none;
+  background-color: rgba(255,255,255,.8);
 }

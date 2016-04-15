@@ -336,18 +336,29 @@ select {
   cursor: pointer; }
 
 .collapse-button {
+  transition-duration: .5s;
+  padding: 5px 0px 5px 20px;
   display: flex;
   align-items: center;
-  background-color: #d0d0d0;
+  background-color: #89C4DB;
   border-bottom: 2px solid #6f6f6f; }
   .collapse-button:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    background-color: #62b7d9;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition-duration: .5s; }
+  .collapse-button:first-child {
+    border-radius: 3px 3px 0 0; }
+  .collapse-button:last-child {
+    border-radius: 0 0 3px 3px; }
   .collapse-button span {
     padding: 0 10px; }
 
 .collapsable {
-  margin-bottom: 20px;
-  display: none; }
+  padding: 20px 20px 20px 50px;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.8); }
 
 .checkout td {
   text-align: left; }
