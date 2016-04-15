@@ -167,17 +167,12 @@ section {
   float: left;
   width: 50%; }
 
+.halfpage > form {
+  text-align: left; }
+
 .halfpage:nth-last-of-type(1) {
   width: 40%;
   padding: 5%; }
-
-#useraccountpage table {
-  padding: 20px;
-  border: 1px solid black;
-  margin-bottom: 20px; }
-
-#useraccountpage td {
-  padding-left: 20px; }
 
 @media only screen and (max-width: 550px) {
   article {
@@ -344,6 +339,58 @@ select {
 #admindisplay input {
   margin-bottom: 10px;
   width: 100%; }
+
+#useraccountpage table {
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.8); }
+
+#useraccountpage td {
+  padding: 0 30px; }
+
+#ordersshow table {
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px; }
+
+#ordersshow td {
+  padding: 0 30px; }
+
+#usersshow table {
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px; }
+
+#usersshow td {
+  padding: 0 30px; }
+
+#ordersshow input {
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid gray;
+  margin: 0 auto;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 10px; }
+
+#editaccountpage td {
+  padding: 0 30px; }
+
+#editaccountpage input {
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid gray;
+  margin: 0 auto;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 10px; }
 
 .menuitem {
   padding: 20px 0 20px 10px;
