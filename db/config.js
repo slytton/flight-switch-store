@@ -30,14 +30,14 @@ var Order = bookshelf.Model.extend({
 });
 
 var OrderStatus = bookshelf.Model.extend({
-  tableName: 'order-status',
+  tableName: 'order_status',
   orders: function(){
     return this.hasMany(Orders);
   }
 });
 
 var OrderItem = bookshelf.Model.extend({
-  tableName: 'order-items',
+  tableName: 'order_items',
   shirts: function(){
     return this.belongsTo(Shirt);
   },

@@ -90,13 +90,31 @@ router.get('/', isUser, isAdmin, function(req, res, next) {
   bookshelf.Shirt.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl', ]})
   .then(function(shirts) {
     var products = shirts.serialize();
-    bookshelf.Order.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRealated: ['users', 'status', 'orderItems', 'shirts']})
+    bookshelf.Order.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['users', 'status', 'orderItems']})
     .then(function(ordRes) {
       var orders = ordRes.serialize();
-      bookshelf.knex.columns(['id','email', 'admin', 'fname', 'lname']).select().from('users').orderBy('id')
+      return bookshelf.knex.columns(['id','email', 'admin', 'fname', 'lname']).select().from('users').orderBy('id')
       .then(function(users) {
         bookshelf.knex('shirt_image_urls')
         .then(function(images) {
+
+          orders = orders.map(function(order){
+            order.total =  order.orderItems.reduce(function(prev, item){
+              return prev += item.price * item.quantity;
+            },0);
+            order.orderItems = order.orderItems.map(function(orderItem){
+              products.forEach(function(shirt){
+                //console.log(shirt);
+                if(shirt.id === orderItem.shirt_id){
+                  orderItem.shirt = shirt;
+                }
+              })
+              console.log(orderItem);
+              return orderItem;
+            })
+            return order;
+          });
+          //console.log(orders);
           res.render('./admin/admin', {shirts: products, orders: orders, users: users, images: images});
         })
       })

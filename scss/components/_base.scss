@@ -184,15 +184,25 @@ section {
   width: 40%;
 }
 
+.halfpage {
+  float: left;
+  width: 50%;
+}
+
+.halfpage:nth-last-of-type(1) {
+  width: 40%;
+  padding: 5%;
+}
+
+
 @media only screen and (max-width: 550px){
   article {
     width: 100%;
   }
 
-  .headerlogo {
-    margin: 1px 3%;
+  .halfpage {
+    float: left;
+    width: 100%;
   }
-
-
 
 }
