@@ -55,7 +55,11 @@
             <span>State</span>
           </td>
           <td>
-            <input type="text" size="20" name='state'/>
+            <select name="state">
+              {{#states}}
+                <option value="{{this}}">{{this}}</option>
+              {{/states}}
+            </select>
           </td>
         </tr>
         <tr>
