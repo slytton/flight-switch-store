@@ -89,10 +89,10 @@
           <form action="/admin/users/{{id}}" method="post">
             <table>
               <tbody>
-                <tr><td>fname: {{fname}}</td><td><input type='text' value='{{fname}}' name='fname'></td></tr>
-                <tr><td>lname: {{lname}}</td><td><input type='text' value='{{lname}}' name='lname'></td></tr>
+                <tr><td>fname: </td><td><input type='text' value='{{fname}}' name='fname'></td></tr>
+                <tr><td>lname: </td><td><input type='text' value='{{lname}}' name='lname'></td></tr>
                 <tr><td>email: </td><td><input type='text' value='{{email}}' name='email'></td></tr>
-                <tr><td>admin: </td><td><label>True<input type='radio' name='isadmin' value=true {{#if admin}}checked='checked'{{/if}}></label> <label>False<input type='radio' name='isadmin' value=false {{#unless admin}}checked='checked'{{/unless}}></td></tr>
+                <tr><td>admin: </td><td><label style="display:inline-block">True<input type='radio' name='isadmin' value=true {{#if admin}}checked='checked'{{/if}}></label> <label style="display:inline-block; padding-left:10px;">False<input type='radio' name='isadmin' value=false {{#unless admin}}checked='checked'{{/unless}}></td></tr>
                   <tr><td></td><td><input type="submit" value="Submit"><a href="/admin/users/{{id}}/delete"><input type="button" value="Delete"></a></td></tr>
                 </tbody>
               </table>

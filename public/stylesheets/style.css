@@ -1,3 +1,7 @@
+.shirtinfo {
+  max-width: 250px;
+  margin: auto; }
+
 select {
   border: 1px solid gray; }
 
@@ -219,7 +223,8 @@ select {
   .button:hover {
     text-decoration: none;
     background-color: #878787;
-    border: 1px solid black; }
+    border: 1px solid black;
+    cursor: pointer; }
 
 .yellow {
   background-color: #ffe816;
@@ -318,6 +323,8 @@ select {
   text-align: left; }
 
 #adminmenu {
+  min-width: 85px;
+  position: fixed;
   float: left;
   box-sizing: border-box;
   border: 1px solid grey;
