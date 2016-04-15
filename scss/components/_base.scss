@@ -7,6 +7,10 @@ $light-blue-gray: #89C4DB;
 $light-blue-gray-hover: #62b7d9;
 
 
+select{
+  border: 1px solid gray;
+}
+
 .error {
   li {
     display:block;

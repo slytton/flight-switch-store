@@ -36,7 +36,7 @@ router.post('/checkout', function(req, res, next) {
   var street = req.body.address;
   var city = req.body.city;
   var zip = req.body.zip;
-  var state = req.body.state.toUpperCase();
+  var state = req.body.state;
 
   if (!street || !/^[0-9A-z.\s]+$/.test(street)) {
     error.push('Please enter a valid street address (numbers and letters only)');
@@ -144,8 +144,10 @@ router.post('/checkout', function(req, res, next) {
 });
 
 router.get('/checkout', isLoggedIn, populateCart, hasCart, function(req, res, next) {
+  console.log('checkout');
   var message = req.session.message;
   req.session.message = {};
+  console.log(res.locals.user);
   res.render('checkout', { message: message, states: states })
 });
 
