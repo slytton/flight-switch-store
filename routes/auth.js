@@ -77,7 +77,7 @@ router.post('/signup', function(req,res,next){
   // validate that the form was filled out
   var errorArray = [];
 
-  if(!req.body.email) {
+  if(!req.body.email || !/^[0-9 || A-z]+[@]{1}[0-9 || A-z || .]+$/.test(req.body.email)){
     errorArray.push('Please enter a valid email address');
   }
   if(!req.body.password) {
@@ -125,7 +125,7 @@ router.post('/login', function(req,res,next){
 
 router.get('/logout', function(req,res,next) {
   req.session.message = {success: "You have successfully logged out"}
-  req.session.userID = null;
+  req.session = null;
   res.redirect('/');
 });
 

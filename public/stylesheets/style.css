@@ -1,3 +1,14 @@
+.error li {
+  display: block;
+  margin: 10px 30px; }
+
+.shirt-sizes {
+  font-size: .9em;
+  width: 105px;
+  float: right; }
+  .shirt-sizes li {
+    font-size: .9em; }
+
 .message, .success, .error {
   margin-top: 20px;
   padding: 10px 10px 10px 20px;
@@ -22,7 +33,7 @@ body {
   margin: 0; }
 
 .container {
-  padding-bottom: 500px;
+  padding-bottom: 50px;
   height: 100%;
   overflow: auto;
   margin: 0 5%; }
