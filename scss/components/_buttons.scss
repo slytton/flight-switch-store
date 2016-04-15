@@ -1,15 +1,15 @@
 .button {
   &:hover{
     text-decoration: none;
+    background-color: $accent-gray-hover;
+    border: 1px solid black;
   }
   padding: 10px 20px;
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: black;
   border-radius: 3px;
 }
-
-
 
 .yellow {
   &:hover {
@@ -24,4 +24,5 @@
     background-color: $accent-blue-hover;
   }
   background-color: $accent-blue;
+  color: white;
 }

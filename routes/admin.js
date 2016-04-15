@@ -27,14 +27,20 @@ router.get('/product/add', function(req, res, next) {
     .then(function(colors) {
       bookshelf.knex('sizes')
       .then(function(sizes) {
-        res.render('./admin/addproduct', {images: images, colors: colors, sizes: sizes});
+        bookshelf.knex('designs')
+        .then(function(designs){
+          console.log("designs", designs);
+          console.log("images", images);
+          console.log("colors", colors);
+          console.log("sizes", sizes);
+          res.render('./admin/addproduct', {designs: designs, images: images, colors: colors, sizes: sizes});
+        })
       })
     })
   })
 });
 
 router.post('/product/add', function(req, res, next) {
-  console.log('suck my balls', req);
   bookshelf.knex('designs').where({name: req.body.designs_name})
   .then(function(designs) {
     if(!designs[0]) {
