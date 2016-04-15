@@ -38,6 +38,10 @@ router.post('/checkout', function(req, res, next) {
   var zip = req.body.zip;
   var state = req.body.state;
 
+
+  if(Object.keys(cart).length === 0){
+    error.push("Please add items to your cart :)");
+  }
   if (!street || !/^[0-9A-z.\s]+$/.test(street)) {
     error.push('Please enter a valid street address (numbers and letters only)');
   }
