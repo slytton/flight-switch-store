@@ -29,17 +29,16 @@ function authenticUser(req, res, next) {
 // })
 
 router.get('/:id', function(req, res, next){
+  var date;
   bookshelf.User.where({id: req.params.id}).fetch({withRelated: ['orders']})
   .then(function(user) {
     var userserial = user.serialize();
     bookshelf.Shirt.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl', ]})
     .then(function(shirts) {
       var products = shirts.serialize();
-      bookshelf.Order.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['users', 'status', 'orderItems']})
+      bookshelf.Order.where('id', req.params.id).query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['users', 'status', 'orderItems']})
       .then(function(ordRes) {
         var orders = ordRes.serialize();
-
-
 
         orders = orders.map(function(order){
           order.total =  order.orderItems.reduce(function(prev, item){
@@ -47,16 +46,21 @@ router.get('/:id', function(req, res, next){
           },0);
           order.orderItems = order.orderItems.map(function(orderItem){
             products.forEach(function(shirt){
-              //console.log(shirt);
               if(shirt.id === orderItem.shirt_id){
                 orderItem.shirt = shirt;
               }
             })
-            console.log(orderItem);
+
             return orderItem;
           })
+          var datedata = new Date(order.created_at);
+          console.log(datedata.getMonth() + 1 + '-' + datedata.getDate() + '-' + datedata.getFullYear());
+          order.date = datedata.getMonth() + 1 + '-' + datedata.getDate() + '-' + datedata.getFullYear();
           return order;
         });
+
+        // var datefinal = (date[1] + ' ' + date[2] + ' ' + date[3]).toString()
+
 
         res.render('./user/account', {details: userserial, orders: userserial.orders, shirts: products, ordertotal: orders})
       })
@@ -90,7 +94,6 @@ router.post('/:id/edit', function(req, res, next){
     })
   } else {
     bookshelf.User.where({id: req.params.id}).fetch().then(function(user){
-      console.log('hello');
       user.save({fname: req.body.fname, lname: req.body.lname, email: req.body.email}, {patch: true});
       res.redirect("/users/" + req.params.id);
     });

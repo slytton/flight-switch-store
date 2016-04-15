@@ -3,6 +3,8 @@ $accent-blue-hover: #0684b5;
 $accent-yellow: rgb(255, 232, 22);
 $accent-yellow-hover: rgb(236, 213, 0);
 $background-gray: #C7C7C7;
+$light-blue-gray: #89C4DB;
+$light-blue-gray-hover: #62b7d9;
 
 
 .error {
@@ -176,7 +178,7 @@ article {
   margin: 0 auto;
   float: left;
   width:calc(88% / 3);
-  transition: scale 1s;
+  transition-duration: .5s
 }
 
 article:hover {
@@ -184,6 +186,7 @@ article:hover {
   -moz-transform:    scale(1.1);
   -o-transform:      scale(1.1);
   -ms-transform:     scale(1.1);
+  transition-duration: .5s;
 }
 
 .shirtimg {
@@ -218,16 +221,6 @@ text-align: left;
   padding: 5%;
 }
 
-#useraccountpage table {
-  padding: 20px;
-  border: 1px solid black;
-  margin-bottom: 20px;
-  border-radius: 3px;
-}
-
-#useraccountpage td {
-  padding-left: 20px;
-}
 
 
 @media only screen and (max-width: 550px){

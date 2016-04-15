@@ -32,7 +32,7 @@
 }
 
 .addpage tbody {
-text-align: left
+  text-align: left
 }
 
 #admindisplay form {
@@ -45,6 +45,68 @@ text-align: left
 
 }
 
+#useraccountpage table {
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#useraccountpage td {
+  padding: 0 30px
+}
+
+
+#ordersshow table {
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+
+#ordersshow td {
+  padding: 0 30px
+}
+
+#usersshow table {
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+
+#usersshow td {
+  padding: 0 30px
+}
+
+#ordersshow input {
+  padding: 10px;
+  border-radius: 3px;
+  border:1px solid gray;
+  margin: 0 auto;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#editaccountpage td {
+  padding: 0 30px
+}
+
+#editaccountpage input {
+  padding: 10px;
+  border-radius: 3px;
+  border:1px solid gray;
+  margin: 0 auto;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
 .menuitem {
   padding: 20px 0 20px 10px;
   cursor: pointer;
@@ -54,17 +116,35 @@ text-align: left
 
   &:hover {
     cursor: pointer;
+    background-color: $light-blue-gray-hover;
+    padding-top:10px;
+    padding-bottom:10px;
+    transition-duration: .5s;
   }
+
+  &:first-child{
+    border-radius: 3px 3px 0 0;
+  }
+
+  &:last-child{
+    border-radius: 0 0 3px 3px;
+  }
+
+  transition-duration: .5s;
+  padding: 5px 0px 5px 20px;
   display: flex;
   align-items: center;
-  background-color: rgb(208, 208, 208);
+  background-color: $light-blue-gray;
+
   span{
     padding: 0 10px;
   };
+
   border-bottom: 2px solid rgb(111, 111, 111);
 }
 
 .collapsable {
-  margin-bottom: 20px;
+  padding: 20px 20px 20px 50px;
   display:none;
+  background-color: rgba(255,255,255,.8);
 }

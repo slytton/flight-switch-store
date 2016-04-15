@@ -55,20 +55,20 @@
         <div id='ordersshow'>
           <h1>Orders</h1>
           {{#orders}}
-          <h3>Total: ${{total}}</h3>
-          <ul>
+          <table>
+            <tbody>
+          <tr><td><h3>User</h3></td><td>{{users.fname}} {{users.lname}}</td></tr>
+          <tr><td><h3>Total</h3> </td><td>${{total}}</td></tr>
+          <tr><td><h3>Items</h3></td>
             {{#orderItems}}
-            <li>{{$price}} {{quantity}}{{shirt.designs.name}}{{shirt.colors.color}}{{shirt.sizes.size}}</li>
+            <td>{{$price}} {{quantity}} {{shirt.designs.name}} {{shirt.colors.color}} {{shirt.sizes.size}} </td></tr>
             {{/orderItems}}
-          </ul>
-          <h3>Order ID: {{id}}</h3>
-          <h3>User ID: {{user_id}}</h3>
-          <h3>Created At: {{created_at}}</h3>
-          <h3>Updated At: {{updated_at}}</h3>
+          <tr><td><h3>Order ID<h3> </td><td> {{id}}</td></tr>
+          <tr><td><h3>User ID<h3> </td><td> {{user_id}}</td></tr>
+          <tr><td><h3>Created At<h3> </td><td> {{created_at}}</td></tr>
+          <tr><td><h3>Updated At<h3> </td><td> {{updated_at}}</td></tr>
 
           <form action="/admin/orders/{{id}}/o" method="post">
-            <table>
-              <tbody>
                 <tr><td>address</td><td><input type='text' value='{{address}}' name='address'></td></tr>
                 <tr><td>city</td><td><input type='text' value='{{city}}' name='city'></td></tr>
                 <tr><td>state</td><td><input type='text' value='{{state}}' name='state'></td></tr>

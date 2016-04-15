@@ -25,6 +25,11 @@
     }
   }
 
+  .button {
+    color: white;
+    border-radius: 0 0 3px 3px;
+  }
+
   table{
     background-color: $background-gray;
     border-collapse: collapse;
@@ -48,13 +53,11 @@
 
   td {
     padding: 5px 10px;
-    cursor: pointer;
     box-sizing: border-box;
   }
 
   th {
     padding: 5px 10px;
-    cursor: pointer;
     box-sizing: border-box;
   }
 
