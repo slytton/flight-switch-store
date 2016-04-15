@@ -35,11 +35,9 @@ router.get('/:id', function(req, res, next){
     bookshelf.Shirt.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl', ]})
     .then(function(shirts) {
       var products = shirts.serialize();
-      bookshelf.Order.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['users', 'status', 'orderItems']})
+      bookshelf.Order.where('id', req.params.id).query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['users', 'status', 'orderItems']})
       .then(function(ordRes) {
         var orders = ordRes.serialize();
-
-
 
         orders = orders.map(function(order){
           order.total =  order.orderItems.reduce(function(prev, item){
