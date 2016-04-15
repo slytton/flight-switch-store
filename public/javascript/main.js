@@ -170,16 +170,8 @@ function renderCart(response){
 }
 
 function renderCheckoutCart(response){
-  console.log(response);
-  // if(response.messages.errors){
-  //   var errorMessages = response.messages.errors.map(function(error){
-  //     return "<li>"+error+"</li>";
-  //   }).join('');
-  //   $('.container').prepend("<ul class='error'>"+errorMessages+"</ul>");
-  // }
   $('.checkout.table-container table').remove()
   $('.checkout.table-container').prepend(response.html.table)
-  // if(displayBlock)$('.table-container').css('display', displayBlock)
   return response;
 }
 

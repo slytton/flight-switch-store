@@ -20,7 +20,16 @@
   width: 75%;
 }
 
-#productsshow {
+#add-table {
+  background-color: rgb(225, 225, 225);
+  padding: 25px;
+  padding-top: 35px;
+  border-radius: 10px;
+}
+
+.go-right {
+  float: right;
+  width: 100%;
 }
 
 #ordersshow {
@@ -147,4 +156,7 @@
   padding: 20px 20px 20px 50px;
   display:none;
   background-color: rgba(255,255,255,.8);
+}
+.hide-me {
+  display: none;
 }
