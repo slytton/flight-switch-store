@@ -97,7 +97,7 @@ $(function() {
       $('#addpage').prepend('<p class="error">Please enter a desing name</p>')
       messageTimer()
     }
-    if (size.val().length !== 1 || size.val().length !== 2) {
+    if (size.val().length !== 1 && size.val().length !== 2) {
       event.preventDefault();
       $('#addpage').prepend('<p class="error">Please enter a size ex. S, XL</p>')
       messageTimer()
