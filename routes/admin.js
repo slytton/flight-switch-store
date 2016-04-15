@@ -43,8 +43,8 @@ router.post('/product/add', function(req, res, next) {
   }).then(function(){
     bookshelf.knex('colors').where({color: req.body.colors_color})
     .then(function(colors) {
-      if(!colors) {
-        new bookshelf.Color({name: req.body.colors_color}).save();
+      if(!colors[0]) {
+        new bookshelf.Color({color: req.body.colors_color}).save();
       }
     })
   })
