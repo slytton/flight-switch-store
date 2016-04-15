@@ -133,6 +133,7 @@ td a {
   text-decoration: none;
   color: black;
 }
+
 th {
 }
 
@@ -215,20 +216,15 @@ section {
   width: 50%;
 }
 
+.halfpage > form {
+text-align: left;
+}
+
 .halfpage:nth-last-of-type(1) {
   width: 40%;
   padding: 5%;
 }
 
-#useraccountpage table {
-  padding: 20px;
-  border: 1px solid black;
-  margin-bottom: 20px;
-}
-
-#useraccountpage td {
-  padding-left: 20px;
-}
 
 
 @media only screen and (max-width: 550px){
