@@ -32,7 +32,35 @@ router.get('/:id', function(req, res, next){
   bookshelf.User.where({id: req.params.id}).fetch({withRelated: ['orders']})
   .then(function(user) {
     var userserial = user.serialize();
-    res.render('./user/account', {details: userserial, orders: userserial.orders})
+    bookshelf.Shirt.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['designs', 'colors', 'sizes', 'shirtImageUrl', ]})
+    .then(function(shirts) {
+      var products = shirts.serialize();
+      bookshelf.Order.query(function(data){ data.orderBy('id', 'ascend')}).fetchAll({withRelated: ['users', 'status', 'orderItems']})
+      .then(function(ordRes) {
+        var orders = ordRes.serialize();
+
+
+
+        orders = orders.map(function(order){
+          order.total =  order.orderItems.reduce(function(prev, item){
+            return prev += item.price * item.quantity;
+          },0);
+          order.orderItems = order.orderItems.map(function(orderItem){
+            products.forEach(function(shirt){
+              //console.log(shirt);
+              if(shirt.id === orderItem.shirt_id){
+                orderItem.shirt = shirt;
+              }
+            })
+            console.log(orderItem);
+            return orderItem;
+          })
+          return order;
+        });
+
+        res.render('./user/account', {details: userserial, orders: userserial.orders, shirts: products, ordertotal: orders})
+      })
+    })
   })
 });
 
