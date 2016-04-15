@@ -4,11 +4,11 @@
     <img class='shirtimg' src="{{shirt.0.shirtImageUrl.url}}" />
   </div>
 
-  <div class='halfpage'>
-
+  <div class='halfpage' id="selections">
+    <h3 id="price" >${{shirt.0.price}} ea</h3>
       <form  action="/cart" method="post">
         <label>Size: </label>
-        <select name="shirt_id">
+        <select id="sz" name="shirt_id">
           {{#shirt}}
           {{#if quantity}}
           <option value="{{id}}">{{sizes.size}}</option>
@@ -16,9 +16,10 @@
           {{/shirt}}
         </select>
         <label>Qty: </label><input id="qty" type="text" name="quantity" value="1">
-        ${{shirt.0.price}} ea
+
         <br>
-        <input type="submit" value="Add to Cart">
+        <input class="button single-view" id="add-to-cart" type="submit" value="Add to Cart"><br>
+        <a href="/checkout"><input id="" class="single-view button blue" type="button" value="Checkout"></a>
       </form>
 
   </div>
