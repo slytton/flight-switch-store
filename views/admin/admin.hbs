@@ -87,7 +87,7 @@
           {{#users}}
           <h3>User ID: {{id}}</h3>
           <h3>User Email: {{email}}</h3>
-          <form action="/admin/users/{{id}}/u" method="post">
+          <form action="/admin/users/{{id}}" method="post">
             <table>
               <tbody>
                 <tr><td>fname: {{fname}}</td><td><input type='text' value='{{fname}}' name='fname'></td></tr>

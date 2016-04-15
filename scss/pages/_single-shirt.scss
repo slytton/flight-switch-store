@@ -1,0 +1,28 @@
+#qty {
+  width: 65px;
+  text-align: center;
+}
+#sz {
+  width: 65px;
+  border: 1px solid white;
+  text-align: justify;
+  outline: none;
+}
+#selections{
+  border: 1px solid #C7C7C7;
+  text-align: center;
+  float: right;
+  width: auto;
+  margin-right: 19vw;
+  margin-top: 20vh;
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  padding-top: 10px;
+}
+.single-view{
+  width: 100%;
+}
+#add-to-cart:hover {
+  background-color: rgb(135, 135, 135)
+}

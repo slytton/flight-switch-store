@@ -403,3 +403,41 @@ select {
       text-align: center;
       padding: 5px;
       background-color: #cccccc; } }
+
+.thanks {
+  border: 1px solid #827B7B;
+  text-align: center;
+  border-radius: 10px;
+  width: 50vw;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 35vh;
+  background-color: #C7C7C7; }
+
+#qty {
+  width: 65px;
+  text-align: center; }
+
+#sz {
+  width: 65px;
+  border: 1px solid white;
+  text-align: justify;
+  outline: none; }
+
+#selections {
+  border: 1px solid #C7C7C7;
+  text-align: center;
+  float: right;
+  width: auto;
+  margin-right: 19vw;
+  margin-top: 20vh;
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  padding-top: 10px; }
+
+.single-view {
+  width: 100%; }
+
+#add-to-cart:hover {
+  background-color: #878787; }
