@@ -1,16 +1,25 @@
 <div id='addpage'>
   <h3>Add A Product</h3>
   <form action="/admin/product/add" method="post">
-    <table>
+    <table id="add-table">
       <tbody>
-        <tr><td>Design</td><td><input type='text' name='designs_name' placeholder="Design Name"></td></tr>
-        <tr><td>Size</td><td><input type='text' name='sizes_size'></td></tr>
-        <tr><td>Color</td><td><input type='text' name='colors_color'></td></tr>
+        <tr><td>Design</td>
+
+        <td><input type='text' name='designs_name'></td>
+        </tr>
+        <tr><td>Size</td>
+        <td>
+        <input type='text' name='sizes_size'></td>
+      <td>
+        </tr>
+        <tr><td>Color</td>
+          <td><input type='text' name='colors_color'></td>
+        <td></td></tr>
         <tr><td>Quantity</td><td><input type='text' name='quantity'></td></tr>
         <tr><td>Price</td><td><input type='text' name='price'></td></tr>
-        <tr><td>shirtImageUrl.url</td><td><input type='text' name='shirtImageUrl_url'></td></tr>
-        <tr><td>Upload Image File</td><td><input type="file" name="shirtImage" value="Image"></td></tr>
-        <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+        <tr><td>Image Url</td>
+        <td><input type='text' name='shirtImageUrl_url'></td></tr>
+        <tr><td></td><td><input class="button" type="submit" value="Submit"></td></tr>
       </tbody>
     </table>
   </form>
