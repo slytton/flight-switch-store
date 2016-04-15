@@ -23,26 +23,25 @@
 
   <table>
     <tbody>
-      <h3>Total: ${{total}}</h3>
-      <h3>Items:</h3>
+      <tr><td><h3>Total</h3></td><td> ${{total}}</td></tr>
+      <tr><td><h3>Items<h3></td>
 
       {{#orderItems}}
-      <tr><td>{{$price}} {{quantity}} {{shirt.designs.name}} {{shirt.colors.color}} {{shirt.sizes.size}}</td></tr>
-      {{/orderItems}}
+      <td>{{$price}} {{quantity}} {{shirt.designs.name}} {{shirt.colors.color}} {{shirt.sizes.size}}</td>
+      {{/orderItems}}<tr>
 
-      <tr><td><h3>Shipping Address</h3></td></tr>
-      <tr><td>{{address}}</td></tr>
-      <tr><td>{{city}}</td></tr>
-      <tr><td>{{state}}</td></tr>
-      <tr><td>{{zip}}</td></tr>
-      <tr><td><h3>Order Status</h3></td></tr>
-      <tr>
+      <tr><td><h3>Address</h3></td>
+      <td>{{address}}<br>{{city}} {{state}}<br>{{zip}}</td></tr>
+      
+      <tr><td><h3>Order Status</h3></td>
         <td>
           {{#equal order_status_id 1}} Processing {{/equal}}
           {{#equal order_status_id 2}} Shipped {{/equal}}
           {{#equal order_status_id 3}} Refunded {{/equal}}
         </td>
       </tr>
+      <tr><td><br></td></tr>
+
     </tbody>
   </table>
 

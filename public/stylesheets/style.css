@@ -43,7 +43,8 @@ header {
   position: fixed;
   border-bottom: solid 5px #00a2e2;
   overflow: auto;
-  background-color: black; }
+  background-color: black;
+  z-index: 100001; }
 
 .headerlogo {
   float: left;
@@ -165,6 +166,14 @@ section {
 .halfpage:nth-last-of-type(1) {
   width: 40%;
   padding: 5%; }
+
+#useraccountpage table {
+  padding: 20px;
+  border: 1px solid black;
+  margin-bottom: 20px; }
+
+#useraccountpage td {
+  padding-left: 20px; }
 
 @media only screen and (max-width: 550px) {
   article {
