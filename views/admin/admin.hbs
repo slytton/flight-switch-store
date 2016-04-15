@@ -55,6 +55,7 @@
         <div id='ordersshow'>
           <h1>Orders</h1>
           {{#orders}}
+          <h3>User: {{users.fname}} {{users.lname}}</h3>
           <h3>Total: ${{total}}</h3>
           <ul>
             {{#orderItems}}

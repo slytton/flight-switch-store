@@ -134,7 +134,7 @@ router.post('/checkout', function(req, res, next) {
       });
     }).catch(function(e) {
       console.log('3', e);
-      req.session.message.error = [e];
+      req.session.message.error = e;
       res.redirect('/checkout');
     });
   } else {
