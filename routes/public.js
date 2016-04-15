@@ -38,25 +38,25 @@ router.post('/checkout', function(req, res, next) {
   var zip = req.body.zip;
   var state = req.body.state.toUpperCase();
 
-  if (street || !/^[0-9 || A-z]+$/.test(street)) {
+  if (!street || !/^[0-9A-z.\s]+$/.test(street)) {
     error.push('Please enter a valid street address (numbers and letters only)');
   }
-  if (city || !/^[A-z]+$/.test(city)) {
+  if (!city || !/^[A-z]+$/.test(city)) {
     error.push('Please enter a valid city (letters only)');
   }
-  if (zip || !/^[0-9]{5}$/.test(zip)) {
+  if (!zip || !/^[0-9]{5}$/.test(zip)) {
     error.push('Please enter a valid zipcode (5 digits)');
   }
-  if (state || states.indexOf(state) < 0) {
+  if (!state || states.indexOf(state) < 0) {
     error.push('Please enter a two digit state abbreviation.');
   }
 
-  if (!error) {
+  if (error.length === 0) {
     bookshelf.Shirt.query().whereIn('id', Object.keys(cart)).then(function(shirts) {
       var total = 0;
       shirts.forEach(function(shirt) {
         total += cart[shirt.id] * shirt.price;
-        if (shirt.quantity <= cart[shirt.id]) {
+        if (shirt.quantity < cart[shirt.id]) {
           bookshelf.Shirt.where('id', shirt.id).fetch({
             withRelated: ['colors', 'sizes', 'designs', 'shirtImageUrl']
           }).then(function(bsShirt) {
@@ -66,16 +66,17 @@ router.post('/checkout', function(req, res, next) {
             } else {
               delete cart[shirt.id];
             }
-            throw "These things are selling like hotcakes. We no longer have enough " +
+            throw "These things are selling like hotcakes. We no longer have enough '" +
               bsShirt.designs.name + " " +
               bsShirt.colors.color + " " +
-              bsShirt.sizes.size + " to complete your order :( - we only have " +
+              bsShirt.sizes.size + "' to complete your order :( - we only have " +
               bsShirt.quantity + " left in stock.";
           }).catch(function(e) {
+            console.log('origin', e);
             throw e;
           })
         }
-      });
+      })
 
       var charge = stripe.charges.create({
         amount: total * 100, // amount in cents, again
@@ -83,6 +84,7 @@ router.post('/checkout', function(req, res, next) {
         source: orderDetails.stripeToken,
         description: "Example charge"
       }, function(err, charge) {
+        console.log(charge);
         if (err && err.type === 'StripeCardError') {
           throw err;
         } else {
@@ -125,11 +127,13 @@ router.post('/checkout', function(req, res, next) {
               order_id: orderItems.order_id
             })
           }).catch(function(e) {
+            console.log('2', e);
             throw e;
           });
         }
       });
     }).catch(function(e) {
+      console.log('3', e);
       req.session.message.error = [e];
       res.redirect('/checkout');
     });
