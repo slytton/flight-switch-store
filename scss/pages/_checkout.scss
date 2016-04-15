@@ -1,8 +1,50 @@
-.checkout td {
+.checkout {
 
-    text-align: left;;
+  table {
+    th:first-child, td:first-child {
+      text-align: right;
+    }
 
+    th:nth-child(2), td:nth-child(2){
+      text-align: left;
+      padding-left: 10px;
+    }
+  }
 
+  .checkout.table-container{
+    table{
+      border-collapse: collapse;
+      text-align: center;
+      td {
+        text-align: center;
+        padding: 20px;
+      }
 
+      th {
+        text-align:center;
+        padding: 10px 20px;
+        background-color: rgb(204, 204, 204);
+      }
+    }
+  }
+
+  @media only screen and (max-width: 600px){
+    .checkout.table-container{
+      table{
+        border-collapse: collapse;
+        text-align: center;
+        td {
+          text-align: center;
+          padding: 5px;
+        }
+
+        th {
+          text-align:center;
+          padding: 5px;
+          background-color: rgb(204, 204, 204);
+        }
+      }
+    }
+  }
 
 }

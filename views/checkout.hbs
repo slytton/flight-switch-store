@@ -1,9 +1,9 @@
 <div class='checkout'>
   <h1>Checkout</h1>
   <h2>Verify Cart</h2>
-  <h2>Shipping and Credit Card Information</h2>
-  <form action="/checkout" method="post" id="payment-form">
+
   <div class='checkout table-container'>{{> cart-table }}</div>
+  <h2>Shipping and Credit Card Information</h2>
   <form action="/checkout" method="POST" id="payment-form">
     <span class="payment-errors"></span>
     <table>
@@ -30,6 +30,7 @@
           </td>
           <td>
             <select name="state">
+              <option disabled selected value> -- Select a state -- </option>
               {{#states}}
                 <option value="{{this}}">{{this}}</option>
               {{/states}}

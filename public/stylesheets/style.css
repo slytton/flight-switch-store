@@ -1,3 +1,6 @@
+select {
+  border: 1px solid gray; }
+
 .error li {
   display: block;
   margin: 10px 30px; }
@@ -271,10 +274,11 @@ select {
     box-sizing: border-box; }
   .cart th {
     padding: 5px 10px;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    text-align: center; }
   .cart tr {
     border-top: 1px solid gray;
-    text-align: left; }
+    text-align: center; }
 
 .fa-plus {
   font-size: 0.75em; }
@@ -370,8 +374,35 @@ select {
   display: none;
   background-color: rgba(255, 255, 255, 0.8); }
 
-.checkout td {
-  text-align: left; }
+.checkout table th:first-child, .checkout table td:first-child {
+  text-align: right; }
+
+.checkout table th:nth-child(2), .checkout table td:nth-child(2) {
+  text-align: left;
+  padding-left: 10px; }
+
+.checkout .checkout.table-container table {
+  border-collapse: collapse;
+  text-align: center; }
+  .checkout .checkout.table-container table td {
+    text-align: center;
+    padding: 20px; }
+  .checkout .checkout.table-container table th {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #cccccc; }
+
+@media only screen and (max-width: 600px) {
+  .checkout .checkout.table-container table {
+    border-collapse: collapse;
+    text-align: center; }
+    .checkout .checkout.table-container table td {
+      text-align: center;
+      padding: 5px; }
+    .checkout .checkout.table-container table th {
+      text-align: center;
+      padding: 5px;
+      background-color: #cccccc; } }
 
 .thanks {
   border: 1px solid #827B7B;
